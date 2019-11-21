@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 
 /**
- * Limits a client drag movment within given min / max
- * @param {Number} pos - The current clientX
+ * Limits a client drag movement within given min / max
+ * @param {Number} offset - The current clientX
  * @param {Number} min - Min boundary
  * @param {Number} max - Max boundary
  * @returns {Number}
  */
-const limitPos = (pos, min, max) => Math.max(Math.min(pos, max), min);
+const limitPos = (offset, min, max) => Math.max(Math.min(offset, max), min);
 
 const getColorStopRefTop = (ref) => {
 	if (!ref.current) return 0;
@@ -30,9 +30,10 @@ const useStopDragging = ({ limits, stop, initialPos, colorStopRef, onPosChange, 
 	const handleMouseMove = ({ clientX, clientY }) => {
 		if (!dragging) return;
 
-		const { id, pos } = stop;
+		const { id, offset } = stop;
 		const { min, max } = limits;
 
+		// Removing if out of drop limit on Y axis.
 		const top = getColorStopRefTop(colorStopRef);
 		if (Math.abs(clientY - top) > limits.drop) {
 			deactivate();
@@ -40,10 +41,10 @@ const useStopDragging = ({ limits, stop, initialPos, colorStopRef, onPosChange, 
 		}
 
 		// Limit movements
-		const offset = pos - posStart;
-		const limitedPos = limitPos(offset + clientX, min, max);
+		const dragOffset = offset - posStart;
+		const limitedPos = limitPos(dragOffset + clientX, min, max);
 
-		onPosChange({ id, pos: limitedPos });
+		onPosChange({ id, offset: limitedPos });
 	};
 
 	const activate = (posStart) => {

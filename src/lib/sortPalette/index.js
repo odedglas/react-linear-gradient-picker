@@ -1,4 +1,4 @@
-const compare = ({ pos: pos1 }, { pos: pos2 }) => pos1 - pos2;
+const compare = ({ offset: offset1 }, { offset: offset2 }) => offset1 - offset2;
 
 const sortPalette = (palette) => {
 	return palette.sort(compare);

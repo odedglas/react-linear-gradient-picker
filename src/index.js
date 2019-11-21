@@ -22,14 +22,14 @@ const mapIdToPalette = (palette) => palette.map((color, index) => ({
 const mapPaletteToStops = ({ palette, activeId, activePoint, width }) => palette.map((color) => ({
 	...color,
 	id: color.id,
-	pos: width * color.pos - HALF_STOP_WIDTH,
+	offset: width * color.offset - HALF_STOP_WIDTH,
 	isActive: color.id === activeId,
 	pointX: activePoint
 }));
 
 const getPaletteColor = (palette, id) => {
 	const color = palette.find(color => color.id === id);
-	return { ...color, pos: Number(color.pos) };
+	return { ...color, offset: Number(color.offset) };
 };
 
 const GradientPicker = ({
@@ -52,9 +52,9 @@ const GradientPicker = ({
 		return { min, max, drop: stopRemovalDrop };
 	}, [width]);
 
-	const handleColorAdd = ({ pos, pointX }) => {
+	const handleColorAdd = ({ offset, pointX }) => {
 		const { color } = getPaletteColor(palette, activeColorId);
-		const entry = { id: nextColorId(palette), pos: pos / width, color };
+		const entry = { id: nextColorId(palette), offset: offset / width, color };
 
 		const updatedPalette = [...palette, entry];
 
@@ -64,7 +64,7 @@ const GradientPicker = ({
 
 	const handleColorDelete = (id) => {
 		const updatedPalette = palette.filter(c => c.id !== id);
-		const activeId = updatedPalette.reduce((a, x) => x.pos < a.pos ? x : a, palette[0]).id;
+		const activeId = updatedPalette.reduce((a, x) => x.offset < a.offset ? x : a, palette[0]).id;
 
 		setActiveColorId(activeId);
 		handlePaletteChange(updatedPalette);
@@ -84,14 +84,14 @@ const GradientPicker = ({
 
 	const handlePaletteChange = (palette) => {
 		const sortedPalette = sortPalette(palette)
-			.map(({ pos, ...rest }) => ({ pos: Number(pos).toFixed(3), ...rest }));
+			.map(({ offset, ...rest }) => ({ offset: Number(offset).toFixed(3), ...rest }));
 
 		onPaletteChange(sortedPalette);
 	};
 
-	const handleStopPosChange = ({ id, pos }) => {
+	const handleStopPosChange = ({ id, offset }) => {
 		const updatedPalette = palette.map(c =>
-			id === c.id ? { ...c, pos: (pos + HALF_STOP_WIDTH) / width } : c
+			id === c.id ? { ...c, offset: (offset + HALF_STOP_WIDTH) / width } : c
 		);
 
 		handlePaletteChange(updatedPalette);

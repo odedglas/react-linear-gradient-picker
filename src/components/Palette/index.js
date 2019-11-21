@@ -13,8 +13,8 @@ const Palette = ({ palette, width, height }) => {
 			<svg width="100%" height="100%">
 				<defs>
 					<linearGradient id={gradientId} x1="0" y1="0.5" x2="1" y2="0.5"> {
-						sortedPalette.map(({ id, pos, color, opacity = 1 }) =>
-							<stop key={id} offset={pos} style={{ stopColor: color, stopOpacity: opacity }}/>
+						sortedPalette.map(({ id, offset, color, opacity = 1 }) =>
+							<stop key={id} offset={offset} style={{ stopColor: color, stopOpacity: opacity }}/>
 						)}
 					</linearGradient>
 				</defs>

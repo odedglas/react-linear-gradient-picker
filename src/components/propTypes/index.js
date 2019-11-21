@@ -3,7 +3,7 @@ import { number, string, bool, arrayOf, func, shape } from 'prop-types';
 const STOP_SHAPE = shape({
 	id: number.isRequired,
 	color: string.isRequired,
-	pos: number.isRequired,
+	offset: number.isRequired,
 	isActive: bool.isRequired,
 	pointX: number
 });
@@ -17,7 +17,7 @@ const LIMITS_SHAPE = shape({
 const PALETTE_COLOR_SHAPE = shape({
 	id: number.isRequired,
 	color: string.isRequired,
-	pos: string.isRequired,
+	offset: string.isRequired,
 	opacity: number,
 });
 
@@ -54,7 +54,7 @@ export const GRADIENT_PICKER_PROP_TYPES = {
 	stopRemovalDrop: number,
 	palette: arrayOf(shape({
 		color: string.isRequired,
-		pos: string.isRequired,
+		offset: string.isRequired,
 		opacity: number,
 	}))
 };

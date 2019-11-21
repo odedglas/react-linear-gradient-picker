@@ -16,8 +16,8 @@ const ColorStopsHolder = ({ width, stops, onAddColor, ...rest }) => {
 
 		if (e.button) return;
 
-		const pos = e.clientX - e.target.getBoundingClientRect().left;
-		onAddColor({ pos, pointX: e.clientX });
+		const offset = e.clientX - e.target.getBoundingClientRect().left;
+		onAddColor({ offset, pointX: e.clientX });
 	};
 
 	return (
