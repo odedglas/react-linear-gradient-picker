@@ -53,5 +53,8 @@
     "sass-loader": "^8.0.0",
     "rc-color-picker": "^1.1.5",
     "react-color": "^2.12.0"
+  },
+  "dependencies": {
+    "linear-gradient-parser": "^1.0.1"
   }
 }
