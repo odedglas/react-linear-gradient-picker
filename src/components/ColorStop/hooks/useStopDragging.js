@@ -9,7 +9,12 @@ import { useState, useEffect } from 'react';
  */
 const limitPos = (pos, min, max) => Math.max(Math.min(pos, max), min);
 
-const useStopDragging = ({ limits, stop, initialPos, onPosChange, onDragStart, onDragEnd }) => {
+const getColorStopRefTop = (ref) => {
+	if (!ref.current) return 0;
+	return ref.current.getBoundingClientRect().top;
+};
+
+const useStopDragging = ({ limits, stop, initialPos, colorStopRef, onPosChange, onDragStart, onDragEnd, onDeleteColor}) => {
 	const [dragging, setDragging] = useState(false);
 	const [posStart, setPosStart] = useState(initialPos);
 
@@ -22,11 +27,17 @@ const useStopDragging = ({ limits, stop, initialPos, onPosChange, onDragStart, o
 
 	const handleMouseUp = () => deactivate();
 
-	const handleMouseMove = ({ clientX }) => {
+	const handleMouseMove = ({ clientX, clientY }) => {
 		if (!dragging) return;
 
 		const { id, pos } = stop;
 		const { min, max } = limits;
+
+		const top = getColorStopRefTop(colorStopRef);
+		if (Math.abs(clientY - top) > limits.drop) {
+			deactivate();
+			return onDeleteColor(id);
+		}
 
 		// Limit movements
 		const offset = pos - posStart;

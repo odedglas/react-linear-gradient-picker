@@ -25,8 +25,9 @@ export const STOP_PROP_TYPES = {
 	stop: STOP_SHAPE.isRequired,
 	limits: LIMITS_SHAPE.isRequired,
 	onPosChange: func.isRequired,
-	onDragStart: func.isRequired,
-	onDragEnd: func.isRequired
+	onDeleteColor: func.isRequired,
+	onDragStart: func,
+	onDragEnd: func
 };
 
 export const STOPS_HOLDER_PROP_TYPES = {
@@ -35,8 +36,9 @@ export const STOPS_HOLDER_PROP_TYPES = {
 	limits: LIMITS_SHAPE,
 	onPosChange: func.isRequired,
 	onAddColor: func.isRequired,
-	onDragStart: func.isRequired,
-	onDragEnd: func.isRequired,
+	onDeleteColor: func.isRequired,
+	onDragStart: func,
+	onDragEnd: func,
 };
 
 export const PALETTE_PROP_TYPES = {

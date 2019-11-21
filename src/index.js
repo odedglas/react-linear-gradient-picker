@@ -31,8 +31,6 @@ const getPaletteColor = (palette, id) => {
 	return { ...color, pos: Number(color.pos) };
 };
 
-let dragContext = {};
-
 const GradientPicker = ({
 	palette = DEFAULT_PALETTE,
 	height = DEFAULT_HEIGHT,
@@ -49,10 +47,10 @@ const GradientPicker = ({
 		const min = -HALF_STOP_WIDTH;
 		const max = width - HALF_STOP_WIDTH;
 
-		return { min, max };
+		return { min, max, drop: 50 };
 	}, [width]);
 
-	const handleAddColor = ({ pos, pointX }) => {
+	const handleColorAdd = ({ pos, pointX }) => {
 		const { color } = getPaletteColor(palette, activeColorId);
 		const entry = { id: nextColorId(palette), pos: pos / width, color };
 
@@ -72,24 +70,6 @@ const GradientPicker = ({
 
 	const onStopDragStart = (id) => {
 		setActiveColorId(id);
-		dragContext = palette;
-	};
-
-	const onStopDragEnd = (id) => {
-		const posMap = dragContext.map(color => color.pos);
-		const { pos } = getPaletteColor(dragContext, id);
-
-		const isFirst = posMap[0] === pos;
-		const isLast = posMap[palette.length - 1] === pos;
-
-		const reachedEdge = pos === 0 || pos === 1;
-		const minPalletExists = palette.length > 2;
-
-		if (reachedEdge && minPalletExists && !isFirst && !isLast) {
-			handleColorDelete(id);
-		}
-
-		dragContext = {};
 	};
 
 	const handleColorSelect = (color, opacity = 1) => {
@@ -112,7 +92,6 @@ const GradientPicker = ({
 			id === c.id ? { ...c, pos: (pos + HALF_STOP_WIDTH) / width } : c
 		);
 
-		dragContext = updatedPalette;
 		handlePaletteChange(updatedPalette);
 	};
 
@@ -142,9 +121,9 @@ const GradientPicker = ({
 				})}
 				limits={limits}
 				onPosChange={handleStopPosChange}
-				onAddColor={handleAddColor}
+				onAddColor={handleColorAdd}
+				onDeleteColor={handleColorDelete}
 				onDragStart={onStopDragStart}
-				onDragEnd={(id) => onStopDragEnd(id)}
 			/>
 			{colorPicker()}
 		</div>

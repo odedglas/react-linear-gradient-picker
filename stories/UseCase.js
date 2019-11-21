@@ -14,7 +14,7 @@ const UseCase = ({ palette, ColorPicker, link, title }) => {
 					With&nbsp;
 					<a href={link} target="_blank" rel="noopener noreferrer">{title}</a>
 				</div>
-				<div className="result">{ info } </div>)
+				<div className="result">{ info } </div>
 				<GradientPicker {...{
 					width: 320,
 					height: 32,
