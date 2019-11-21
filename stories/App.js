@@ -5,11 +5,25 @@ import 'rc-color-picker/assets/index.css'
 import GradientPicker from '../src'
 import './App.css'
 
-const WrappedSketchPicker = ({ onSelect, ...rest }) =>
-  <SketchPicker { ...rest } onChange={ c => onSelect(c.hex) } />
+const addOpacityToHex = (color, opacity = 1) => {
+	if (opacity === 1 || color.length > 9) {
+		return color;
+	}
 
-const WrappedColorPicker = ({ onSelect, ...rest }) =>
-  <ColorPicker { ...rest } onChange={ c => onSelect(c.color) } />
+	return color + Math.floor(opacity * 255).toString(16);
+};
+
+const WrappedSketchPicker = ({ onSelect, ...rest }) => {
+	return <SketchPicker { ...rest } color={addOpacityToHex(rest.color, rest.opacity)} onChange={ c => {
+		onSelect(c.hex, c.rgb.a)
+	} } />
+}
+
+const WrappedColorPicker = ({ onSelect, ...rest }) => {
+	return <ColorPicker { ...rest } onChange={ c => {
+		onSelect(c.color, c.alpha / 100)
+	} } />
+}
 
 const Result = ({ msg }) => {
   const info = !msg ? 'Result area' : JSON.stringify(msg)
@@ -76,8 +90,7 @@ class App extends React.Component {
 				    onPaletteChange: (palette2) => this.setState({ palette2 })
 			    }}>
 				    <WrappedSketchPicker {...{
-					    width: 200,
-					    disableAlpha: true
+					    width: 200
 				    }} />
 			    </GradientPicker>
 		    </div>

@@ -92,9 +92,9 @@ const GradientPicker = ({
 		dragContext = {};
 	};
 
-	const handleColorSelect = (color) => {
+	const handleColorSelect = (color, opacity = 1) => {
 		palette = palette.map(c =>
-			activeColorId === c.id ? { ...c, color } : c
+			activeColorId === c.id ? { ...c, color, opacity } : c
 		);
 
 		handlePaletteChange(palette);
@@ -117,12 +117,9 @@ const GradientPicker = ({
 	};
 
 	const colorPicker = () => {
-		const activeColor = getPaletteColor(palette, activeColorId);
+		const { color, opacity } = getPaletteColor(palette, activeColorId);
 
-		const props = {
-			color: activeColor.color,
-			onSelect: handleColorSelect
-		};
+		const props = { color, opacity, onSelect: handleColorSelect };
 
 		if (!children) {
 			return <ColorPicker {...props} />
