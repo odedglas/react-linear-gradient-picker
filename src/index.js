@@ -1,7 +1,7 @@
-import React, { useState, useMemo } from 'react'
-import ColorStopsHolder from './components/ColorStopsHolder'
-import Palette from './components/Palette'
-import ColorPicker from './components/ColorPicker'
+import React, { useState, useMemo } from 'react';
+import ColorStopsHolder from './components/ColorStopsHolder';
+import Palette from './components/Palette';
+import ColorPicker from './components/ColorPicker';
 import { GRADIENT_PICKER_PROP_TYPES } from './components/propTypes';
 import { sortPalette } from './lib';
 import {
@@ -102,7 +102,7 @@ const GradientPicker = ({
 
 	const handlePaletteChange = (palette) => {
 		const sortedPalette = sortPalette(palette)
-		.map(({ pos, ...rest }) => ({ pos: Number(pos).toFixed(3), ...rest }));
+			.map(({ pos, ...rest }) => ({ pos: Number(pos).toFixed(3), ...rest }));
 
 		onPaletteChange(sortedPalette);
 	};
@@ -122,7 +122,7 @@ const GradientPicker = ({
 		const props = { color, opacity, onSelect: handleColorSelect };
 
 		if (!children) {
-			return <ColorPicker {...props} />
+			return <ColorPicker {...props} />;
 		}
 
 		const child = React.Children.only(children);

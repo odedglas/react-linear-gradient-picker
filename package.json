@@ -4,9 +4,9 @@
   "description": "React linear gradient picker",
   "main": "dist/index.js",
   "scripts": {
-    "storybook": "start-storybook -p 6006",
-    "build": "webpack --config ./webpack.config.js",
-    "build-storybook": "build-storybook"
+    "storybook": "start-storybook -p 7006",
+    "lint": "eslint .",
+    "build": "webpack --config ./webpack.config.js"
   },
   "repository": {
     "type": "git",

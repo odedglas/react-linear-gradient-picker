@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 /**
  * Limits a client drag movment within given min / max
@@ -17,7 +17,7 @@ const useStopDragging = ({ limits, stop, initialPos, onPosChange, onDragStart, o
 		e.preventDefault();
 		e.stopPropagation();
 
-		if (!e.button) activate(e.clientX)
+		if (!e.button) activate(e.clientX);
 	};
 
 	const handleMouseUp = () => deactivate();
@@ -32,7 +32,7 @@ const useStopDragging = ({ limits, stop, initialPos, onPosChange, onDragStart, o
 		const offset = pos - posStart;
 		const limitedPos = limitPos(offset + clientX, min, max);
 
-		onPosChange({ id, pos: limitedPos })
+		onPosChange({ id, pos: limitedPos });
 	};
 
 	const activate = (posStart) => {
@@ -63,12 +63,12 @@ const useStopDragging = ({ limits, stop, initialPos, onPosChange, onDragStart, o
 		return () => {
 			document.removeEventListener('mousemove', handleMouseMove);
 			document.removeEventListener('mouseup', handleMouseUp);
-		}
+		};
 	}, [dragging]);
 
 	return [
 		handleMouseDown,
-	]
+	];
 };
 
 export default useStopDragging;

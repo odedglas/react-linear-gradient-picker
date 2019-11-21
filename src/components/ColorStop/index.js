@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 import { STOP_PROP_TYPES } from '../propTypes';
 import useStopDragging from './hooks/useStopDragging';
-import './index.css'
+import './index.css';
 
 const ColorStop = ({ stop, limits, onPosChange, onDragStart, onDragEnd }) => {
 
@@ -17,8 +17,8 @@ const ColorStop = ({ stop, limits, onPosChange, onDragStart, onDragEnd }) => {
 
 	return (
 		<div className={isActive ? 'cs active' : 'cs'}
-		     style={{ left: pos }}
-		     onMouseDown={drag}>
+			style={{ left: pos }}
+			onMouseDown={drag}>
 			<div style={{ backgroundColor: color }}/>
 		</div>
 	);

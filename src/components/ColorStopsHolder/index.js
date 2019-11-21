@@ -1,5 +1,5 @@
-import React from 'react'
-import ColorStop from '../ColorStop/index'
+import React from 'react';
+import ColorStop from '../ColorStop/index';
 import { STOPS_HOLDER_PROP_TYPES } from '../propTypes';
 
 const getStopsHolderStyle = (width) => ({
@@ -31,4 +31,4 @@ const ColorStopsHolder = ({ width, stops, onAddColor, ...rest }) => {
 
 ColorStopsHolder.propTypes = STOPS_HOLDER_PROP_TYPES;
 
-export default ColorStopsHolder
+export default ColorStopsHolder;

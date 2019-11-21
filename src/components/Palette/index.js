@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo } from 'react';
 import { sortPalette } from '../../lib';
 import { PALETTE_PROP_TYPES } from '../propTypes';
 
@@ -26,4 +26,4 @@ const Palette = ({ palette, width, height }) => {
 
 Palette.propTypes = PALETTE_PROP_TYPES;
 
-export default Palette
+export default Palette;

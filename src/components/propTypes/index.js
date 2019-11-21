@@ -1,5 +1,4 @@
 import { number, string, bool, arrayOf, func, shape } from 'prop-types';
-import PropTypes from "prop-types";
 
 const STOP_SHAPE = shape({
 	id: number.isRequired,

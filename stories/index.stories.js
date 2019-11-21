@@ -1,11 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
-import { Button, Welcome } from '@storybook/react/demo';
-import { SketchPicker } from 'react-color'
-import { Panel as ColorPicker } from 'rc-color-picker'
+import { SketchPicker } from 'react-color';
+import { Panel as ColorPicker } from 'rc-color-picker';
 import UseCase from './UseCase';
 import './Story.css';
-import 'rc-color-picker/assets/index.css'
+import 'rc-color-picker/assets/index.css';
 
 const addOpacityToHex = (color, opacity = 1) => {
 	if (opacity === 1 || color.length > 9) {
@@ -15,16 +15,27 @@ const addOpacityToHex = (color, opacity = 1) => {
 	return color + Math.floor(opacity * 255).toString(16);
 };
 
+const WrapperPropTypes = {
+	onSelect: PropTypes.func
+};
+
 const WrappedSketchPicker = ({ onSelect, ...rest }) => (
-	<SketchPicker { ...rest } color={addOpacityToHex(rest.color, rest.opacity)}
-	              onChange={c => { onSelect(c.hex, c.rgb.a)}}/>
+	<SketchPicker {...rest}
+		color={addOpacityToHex(rest.color, rest.opacity)}
+		onChange={c => {
+			onSelect(c.hex, c.rgb.a);
+		}}/>
 );
 
+WrappedSketchPicker.propTypes = WrapperPropTypes;
+
 const WrappedColorPicker = ({ onSelect, ...rest }) => (
-	<ColorPicker { ...rest } onChange={c => {
-		onSelect(c.color, c.alpha / 100)
+	<ColorPicker {...rest} onChange={c => {
+		onSelect(c.color, c.alpha / 100);
 	}}/>
 );
+
+WrappedColorPicker.propTypes = WrapperPropTypes;
 
 storiesOf('Gradient Picker', module)
 	.add('React Color (rc-color-picker)', () => (
