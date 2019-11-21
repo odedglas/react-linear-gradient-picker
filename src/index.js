@@ -8,7 +8,8 @@ import {
 	HALF_STOP_WIDTH,
 	DEFAULT_HEIGHT,
 	DEFAULT_WIDTH,
-	DEFAULT_PALETTE
+	DEFAULT_PALETTE,
+	DEFAULT_STOP_REMOVAL_DROP
 } from './constants';
 
 const nextColorId = (palette) => Math.max(...palette.map(({ id }) => id)) + 1;
@@ -35,6 +36,7 @@ const GradientPicker = ({
 	palette = DEFAULT_PALETTE,
 	height = DEFAULT_HEIGHT,
 	width = DEFAULT_WIDTH,
+	stopRemovalDrop = DEFAULT_STOP_REMOVAL_DROP,
 	children,
 	onPaletteChange
 }) => {
@@ -47,7 +49,7 @@ const GradientPicker = ({
 		const min = -HALF_STOP_WIDTH;
 		const max = width - HALF_STOP_WIDTH;
 
-		return { min, max, drop: 50 };
+		return { min, max, drop: stopRemovalDrop };
 	}, [width]);
 
 	const handleColorAdd = ({ pos, pointX }) => {

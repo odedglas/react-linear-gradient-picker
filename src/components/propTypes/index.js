@@ -51,6 +51,7 @@ export const GRADIENT_PICKER_PROP_TYPES = {
 	onPaletteChange: func.isRequired,
 	height: number,
 	width: number,
+	stopRemovalDrop: number,
 	palette: arrayOf(shape({
 		color: string.isRequired,
 		pos: string.isRequired,
