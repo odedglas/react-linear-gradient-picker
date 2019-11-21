@@ -1,54 +1,24 @@
-.app-logo {
-  animation: app-logo-spin infinite 60s linear;
-  height: 60px;
-  vertical-align: middle;
-}
-
-.app-header {
-  white-space: nowrap;
-  font-size: 22px;
-  background-color: #222;
-  height: 90px;
-  color: #fff;
-  line-height: 90px;
-  min-width: 760px;
-}
-
-.app-header .info {
-  display: inline-block;
-  margin-left: 40px;
-  vertical-align: middle;
-  color: #aaa;
-  font-size: 12px;
-  line-height: normal;
-}
-
-.app-header a {
-  float: right;
-  margin-right: 24px;
-}
-
-.app-content {
+.use-case-content {
   margin: 20px;
   display: flex;
   flex-wrap: wrap;
 }
 
-.demo {
+.inner {
   margin-right: 40px;
 }
 
-.app-content .title {
+.use-case-content .title {
   margin: 6px 0 6px 0;
   color: #a0522d;
   font-weight: bold;
 }
 
-.app-content .title a {
+.use-case-content .title a {
   text-decoration: none;
   color: #d78025;
 }
-.app-content .title a:hover {
+.use-case-content .title a:hover {
   color: #a0522d;
 }
 
