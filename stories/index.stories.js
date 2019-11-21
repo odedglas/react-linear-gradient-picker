@@ -1,8 +1,9 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
-import App from '../src';
+import App from './App';
+import './App.css';
 
 import { Button, Welcome } from '@storybook/react/demo';
 
-storiesOf('App', module).add('App', () => <App/>);
+storiesOf('Gradient Picker', module).add('Example', () => <App/>);

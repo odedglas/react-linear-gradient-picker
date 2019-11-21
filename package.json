@@ -48,6 +48,10 @@
     "svg-url-loader": "^3.0.2",
     "terser-webpack-plugin": "^2.1.0",
     "webpack": "^4.40.2",
-    "webpack-cli": "^3.3.9"
+    "webpack-cli": "^3.3.9",
+    "node-sass": "^4.13.0",
+    "sass-loader": "^8.0.0",
+    "rc-color-picker": "^1.1.5",
+    "react-color": "^2.12.0"
   }
 }

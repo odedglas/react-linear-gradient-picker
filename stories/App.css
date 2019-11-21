@@ -1,0 +1,77 @@
+.app-logo {
+  animation: app-logo-spin infinite 60s linear;
+  height: 60px;
+  vertical-align: middle;
+}
+
+.app-header {
+  white-space: nowrap;
+  font-size: 22px;
+  background-color: #222;
+  height: 90px;
+  color: #fff;
+  line-height: 90px;
+  min-width: 760px;
+}
+
+.app-header .info {
+  display: inline-block;
+  margin-left: 40px;
+  vertical-align: middle;
+  color: #aaa;
+  font-size: 12px;
+  line-height: normal;
+}
+
+.app-header a {
+  float: right;
+  margin-right: 24px;
+}
+
+.app-content {
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.demo {
+  margin-right: 40px;
+}
+
+.app-content .title {
+  margin: 6px 0 6px 0;
+  color: #a0522d;
+  font-weight: bold;
+}
+
+.app-content .title a {
+  text-decoration: none;
+  color: #d78025;
+}
+.app-content .title a:hover {
+  color: #a0522d;
+}
+
+.cp, .sketch-picker, .rc-color-picker-panel {
+  margin: 6px 0 6px 0;
+}
+
+.palette {
+  border: 1px solid #ccc;
+}
+
+.result {
+  height: 72px;
+  width: 314px;
+  margin-bottom: 8px;
+  padding: 4px;
+  background-color: #eee;
+  overflow-y: auto;
+  font-family: monospace;
+  font-size: 0.8em;
+}
+
+@keyframes app-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
