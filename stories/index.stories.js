@@ -55,5 +55,5 @@ storiesOf('Gradient Picker', module)
 		]} link={'https://github.com/casesandberg/react-color'} title={'react-color'} ColorPicker={WrappedColorPicker}/>
 	))
 	.add('Default Color Picker', () => (
-		<UseCase title="Default Picker" palette={[{ offset: '0', color: '#f00' }, { offset: '0.3', color: '#0f0' }, { offset: '1', color: '#00f' }]}/>
+		<UseCase title="Default Picker" palette={[{ offset: '0', color: '#FF0000' }, { offset: '0.3', color: '#00FF00' }, { offset: '1', color: '#0000FF' }]}/>
 	));

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import GradientPicker from '../src';
 
 const getPreviewBackground = (palette) => {
+	debugger;
 	const { background } = parser.getBackground({
 		x1: '0', x2: '0', y1: '0', y2: '0',
 		stops: palette
@@ -34,7 +35,7 @@ const UseCase = ({ palette, ColorPicker, link, title }) => {
 				}}>
 					{ ColorPicker ? <ColorPicker/> : null }
 				</GradientPicker>
-				<h3>Background preview</h3>
+				<h4>Background preview</h4>
 				<div className="preview" style={{ background: getPreviewBackground(localPalette)}}/>
 			</div>
 		</div>
