@@ -41,8 +41,6 @@ storiesOf('Gradient Picker', module)
 	.add('React Color (rc-color-picker)', () => (
 		<UseCase palette={[
 			{ offset: '0.00', color: '#eef10b' },
-			{ offset: '0.49', color: '#d78025' },
-			{ offset: '0.72', color: '#d0021b' },
 			{ offset: '1.00', color: '#7e20cf' }
 		]} link={'https://github.com/react-component/color-picker'} title={'rc-color-picker'} ColorPicker={WrappedSketchPicker}/>
 	))

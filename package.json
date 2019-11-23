@@ -55,6 +55,6 @@
     "react-color": "^2.12.0"
   },
   "dependencies": {
-    "linear-gradient-parser": "^1.0.1"
+    "linear-gradient-parser": "^1.1.1"
   }
 }

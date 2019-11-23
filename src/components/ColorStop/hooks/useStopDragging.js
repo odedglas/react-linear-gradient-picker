@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import useDragging from '../../hooks/useDragging';
 
 /**
  * Limits a client drag movement within given min / max
@@ -15,28 +16,16 @@ const getColorStopRefTop = (ref) => {
 };
 
 const useStopDragging = ({ limits, stop, initialPos, colorStopRef, onPosChange, onDragStart, onDragEnd, onDeleteColor}) => {
-	const [dragging, setDragging] = useState(false);
 	const [posStart, setPosStart] = useState(initialPos);
 
-	const handleMouseDown = (e) => {
-		e.preventDefault();
-		e.stopPropagation();
-
-		if (!e.button) activate(e.clientX);
-	};
-
-	const handleMouseUp = () => deactivate();
-
-	const handleMouseMove = ({ clientX, clientY }) => {
-		if (!dragging) return;
-
+	const handleDrag = ({ clientX, clientY }) => {
 		const { id, offset } = stop;
 		const { min, max } = limits;
 
 		// Removing if out of drop limit on Y axis.
 		const top = getColorStopRefTop(colorStopRef);
 		if (Math.abs(clientY - top) > limits.drop) {
-			deactivate();
+			//deactivate();
 			return onDeleteColor(id);
 		}
 
@@ -47,36 +36,20 @@ const useStopDragging = ({ limits, stop, initialPos, colorStopRef, onPosChange, 
 		onPosChange({ id, offset: limitedPos });
 	};
 
-	const activate = (posStart) => {
-		setDragging(true);
-		setPosStart(posStart);
+	const [handleMouseDown, activate] = useDragging({
+		onDragStart: ({ clientX }) => {
+			setPosStart(clientX);
 
-		onDragStart(stop.id);
-	};
-
-	const deactivate = () => {
-		setDragging(false);
-
-		onDragEnd(stop.id);
-	};
+			onDragStart(stop.id)
+		},
+		onDrag: handleDrag,
+		onDragEnd: () => onDragEnd(stop.id)
+	});
 
 	useEffect(() => {
 		const { pointX } = stop;
-		pointX && activate(pointX);
+		pointX && activate({ clientX: pointX });
 	}, []);
-
-	useEffect(() => {
-		if (dragging) {
-
-			document.addEventListener('mousemove', handleMouseMove);
-			document.addEventListener('mouseup', handleMouseUp);
-		}
-
-		return () => {
-			document.removeEventListener('mousemove', handleMouseMove);
-			document.removeEventListener('mouseup', handleMouseUp);
-		};
-	}, [dragging]);
 
 	return [
 		handleMouseDown,
