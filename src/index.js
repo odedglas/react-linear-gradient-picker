@@ -63,6 +63,7 @@ const GradientPicker = ({
 	};
 
 	const handleColorDelete = (id) => {
+		// TODO - Add delete validation more than 2.
 		const updatedPalette = palette.filter(c => c.id !== id);
 		const activeId = updatedPalette.reduce((a, x) => x.offset < a.offset ? x : a, palette[0]).id;
 

@@ -24,28 +24,51 @@ const clampAngle = (angle) => {
 	return angle;
 };
 
-const AnglePicker = ({ angle, onChange, adjustment = 180, size = 48 }) => {
+const snapAngle = (angle, snap) => {
+	const module = angle % snap;
+
+	if (module === 0) { return angle; }
+
+	const snappingAddition = module > snap / 2 ? snap - module : (-1 * module);
+	return angle + snappingAddition;
+};
+
+const getPointDegrees = (pointX, pointY, center) => {
+	const y = pointY - center.y;
+	const x = pointX - center.x;
+
+	const radians = Math.atan2(y, x);
+	return Math.round(radians * (180/Math.PI)) + 90;
+};
+
+const AnglePicker = ({ angle, onChange, size = 48, snap = 5 }) => {
 	const pickerRef = useRef();
+	const sizeStyle = { height: size, width: size };
 
 	const onAngleChange = ({ clientX, clientY }) => {
-
 		const center = getPickerCenter(pickerRef.current);
-		const y = clientY - center.y;
-		const x = clientX - center.x;
+		const degrees = getPointDegrees(clientX, clientY, center);
 
-		const radians = Math.atan2(y, x);
-		const degrees = Math.round(radians * (180/Math.PI)) + 90;
+		const clamped = clampAngle(degrees);
 
-		onChange(clampAngle(degrees));
+		onChange(clamped);
+		return clamped;
 	};
 
 	const [drag] = useDragging({
+		onDragStart: onAngleChange,
 		onDrag: onAngleChange,
+		onDragEnd: (angle) => {
+			if (!angle) return;
+			const snappedAngle = snapAngle(angle, snap);
+			console.log('Snapping : ', angle, snappedAngle);
+
+			onChange(snappedAngle);
+		}
 	});
 
-	const sizeStyle = { height: size, width: size };
 	return (
-		<div className="ap" ref={pickerRef} onClick={onAngleChange} onMouseDown={drag} style={sizeStyle}>
+		<div className="ap" ref={pickerRef} onMouseDown={drag} style={sizeStyle}>
 			<span className="apc" style={{ transform: `rotate(${angle}deg)`, height: size }}>
 				<i className="aph"/>
 			</span>

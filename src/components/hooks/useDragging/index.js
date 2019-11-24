@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { noop } from '../../../lib';
 
 const useDragging = ({ onDragStart = noop, onDrag, onDragEnd = noop }) => {
+	const [context, setContext] = useState({});
 	const [dragging, setDragging] = useState(false);
 
 	const handleMouseDown = (e) => {
@@ -20,18 +21,25 @@ const useDragging = ({ onDragStart = noop, onDrag, onDragEnd = noop }) => {
 	const deactivate = () => {
 		setDragging(false);
 
-		onDragEnd();
+		onDragEnd(context.change);
+		setContext({});
+	};
+
+	const handleDrag = (e) => {
+		if (!dragging) return;
+
+		context.change = onDrag(e);
 	};
 
 	useEffect(() => {
 		if (dragging) {
 
-			document.addEventListener('mousemove', onDrag);
+			document.addEventListener('mousemove', handleDrag);
 			document.addEventListener('mouseup', deactivate);
 		}
 
 		return () => {
-			document.removeEventListener('mousemove', onDrag);
+			document.removeEventListener('mousemove', handleDrag);
 			document.removeEventListener('mouseup', deactivate);
 		};
 	}, [dragging]);
