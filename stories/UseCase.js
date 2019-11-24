@@ -1,26 +1,23 @@
 import React, { useState } from 'react';
 import parser from 'linear-gradient-parser/src';
 import PropTypes from 'prop-types';
-import AnglePicker from '../src/components/AnglePicker';
 import GradientPicker from '../src';
 
-const getPreviewBackground = (palette, localAngle) => {
-	const gradient = parser.getGradientCords(localAngle);
+const getPreviewBackground = (palette, previewAngle = 90) => {
+	const gradient = parser.getGradientCords(previewAngle);
 
 	const { background, angle} = parser.getBackground({
 		...gradient,
 		stops: palette
 	});
 
-	console.log(gradient, angle, localAngle);
 	return { background, angle, gradient };
 };
 
 const UseCase = ({ palette, ColorPicker, link, title }) => {
 	const [localPalette, setLocalPalette] = useState(palette);
-	const [localAngle, setLocalAngle] = useState(0);
 
-	const { background, angle, gradient } = getPreviewBackground(localPalette, localAngle);
+	const { background, angle } = getPreviewBackground(localPalette);
 
 	const info = JSON.stringify(localPalette);
 
@@ -40,9 +37,8 @@ const UseCase = ({ palette, ColorPicker, link, title }) => {
 				}}>
 					{ ColorPicker ? <ColorPicker/> : null }
 				</GradientPicker>
-				<h4>Background preview</h4>
+				<h4>Background preview for {angle} Angle</h4>
 				<div className="preview" style={{ background }}/>
-				<AnglePicker angle={localAngle} onChange={setLocalAngle}/>
 			</div>
 		</div>
 	);
