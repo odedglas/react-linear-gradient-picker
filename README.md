@@ -44,7 +44,7 @@ const App = () => {
 ```
 
 ## Angle Picke Usage
-![Preview](/assets/ap.png)<br/>
+<img width="200" alt="gradient_preview" src="/assets/ap.png"> <br/>
 
 ```js
 import React, { useState } from 'react';
