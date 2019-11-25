@@ -54,7 +54,9 @@ hr {
     margin: 20px 0;
 }
 
-.ap {
-    margin: 0 auto;
-    display: block;
+.aps {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }

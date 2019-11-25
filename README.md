@@ -12,7 +12,6 @@ npm i react-linear-gradient-picker
 ## Gradient Picker Usage
 ![Preview](/assets/gp.png)<br/>
 
-
 ## Angle Picke Usage
 ![Preview](/assets/ap.png)<br/>
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import parser from 'linear-gradient-parser/src';
 import PropTypes from 'prop-types';
-import GradientPicker from '../src';
+import { GradientPicker } from '../src';
 
 const getPreviewBackground = (palette, previewAngle = 90) => {
 	const gradient = parser.getGradientCords(previewAngle);

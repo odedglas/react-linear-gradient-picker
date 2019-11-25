@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
 import { SketchPicker } from 'react-color';
 import { Panel as ColorPicker } from 'rc-color-picker';
-import { AnglePicker } from '..';
+import { AnglePicker } from '../src';
 import UseCase from './UseCase';
 import './Story.css';
 import 'rc-color-picker/assets/index.css';
@@ -66,7 +66,7 @@ storiesOf('Angle Picker', module)
 			rgb(238, 241, 11) 0%, rgb(208, 2, 27) 51.1%,
 			rgb(126, 32, 207) 100%)`;
 		return (
-			<div style={{ padding: 20 }}>
+			<div className="aps">
 				<AnglePicker angle={localAngle} onChange={setLocalAngle}/>
 				<h4>Background preview for {localAngle} Angle</h4>
 				<div className="preview" style={{ background }}/>
