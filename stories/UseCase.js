@@ -37,6 +37,7 @@ const UseCase = ({ palette, ColorPicker, link, title }) => {
 				}}>
 					{ ColorPicker ? <ColorPicker/> : null }
 				</GradientPicker>
+				<hr/>
 				<h4>Background preview for {angle} Angle</h4>
 				<div className="preview" style={{ background }}/>
 			</div>

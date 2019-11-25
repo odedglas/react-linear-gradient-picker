@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
 import { SketchPicker } from 'react-color';
 import { Panel as ColorPicker } from 'rc-color-picker';
+import { AnglePicker } from '..';
 import UseCase from './UseCase';
 import './Story.css';
 import 'rc-color-picker/assets/index.css';
-import AnglePicker from "../src/components/AnglePicker";
 
 const addOpacityToHex = (color, opacity = 1) => {
 	if (opacity === 1 || color.length > 9) {
@@ -43,15 +43,13 @@ storiesOf('Gradient Picker', module)
 		<UseCase palette={[
 			{ offset: '0.00', color: '#eef10b' },
 			{ offset: '0.49', color: '#d78025' },
-			{ offset: '0.72', color: '#d0021b' },
 			{ offset: '1.00', color: '#7e20cf' }
 		]} link={'https://github.com/react-component/color-picker'} title={'rc-color-picker'} ColorPicker={WrappedSketchPicker}/>
 	))
 	.add('React Color', () => (
 		<UseCase palette={[
 			{ offset: '0.00', color: '#7e20cf' },
-			{ offset: '0.28', color: '#d0021b' },
-			{ offset: '0.65', color: '#ffcc00' },
+			{ offset: '0.42', color: '#d0021b' },
 			{ offset: '1.00', color: '#00ccff' }
 		]} link={'https://github.com/casesandberg/react-color'} title={'react-color'} ColorPicker={WrappedColorPicker}/>
 	))
@@ -68,11 +66,11 @@ storiesOf('Angle Picker', module)
 			rgb(238, 241, 11) 0%, rgb(208, 2, 27) 51.1%,
 			rgb(126, 32, 207) 100%)`;
 		return (
-			<>
+			<div style={{ padding: 20 }}>
 				<AnglePicker angle={localAngle} onChange={setLocalAngle}/>
 				<h4>Background preview for {localAngle} Angle</h4>
 				<div className="preview" style={{ background }}/>
-			</>
+			</div>
 		);
 	});
 

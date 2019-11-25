@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { COLORS } from './constants';
 import './index.css';
 
-const ColorPicker = ({ onSelect, color }) => (
+const ColorPicker = ({ onSelect }) => (
 	<div className="cp">
 		{COLORS.map(({ value, name, }) =>
 			<div onClick={() => onSelect(value)}
@@ -12,7 +12,6 @@ const ColorPicker = ({ onSelect, color }) => (
 				style={{ backgroundColor: value }}
 			/>
 		)}
-		<pre>Active color: {color}</pre>
 	</div>
 );
 

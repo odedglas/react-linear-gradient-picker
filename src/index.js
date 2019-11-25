@@ -11,6 +11,7 @@ import {
 	DEFAULT_PALETTE,
 	DEFAULT_STOP_REMOVAL_DROP
 } from './constants';
+import './index.css';
 
 const nextColorId = (palette) => Math.max(...palette.map(({ id }) => id)) + 1;
 
@@ -112,15 +113,17 @@ const GradientPicker = ({
 		return React.cloneElement(child, props);
 	};
 
+	const paletteWidth = width - HALF_STOP_WIDTH * 2;
+
 	return (
-		<div>
-			<Palette width={width} height={height} palette={palette}/>
+		<div className="gp">
+			<Palette width={paletteWidth} height={height} palette={palette}/>
 			<ColorStopsHolder
-				width={width}
+				width={paletteWidth}
 				stops={mapPaletteToStops({
 					activePoint,
-					width,
 					palette,
+					width: paletteWidth,
 					activeId: activeColorId
 				})}
 				limits={limits}
