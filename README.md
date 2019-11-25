@@ -10,7 +10,7 @@ npm i react-linear-gradient-picker
 ```
 
 ## Gradient Picker Usage
-![](/assets/gp.png =250x250)<br/>
+<img width="200" alt="gradient_preview" src="/assets/gp.png"> <br/>
 
 ```js
 import React, { useState } from 'react';
