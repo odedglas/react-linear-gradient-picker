@@ -4,4 +4,4 @@ import GradientPicker from './components/GradientPicker';
 export {
 	GradientPicker,
 	AnglePicker
-}
+};

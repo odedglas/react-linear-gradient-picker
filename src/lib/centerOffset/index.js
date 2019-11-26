@@ -11,7 +11,7 @@ const centerOffset = (el) => {
 	return {
 		y: top + height / 2,
 		x: left + width / 2
-	}
+	};
 };
 
 export default centerOffset;

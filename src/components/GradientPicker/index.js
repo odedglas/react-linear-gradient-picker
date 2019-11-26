@@ -8,7 +8,6 @@ import {
 	HALF_STOP_WIDTH,
 	DEFAULT_HEIGHT,
 	DEFAULT_WIDTH,
-	DEFAULT_PALETTE,
 	DEFAULT_STOP_REMOVAL_DROP,
 	DEFAULT_MAX_STOPS,
 	DEFAULT_MIN_STOPS
@@ -37,7 +36,7 @@ const getPaletteColor = (palette, id) => {
 
 const GradientPicker = ({
 	palette,
-    paletteHeight = DEFAULT_HEIGHT,
+	paletteHeight = DEFAULT_HEIGHT,
 	width = DEFAULT_WIDTH,
 	stopRemovalDrop = DEFAULT_STOP_REMOVAL_DROP,
 	minStops = DEFAULT_MIN_STOPS,

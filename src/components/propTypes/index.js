@@ -57,3 +57,10 @@ export const GRADIENT_PICKER_PROP_TYPES = {
 	minStops: number,
 	palette: arrayOf(PALETTE_COLOR_SHAPE)
 };
+
+export const ANGLE_PICKER_PROP_TYPES = {
+	angle: number.isRequired,
+	onChange: func.isRequired,
+	size: number,
+	snap: number
+};

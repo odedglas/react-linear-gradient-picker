@@ -1,12 +1,12 @@
 import React, { useRef } from 'react';
-import { PALETTE_PROP_TYPES } from '../propTypes';
+import { ANGLE_PICKER_PROP_TYPES } from '../propTypes';
 import useDragging from '../hooks/useDragging';
 import {
 	centerOffset,
 	clampAngle,
 	snapAngle,
 	pointDegrees
-} from '../../lib'
+} from '../../lib';
 import './index.css';
 
 const AnglePicker = ({ angle, onChange, size = 48, snap = 5 }) => {
@@ -44,6 +44,6 @@ const AnglePicker = ({ angle, onChange, size = 48, snap = 5 }) => {
 	);
 };
 
-AnglePicker.propTypes = {PALETTE_PROP_TYPES};
+AnglePicker.propTypes = ANGLE_PICKER_PROP_TYPES;
 
 export default AnglePicker;

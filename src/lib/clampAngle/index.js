@@ -9,7 +9,7 @@ const clampAngle = (angle) => {
 	}
 
 	if (angle > 360) {
-		return angle - 360
+		return angle - 360;
 	}
 
 	return angle;

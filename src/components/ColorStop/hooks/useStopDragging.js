@@ -40,7 +40,7 @@ const useStopDragging = ({ limits, stop, initialPos, colorStopRef, onPosChange, 
 		onDragStart: ({ clientX }) => {
 			setPosStart(clientX);
 
-			onDragStart(stop.id)
+			onDragStart(stop.id);
 		},
 		onDrag: handleDrag,
 		onDragEnd: () => onDragEnd(stop.id)
