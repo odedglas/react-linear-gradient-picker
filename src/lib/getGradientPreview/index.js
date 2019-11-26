@@ -1,4 +1,4 @@
-import parser from 'linear-gradient-parser/src';
+import parser from 'linear-gradient-parser';
 
 /**
  * @typedef {Object} PaletteColor
