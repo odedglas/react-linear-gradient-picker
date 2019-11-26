@@ -1,23 +1,12 @@
 import React, { useState } from 'react';
-import parser from 'linear-gradient-parser/src';
 import PropTypes from 'prop-types';
+import { getGradientPreview } from '../src/lib';
 import { GradientPicker } from '../src';
-
-const getPreviewBackground = (palette, previewAngle = 90) => {
-	const gradient = parser.getGradientCords(previewAngle);
-
-	const { background, angle} = parser.getBackground({
-		...gradient,
-		stops: palette
-	});
-
-	return { background, angle, gradient };
-};
 
 const UseCase = ({ palette, ColorPicker, link, title }) => {
 	const [localPalette, setLocalPalette] = useState(palette);
 
-	const { background, angle } = getPreviewBackground(localPalette);
+	const { background, angle } = getGradientPreview(localPalette);
 
 	const info = JSON.stringify(localPalette);
 
