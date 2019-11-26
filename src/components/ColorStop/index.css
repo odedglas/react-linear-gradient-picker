@@ -1,20 +1,19 @@
 .cs {
-  height: 17px;
-  position: absolute;
-  width: 11px;
-  cursor: pointer;
-  background: url(./ColorStop.png) right center;
+    height: 17px;
+    position: absolute;
+    width: 11px;
+    cursor: pointer;
+    background: url(./ColorStop.png) right center;
 }
 
 .cs div {
-  height: 7px;
-  left: 2px;
-  width: 7px;
-  position: absolute;
-  top: 8px;
+    height: 7px;
+    left: 2px;
+    width: 7px;
+    position: absolute;
+    top: 8px;
 }
 
-
 .active {
-  background-position: left center;
+    background-position: left center;
 }

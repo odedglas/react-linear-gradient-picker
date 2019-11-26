@@ -9,7 +9,9 @@ import {
 	DEFAULT_HEIGHT,
 	DEFAULT_WIDTH,
 	DEFAULT_PALETTE,
-	DEFAULT_STOP_REMOVAL_DROP
+	DEFAULT_STOP_REMOVAL_DROP,
+	DEFAULT_MAX_STOPS,
+	DEFAULT_MIN_STOPS
 } from './constants';
 import './index.css';
 
@@ -34,10 +36,12 @@ const getPaletteColor = (palette, id) => {
 };
 
 const GradientPicker = ({
-	palette = DEFAULT_PALETTE,
-	height = DEFAULT_HEIGHT,
+	palette,
+    paletteHeight = DEFAULT_HEIGHT,
 	width = DEFAULT_WIDTH,
 	stopRemovalDrop = DEFAULT_STOP_REMOVAL_DROP,
+	minStops = DEFAULT_MIN_STOPS,
+	maxStops = DEFAULT_MAX_STOPS,
 	children,
 	onPaletteChange
 }) => {
@@ -54,6 +58,8 @@ const GradientPicker = ({
 	}, [width]);
 
 	const handleColorAdd = ({ offset, pointX }) => {
+		if (palette.length >= maxStops) return;
+
 		const { color } = getPaletteColor(palette, activeColorId);
 		const entry = { id: nextColorId(palette), offset: offset / width, color };
 
@@ -64,7 +70,7 @@ const GradientPicker = ({
 	};
 
 	const handleColorDelete = (id) => {
-		if (palette.length <= 2) return;
+		if (palette.length <= minStops) return;
 
 		const updatedPalette = palette.filter(c => c.id !== id);
 		const activeId = updatedPalette.reduce((a, x) => x.offset < a.offset ? x : a, palette[0]).id;
@@ -114,12 +120,14 @@ const GradientPicker = ({
 	};
 
 	const paletteWidth = width - HALF_STOP_WIDTH * 2;
+	const stopsHolderDisabled = palette.length >= maxStops;
 
 	return (
 		<div className="gp">
-			<Palette width={paletteWidth} height={height} palette={palette}/>
+			<Palette width={paletteWidth} height={paletteHeight} palette={palette}/>
 			<ColorStopsHolder
 				width={paletteWidth}
+				disabled={stopsHolderDisabled}
 				stops={mapPaletteToStops({
 					activePoint,
 					palette,

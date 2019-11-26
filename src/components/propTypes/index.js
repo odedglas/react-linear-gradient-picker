@@ -15,7 +15,7 @@ const LIMITS_SHAPE = shape({
 });
 
 const PALETTE_COLOR_SHAPE = shape({
-	id: number.isRequired,
+	id: number,
 	color: string.isRequired,
 	offset: string.isRequired,
 	opacity: number,
@@ -34,6 +34,7 @@ export const STOPS_HOLDER_PROP_TYPES = {
 	width: number.isRequired,
 	stops: arrayOf(STOP_SHAPE),
 	limits: LIMITS_SHAPE,
+	disabled: bool,
 	onPosChange: func.isRequired,
 	onAddColor: func.isRequired,
 	onDeleteColor: func.isRequired,
@@ -49,12 +50,10 @@ export const PALETTE_PROP_TYPES = {
 
 export const GRADIENT_PICKER_PROP_TYPES = {
 	onPaletteChange: func.isRequired,
-	height: number,
+	paletteHeight: number,
 	width: number,
 	stopRemovalDrop: number,
-	palette: arrayOf(shape({
-		color: string.isRequired,
-		offset: string.isRequired,
-		opacity: number,
-	}))
+	maxStops: number,
+	minStops: number,
+	palette: arrayOf(PALETTE_COLOR_SHAPE)
 };

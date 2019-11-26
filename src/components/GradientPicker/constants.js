@@ -8,7 +8,6 @@ export const DEFAULT_WIDTH = 400;
 
 export const DEFAULT_HEIGHT = 32;
 
-export const DEFAULT_PALETTE = [
-	{ offset: '0', color: '#9adafa' },
-	{ offset: '1', color: '#028080' }
-];
+export const DEFAULT_MAX_STOPS = 5;
+
+export const DEFAULT_MIN_STOPS = 2;

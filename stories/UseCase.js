@@ -31,7 +31,7 @@ const UseCase = ({ palette, ColorPicker, link, title }) => {
 				<div className="result">{ info } </div>
 				<GradientPicker {...{
 					width: 320,
-					height: 32,
+					paletteHeight: 32,
 					palette: localPalette,
 					onPaletteChange: setLocalPalette
 				}}>
