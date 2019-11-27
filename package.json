@@ -1,6 +1,6 @@
 {
   "name": "react-linear-gradient-picker",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "React linear gradient picker",
   "main": "dist/index.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "svg"
   ],
   "author": "Oded Goldglas <odedglas@gmail.com>",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/odedglas/react-linear-gradient-picker/issues"
   },
