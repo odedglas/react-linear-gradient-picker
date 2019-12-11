@@ -56,6 +56,7 @@ const App = () => {
 | `stopRemovalDrop` | `Number` | `50` | No | Sets the Y stop drop removal offset, If the user will drag the color stop further than specified, Color will be removed
 | `maxStops` | `Number` | `5` | No | The max gradient picker palette length can have
 | `minStops` | `Number` | `2` | No | The min gradient picker palette length can have
+| `floatingPicker` | `Boolean` | `false` | No | The color picker is now positioned in absolute and auto hide when user click outside
 
 PaletteColor = shape({
 	color: string.isRequired,
