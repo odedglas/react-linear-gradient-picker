@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import ColorStopsHolder from '../ColorStopsHolder/index';
 import Palette from '../Palette/index';
 import ColorPicker from '../ColorPicker/index';
@@ -10,7 +10,8 @@ import {
 	DEFAULT_WIDTH,
 	DEFAULT_STOP_REMOVAL_DROP,
 	DEFAULT_MAX_STOPS,
-	DEFAULT_MIN_STOPS
+	DEFAULT_MIN_STOPS,
+	DEFAULT_FLOATING_PICKER
 } from './constants';
 import './index.css';
 
@@ -34,6 +35,22 @@ const getPaletteColor = (palette, id) => {
 	return { ...color, offset: Number(color.offset) };
 };
 
+const useOutsideClick = (ref, callback) => {
+	const handleClick = e => {
+		if (ref.current && !ref.current.contains(e.target)) {
+			callback();
+		}
+	};
+
+	useEffect(() => {
+		document.addEventListener('click', handleClick);
+
+		return () => {
+			document.removeEventListener('click', handleClick);
+		};
+	});
+};
+
 const GradientPicker = ({
 	palette,
 	paletteHeight = DEFAULT_HEIGHT,
@@ -42,12 +59,16 @@ const GradientPicker = ({
 	minStops = DEFAULT_MIN_STOPS,
 	maxStops = DEFAULT_MAX_STOPS,
 	children,
-	onPaletteChange
+	onPaletteChange,
+	floatingPicker = DEFAULT_FLOATING_PICKER
 }) => {
 	palette = mapIdToPalette(palette);
 
 	const [activeColorId, setActiveColorId] = useState(1);
 	const [activePoint, setActivePoint] = useState();
+	const [showPicker, setShowPicker] = useState(false);
+	const mainRef = useRef();
+	useOutsideClick(mainRef, () => setShowPicker(false));
 
 	const limits = useMemo(() => {
 		const min = -HALF_STOP_WIDTH;
@@ -80,6 +101,7 @@ const GradientPicker = ({
 
 	const onStopDragStart = (id) => {
 		setActiveColorId(id);
+		setShowPicker(true);
 	};
 
 	const handleColorSelect = (color, opacity = 1) => {
@@ -110,6 +132,20 @@ const GradientPicker = ({
 
 		const props = { color, opacity, onSelect: handleColorSelect };
 
+		if (floatingPicker) {
+			const style = {
+				position: 'absolute',
+				zIndex: 3,
+				top: '100%'
+			};
+	
+			if (floatingPicker && !showPicker) {
+				style.display = 'none';
+			}
+
+			props.style = style;
+		}
+
 		if (!children) {
 			return <ColorPicker {...props} />;
 		}
@@ -122,7 +158,7 @@ const GradientPicker = ({
 	const stopsHolderDisabled = palette.length >= maxStops;
 
 	return (
-		<div className="gp">
+		<div className="gp" ref={mainRef}>
 			<Palette width={paletteWidth} height={paletteHeight} palette={palette}/>
 			<ColorStopsHolder
 				width={paletteWidth}

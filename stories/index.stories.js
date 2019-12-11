@@ -55,6 +55,13 @@ storiesOf('Gradient Picker', module)
 	))
 	.add('Default Color Picker', () => (
 		<UseCase title="Default Picker" palette={[{ offset: '0', color: '#FF0000' }, { offset: '0.3', color: '#00FF00' }, { offset: '1', color: '#0000FF' }]}/>
+	))
+	.add('Floating color picker', () => (
+		<UseCase palette={[
+			{ offset: '0.00', color: '#7e20cf' },
+			{ offset: '0.42', color: '#d0021b' },
+			{ offset: '1.00', color: '#00ccff' }
+		]}  title={'floatingPicker'} floatingPicker ColorPicker={WrappedColorPicker}/>
 	));
 
 storiesOf('Angle Picker', module)

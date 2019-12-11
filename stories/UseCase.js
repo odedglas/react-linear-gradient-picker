@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { getGradientPreview } from '../src/lib';
 import { GradientPicker } from '../src';
 
-const UseCase = ({ palette, ColorPicker, link, title }) => {
+const UseCase = ({ floatingPicker, palette, ColorPicker, link, title }) => {
 	const [localPalette, setLocalPalette] = useState(palette);
 
 	const { background, angle } = getGradientPreview(localPalette);
@@ -22,7 +22,8 @@ const UseCase = ({ palette, ColorPicker, link, title }) => {
 					width: 320,
 					paletteHeight: 32,
 					palette: localPalette,
-					onPaletteChange: setLocalPalette
+					onPaletteChange: setLocalPalette,
+					floatingPicker: floatingPicker
 				}}>
 					{ ColorPicker ? <ColorPicker/> : null }
 				</GradientPicker>
