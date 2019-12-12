@@ -11,7 +11,8 @@ import {
 	DEFAULT_STOP_REMOVAL_DROP,
 	DEFAULT_MAX_STOPS,
 	DEFAULT_MIN_STOPS,
-	DEFAULT_FLOATING_PICKER
+	DEFAULT_FLOATING_PICKER,
+	DEFAULT_ANGLE
 } from './constants';
 import './index.css';
 
@@ -60,7 +61,8 @@ const GradientPicker = ({
 	maxStops = DEFAULT_MAX_STOPS,
 	children,
 	onPaletteChange,
-	floatingPicker = DEFAULT_FLOATING_PICKER
+	floatingPicker = DEFAULT_FLOATING_PICKER,
+	angle = DEFAULT_ANGLE
 }) => {
 	palette = mapIdToPalette(palette);
 
@@ -138,7 +140,6 @@ const GradientPicker = ({
 				zIndex: 3,
 				top: '100%'
 			};
-	
 			if (floatingPicker && !showPicker) {
 				style.display = 'none';
 			}
@@ -159,7 +160,7 @@ const GradientPicker = ({
 
 	return (
 		<div className="gp" ref={mainRef}>
-			<Palette width={paletteWidth} height={paletteHeight} palette={palette}/>
+			<Palette width={paletteWidth} height={paletteHeight} palette={palette} angle={angle}/>
 			<ColorStopsHolder
 				width={paletteWidth}
 				disabled={stopsHolderDisabled}

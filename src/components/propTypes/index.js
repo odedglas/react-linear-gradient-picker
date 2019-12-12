@@ -45,7 +45,8 @@ export const STOPS_HOLDER_PROP_TYPES = {
 export const PALETTE_PROP_TYPES = {
 	width: number.isRequired,
 	height: number.isRequired,
-	palette: arrayOf(PALETTE_COLOR_SHAPE).isRequired
+	palette: arrayOf(PALETTE_COLOR_SHAPE).isRequired,
+	angle: number.isRequired
 };
 
 export const GRADIENT_PICKER_PROP_TYPES = {
@@ -56,7 +57,8 @@ export const GRADIENT_PICKER_PROP_TYPES = {
 	maxStops: number,
 	minStops: number,
 	palette: arrayOf(PALETTE_COLOR_SHAPE),
-	floatingPicker: bool
+	floatingPicker: bool,
+	angle: number
 };
 
 export const ANGLE_PICKER_PROP_TYPES = {

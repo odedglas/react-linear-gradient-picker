@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
 import { SketchPicker } from 'react-color';
 import { Panel as ColorPicker } from 'rc-color-picker';
-import { AnglePicker } from '../src';
+import { AnglePicker, GradientPicker } from '../src';
 import UseCase from './UseCase';
 import './Story.css';
 import 'rc-color-picker/assets/index.css';
@@ -81,4 +81,31 @@ storiesOf('Angle Picker', module)
 		);
 	});
 
+storiesOf('Gradient + Angle picker', module)
+	.add('Default', () => {
+		const [angle, setAngle] = useState(0);
+		const [localPalette, setLocalPalette] = useState([
+			{ offset: '0.00', color: '#7e20cf' },
+			{ offset: '0.42', color: '#d0021b' },
+			{ offset: '1.00', color: '#00ccff' }
+		]);
 
+		return (
+			<div className="agps">
+				<h4>Floating picker & angle picker (with showValue)</h4>
+				<div style={{display: 'flex', alignItems: 'center'}}>
+					<GradientPicker {...{
+						width: 320,
+						paletteHeight: 32,
+						palette: localPalette,
+						floatingPicker: true,
+						angle,
+						onPaletteChange: setLocalPalette
+					}}>
+						<WrappedColorPicker />
+					</GradientPicker>
+					<AnglePicker angle={angle} onChange={setAngle} showValue/>
+				</div>
+			</div>
+		);
+	});

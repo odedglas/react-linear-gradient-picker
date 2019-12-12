@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { getGradientPreview } from '../src/lib';
 import { GradientPicker } from '../src';
 
-const UseCase = ({ floatingPicker, palette, ColorPicker, link, title }) => {
+const UseCase = ({ floatingPicker, palette, ColorPicker, angle = 90, link, title }) => {
 	const [localPalette, setLocalPalette] = useState(palette);
 
-	const { background, angle } = getGradientPreview(localPalette);
+	const { background } = getGradientPreview(localPalette, angle);
 
 	const info = JSON.stringify(localPalette);
 
@@ -39,7 +39,9 @@ UseCase.propTypes = {
 	palette: PropTypes.array,
 	ColorPicker: PropTypes.any,
 	link: PropTypes.string,
-	title: PropTypes.string
+	title: PropTypes.string,
+	floatingPicker: PropTypes.bool,
+	angle: PropTypes.number
 };
 
 export default UseCase;

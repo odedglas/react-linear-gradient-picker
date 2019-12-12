@@ -57,6 +57,7 @@ const App = () => {
 | `maxStops` | `Number` | `5` | No | The max gradient picker palette length can have
 | `minStops` | `Number` | `2` | No | The min gradient picker palette length can have
 | `floatingPicker` | `Boolean` | `false` | No | The color picker is now positioned in absolute and auto hide when user click outside
+| `angle` | `Number` | `90` | No | Define the angle to use for the gradient picker
 
 PaletteColor = shape({
 	color: string.isRequired,
@@ -88,3 +89,4 @@ const App = () => {
 | `onChange` | `Function` | `undefined` | Yes | The on change to be trigger after an angle was changes.
 | `size` | `Number` | `48` | No | Determines the size of the angle picker
 | `snap` | `Number` | `5` | No | Determines the angle change snapping, Can be removed with setting as 0
+| `showValue` | `boolean` | `false` | No | Determines if the angle should be displayed inside the picker

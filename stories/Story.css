@@ -60,3 +60,7 @@ hr {
     align-items: center;
     flex-direction: column;
 }
+
+.agps .ap {
+    margin-left: 20px;
+}

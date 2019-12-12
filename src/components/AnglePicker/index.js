@@ -9,7 +9,7 @@ import {
 } from '../../lib';
 import './index.css';
 
-const AnglePicker = ({ angle, onChange, size = 48, snap = 5 }) => {
+const AnglePicker = ({ angle, onChange, size = 48, snap = 5, showValue = false }) => {
 	const pickerRef = useRef();
 	const sizeStyle = { height: size, width: size };
 
@@ -40,6 +40,7 @@ const AnglePicker = ({ angle, onChange, size = 48, snap = 5 }) => {
 			<span className="apc" style={{ transform: `rotate(${angle}deg)`, height: size }}>
 				<i className="aph"/>
 			</span>
+			{showValue && <span className="apl">{angle}°</span>}
 		</div>
 	);
 };
