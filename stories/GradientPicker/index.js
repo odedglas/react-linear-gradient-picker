@@ -20,10 +20,10 @@ const WrapperPropTypes = {
 
 const WrappedSketchPicker = ({ onSelect, ...rest }) => (
 	<SketchPicker {...rest}
-	              color={addOpacityToHex(rest.color, rest.opacity)}
-	              onChange={c => {
-		              onSelect(c.hex, c.rgb.a);
-	              }}/>
+		color={addOpacityToHex(rest.color, rest.opacity)}
+		onChange={c => {
+			onSelect(c.hex, c.rgb.a);
+		}}/>
 );
 
 WrappedSketchPicker.propTypes = WrapperPropTypes;
@@ -33,6 +33,8 @@ const WrappedColorPicker = ({ onSelect, ...rest }) => (
 		onSelect(c.color, c.alpha / 100);
 	}}/>
 );
+
+WrappedColorPicker.propTypes = WrapperPropTypes;
 
 const SketchPickerStory = () => (
 	<UseCase palette={[

@@ -42,6 +42,7 @@ const GradientPicker = ({
 	minStops = DEFAULT_MIN_STOPS,
 	maxStops = DEFAULT_MAX_STOPS,
 	children,
+	flatStyle = false,
 	onPaletteChange
 }) => {
 	palette = mapIdToPalette(palette);
@@ -72,7 +73,7 @@ const GradientPicker = ({
 		if (palette.length <= minStops) return;
 
 		const updatedPalette = palette.filter(c => c.id !== id);
-		const activeId = updatedPalette.reduce((a, x) => x.offset < a.offset ? x : a, palette[0]).id;
+		const activeId = updatedPalette.reduce((a, x) => x.offset < a.offset ? x : a, updatedPalette[0]).id;
 
 		setActiveColorId(activeId);
 		handlePaletteChange(updatedPalette);
@@ -108,7 +109,15 @@ const GradientPicker = ({
 	const colorPicker = () => {
 		const { color, opacity } = getPaletteColor(palette, activeColorId);
 
-		const props = { color, opacity, onSelect: handleColorSelect };
+		const props = {
+			color,
+			opacity,
+			...(flatStyle && {
+				width,
+				className: 'gp-flat',
+			}),
+			onSelect: handleColorSelect
+		};
 
 		if (!children) {
 			return <ColorPicker {...props} />;
@@ -118,7 +127,7 @@ const GradientPicker = ({
 		return React.cloneElement(child, props);
 	};
 
-	const paletteWidth = width - HALF_STOP_WIDTH * 2;
+	const paletteWidth = width - HALF_STOP_WIDTH;
 	const stopsHolderDisabled = palette.length >= maxStops;
 
 	return (

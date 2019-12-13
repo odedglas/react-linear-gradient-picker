@@ -55,6 +55,7 @@ export const GRADIENT_PICKER_PROP_TYPES = {
 	stopRemovalDrop: number,
 	maxStops: number,
 	minStops: number,
+	flatStyle: bool,
 	palette: arrayOf(PALETTE_COLOR_SHAPE)
 };
 
