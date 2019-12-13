@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { SketchPicker } from 'react-color';
-import { getGradientPreview } from '../../src/lib';
-import GradientPicker from '../../src/components/GradientPicker';
+import GradientPickerPopover from '../../src/components/GradientPickerPopover';
 import './index.css';
 
 const addOpacityToHex = (color, opacity = 1) => {
@@ -30,36 +29,26 @@ const initialPallet = [
 	{ offset: '1.00', color: 'rgb(126, 32, 207)' }
 ];
 
-const PopoverStory = () => {
-	const [displayPicker, setDisplayPicker] = useState(false);
+const PopoverStory = (showAngle) => {
+	const [open, setOpen] = useState(false);
+	const [angle, setAngle] = useState(90);
 	const [palette, setPalette] = useState(initialPallet);
 
-	const togglePicker = () => setDisplayPicker(!displayPicker);
-	const { background } = getGradientPreview(palette);
-
 	return (
-		<div className="gpw">
-			<div className="trigger" onClick={togglePicker}>
-				<div className="inner" style={{ background }}/>
-			</div>
-			{ displayPicker && (
-				<>
-					<div className="overlay" onClick={() => setDisplayPicker(false)}/>
-					<div className="popover">
-						<GradientPicker {...{
-							width: 220,
-							flatStyle: true,
-							maxStops: 3,
-							paletteHeight: 32,
-							palette,
-							onPaletteChange: setPalette
-						}}>
-							<WrappedSketchPicker/>
-						</GradientPicker>
-					</div>
-				</>
-			) }
-		</div>
+		<GradientPickerPopover {...{
+			open,
+			setOpen,
+			angle,
+			setAngle,
+			showAnglePicker: showAngle,
+			width: 220,
+			maxStops: 3,
+			paletteHeight: 32,
+			palette,
+			onPaletteChange: setPalette
+		}}>
+			<WrappedSketchPicker/>
+		</GradientPickerPopover>
 	);
 };
 

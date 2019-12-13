@@ -10,7 +10,7 @@ const AnglePickerStory = () => {
 			rgb(126, 32, 207) 100%)`;
 	return (
 		<div className="aps">
-			<AnglePicker angle={localAngle} onChange={setLocalAngle}/>
+			<AnglePicker angle={localAngle} setAngle={setLocalAngle}/>
 			<h4>Background preview for {localAngle} Angle</h4>
 			<div className="preview" style={{ background }}/>
 		</div>

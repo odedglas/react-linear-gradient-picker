@@ -61,7 +61,16 @@ export const GRADIENT_PICKER_PROP_TYPES = {
 
 export const ANGLE_PICKER_PROP_TYPES = {
 	angle: number.isRequired,
-	onChange: func.isRequired,
+	setAngle: func.isRequired,
 	size: number,
 	snap: number
+};
+
+export const GRADIENT_PICKER_POPOVER_PROP_TYPES = {
+	...GRADIENT_PICKER_PROP_TYPES,
+	...ANGLE_PICKER_PROP_TYPES,
+	showAnglePicker: bool,
+	open: bool.isRequired,
+	setOpen: func.isRequired,
+	trigger: func,
 };

@@ -9,7 +9,7 @@ import {
 } from '../../lib';
 import './index.css';
 
-const AnglePicker = ({ angle, onChange, size = 48, snap = 5 }) => {
+const AnglePicker = ({ angle, setAngle, size = 48, snap = 5 }) => {
 	const pickerRef = useRef();
 	const sizeStyle = { height: size, width: size };
 
@@ -20,7 +20,7 @@ const AnglePicker = ({ angle, onChange, size = 48, snap = 5 }) => {
 		const clamped = clampAngle(degrees);
 		const angle = useSnap ? snapAngle(clamped, snap) : clamped;
 
-		onChange(angle);
+		setAngle(angle);
 		return angle;
 	};
 
@@ -31,7 +31,7 @@ const AnglePicker = ({ angle, onChange, size = 48, snap = 5 }) => {
 			if (!angle) return;
 			const snappedAngle = snapAngle(angle, snap);
 
-			onChange(snappedAngle);
+			setAngle(snappedAngle);
 		}
 	});
 
