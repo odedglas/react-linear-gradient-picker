@@ -32,8 +32,34 @@
     padding: 10px 0 0 10px;
     border-top: 1px solid rgb(238, 238, 238);
     display: flex;
+    justify-content: space-around;
+    align-items: center;
     flex-wrap: wrap;
     position: relative;
+}
+
+.gpw .popover .angle-inputs {
+    border-radius: 4px;
+    background: #f2f2f2;
+    display: flex;
+    flex: 1;
+    margin: 0 20px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.gpw .popover .angle-inputs input {
+    border: none;
+    text-align: center;
+    width: 48px;
+    color: #0C0C09;
+    background: inherit;
+}
+
+.gpw .popover .angle-inputs span {
+    padding: 5px;
+    cursor: pointer;
+    user-select: none;
 }
 
 .gpw .overlay {

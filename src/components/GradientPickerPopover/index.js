@@ -35,7 +35,12 @@ const GradientPickerPopover = ({
 						<GradientPicker {...gradientPickerProps} palette={palette} flatStyle/>
 						{ showAnglePicker && (
 							<div className="angle-holder">
-								<AnglePicker angle={angle} setAngle={setAngle} size={36}/>
+								<AnglePicker angle={angle} setAngle={setAngle} size={32}/>
+								<div className="angle-inputs">
+									<span onClick={() => setAngle(angle - 1)}>&#8722;</span>
+									<input value={`${angle}°`} disabled/>
+									<span onClick={() => setAngle(angle + 1)}>&#43;</span>
+								</div>
 							</div>
 						)}
 					</div>
