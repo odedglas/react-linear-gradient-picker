@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { getGradientPreview } from '../src/lib';
-import { GradientPicker } from '../src';
+import { getGradientPreview } from '../../src/lib';
+import { GradientPicker } from '../../src';
 
 const UseCase = ({ palette, ColorPicker, link, title }) => {
 	const [localPalette, setLocalPalette] = useState(palette);

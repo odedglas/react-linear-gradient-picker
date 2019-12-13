@@ -1,0 +1,31 @@
+.gpw {
+    padding: 20px;
+}
+
+.gpw .trigger {
+    padding: 5px;
+    background: rgb(255, 255, 255);
+    border-radius: 1px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 1px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.gpw .trigger .inner {
+    width: 36px;
+    height: 14px;
+    border-radius: 2px;
+}
+
+.gpw .popover {
+    z-index: 2;
+    position: absolute;
+}
+
+.gpw .overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
