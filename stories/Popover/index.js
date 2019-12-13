@@ -29,7 +29,7 @@ const initialPallet = [
 	{ offset: '1.00', color: 'rgb(126, 32, 207)' }
 ];
 
-const PopoverStory = (showAngle) => {
+const PopoverStory = ({ showAngle = false}) => {
 	const [open, setOpen] = useState(false);
 	const [angle, setAngle] = useState(90);
 	const [palette, setPalette] = useState(initialPallet);

@@ -89,7 +89,7 @@ const App = () => {
 | `snap` | `Number` | `5` | No | Determines the angle change snapping, Can be removed with setting as 0
 
 ## Gradient Picker Popover Usage
-<img width="200" alt="gradient_popover_preview" src="/assets/gpp.png"> <br/>
+<img width="200" alt="gradient_popover_preview" src="/assets/gpp.jpg"> <br/>
 
 ```js
 import React, { useState } from 'react';
