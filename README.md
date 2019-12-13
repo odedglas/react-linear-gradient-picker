@@ -87,3 +87,72 @@ const App = () => {
 | `setAngle` | `Function` | `undefined` | Yes | The set angle method to be trigger after an angle was changes.
 | `size` | `Number` | `48` | No | Determines the size of the angle picker
 | `snap` | `Number` | `5` | No | Determines the angle change snapping, Can be removed with setting as 0
+
+## Gradient Picker Popover Usage
+<img width="200" alt="gradient_popover_preview" src="/assets/gpp.png"> <br/>
+
+```js
+import React, { useState } from 'react';
+import { SketchPicker } from 'react-color';
+import { GradientPickerPopover } from 'react-linear-gradient-picker';
+import './index.css';
+
+const addOpacityToHex = (color, opacity = 1) => {
+	if (opacity === 1 || color.length > 9) {
+		return color;
+	}
+
+	return color + Math.floor(opacity * 255).toString(16);
+};
+
+const WrappedSketchPicker = ({ onSelect, ...rest }) => (
+	<SketchPicker {...rest}
+		color={addOpacityToHex(rest.color, rest.opacity)}
+		onChange={c => {
+			onSelect(c.hex, c.rgb.a);
+		}}/>
+);
+
+const initialPallet = [
+	{ offset: '0.00', color: 'rgb(238, 241, 11)' },
+	{ offset: '1.00', color: 'rgb(126, 32, 207)' }
+];
+
+const App = () => {
+	const [open, setOpen] = useState(false);
+	const [angle, setAngle] = useState(90);
+	const [palette, setPalette] = useState(initialPallet);
+
+	return (
+		<GradientPickerPopover {...{
+			open,
+			setOpen,
+			angle,
+			setAngle,
+			showAnglePicker: true,
+			width: 220,
+			maxStops: 3,
+			paletteHeight: 32,
+			palette,
+			onPaletteChange: setPalette
+		}}>
+			<WrappedSketchPicker/>
+		</GradientPickerPopover>
+	);
+};
+
+export default App;
+```
+
+### Accepted props
+
+| Name | Type | Default Value | Required? | Description
+|-|-|-|-|-
+| `trigger` | `React Component` | `defaultTrigger` | No | The popover trigger component, Will use default implementation if empty.
+| `open` | `Boolean` | `false` | Yes | Controls the popover open state
+| `setOpen` | `Function` | `undefined` | Yes | The setOpen method to be called upon open changes
+| `showAnglePicker` | `Boolean` | `false` | No | Will add to gradient picker the angle picker component at the bottom
+| `angle` | `Number` | `undefined` | No | The angle picker angle value
+| `setAngle` | `Function` | `undefined` | No | Then angle picker setAngle method to be called upon angle changes
+
+* This component accepts all of GradientPicker pros.
