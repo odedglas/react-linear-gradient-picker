@@ -36,7 +36,7 @@ const AnglePicker = ({ angle, setAngle, size = 48, snap = 5 }) => {
 	});
 
 	return (
-		<div className="ap" ref={pickerRef} onMouseDown={drag} style={sizeStyle}>
+		<div className="ap" ref={pickerRef} onMouseDown={drag} onTouchStart={drag} style={sizeStyle}>
 			<span className="apc" style={{ transform: `rotate(${angle}deg)`, height: size }}>
 				<i className="aph"/>
 			</span>

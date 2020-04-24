@@ -4,18 +4,28 @@ import { noop } from '../../../lib';
 const useDragging = ({ onDragStart = noop, onDrag, onDragEnd = noop }) => {
 	const [context, setContext] = useState({});
 	const [dragging, setDragging] = useState(false);
+	const [touch, setTouch] = useState(false);
 
 	const handleMouseDown = (e) => {
-		e.preventDefault();
-		e.stopPropagation();
+		const touch = e.type === 'touchstart';
+		setTouch(touch);
+		
+		if (!touch) {
+			e.preventDefault();
+			e.stopPropagation();
+		}
 
-		if (!e.button) activate(e);
+		if (!e.button) activate(e, touch);
 	};
 
-	const activate = (e) => {
+	const activate = (e, touch = false) => {
 		setDragging(true);
 
-		onDragStart(e);
+		onDragStart(!touch ? e : {
+			...e,
+			clientX: e.touches[0].pageX,
+			clientY: e.touches[0].pageY
+		});
 	};
 
 	const deactivate = () => {
@@ -28,21 +38,27 @@ const useDragging = ({ onDragStart = noop, onDrag, onDragEnd = noop }) => {
 	const handleDrag = (e) => {
 		if (!dragging) return;
 
-		context.change = onDrag(e);
+		context.change = onDrag(!touch ? e : {
+			...e,
+			clientX: e.touches[0].pageX,
+			clientY: e.touches[0].pageY
+		});
 	};
 
 	useEffect(() => {
 		if (dragging) {
-
-			document.addEventListener('mousemove', handleDrag);
-			document.addEventListener('mouseup', deactivate);
+			document.addEventListener(touch ? 'touchend' : 'mouseup', deactivate);
+			document.addEventListener(touch ? 'touchmove' : 'mousemove', handleDrag, touch ? {
+				cancelable: true,
+				passive: false
+			} : null);
 		}
 
 		return () => {
-			document.removeEventListener('mousemove', handleDrag);
-			document.removeEventListener('mouseup', deactivate);
+			document.removeEventListener(touch ? 'touchend' : 'mouseup', deactivate);
+			document.removeEventListener(touch ? 'touchmove' : 'mousemove', handleDrag);
 		};
-	}, [dragging]);
+	}, [dragging, touch]);
 
 	return [
 		handleMouseDown,
