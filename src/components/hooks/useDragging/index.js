@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import { noop } from '../../../lib';
-import { TOUCH_START_EVENT } from './constants';
+import { EVENTS } from './constants';
 
 const DRAG_HANDLERS = {
 	MOUSE: {
 		stop: (e) => {
 			e.preventDefault();
-		    e.stopPropagation();
+			e.stopPropagation();
 		},
 		coordinates: ({ clientX, clientY }) => ({ clientX, clientY }),
-		dragEvent: { name: 'mousemove' },
-		dragEndEvent: { name: 'mouseup' }
+		dragEvent: { name: EVENTS.MOUSEMOVE },
+		dragEndEvent: { name: EVENTS.MOUSEUP }
 	},
 	TOUCH: {
 		stop: noop,
@@ -18,18 +18,18 @@ const DRAG_HANDLERS = {
 			const [touch] = e.touches;
 			return { clientX: touch.clientX, clientY: touch.clientY };
 		},
-		dragEvent: { name: 'touchmove', options: { cancelable: true, passive: true } },
-		dragEndEvent: { name: 'touchend' }
+		dragEvent: { name: EVENTS.TOUCHMOVE, options: { cancelable: true, passive: true } },
+		dragEndEvent: { name: EVENTS.TOUCHEND }
 	}
 };
 
-const isTouch = (e) => e.type === TOUCH_START_EVENT;
+const isTouch = (e) => e.type === EVENTS.TOUCHSTART;
 
 const useDragging = ({ onDragStart = noop, onDrag, onDragEnd = noop }) => {
 	const [context, setContext] = useState({});
 	const [dragging, setDragging] = useState(false);
 
-	const handleMouseDown = (e) => {
+	const dragHandler = (e) => {
 		const handler = isTouch(e) ? DRAG_HANDLERS.TOUCH : DRAG_HANDLERS.MOUSE;
 
 		handler.stop(e);
@@ -70,13 +70,13 @@ const useDragging = ({ onDragStart = noop, onDrag, onDragEnd = noop }) => {
 		}
 
 		return () => {
-			document.removeEventListener(dragEvent.name, handleDrag);
+			document.removeEventListener(dragEvent.name, handleDrag, dragEndEvent.options);
 			document.removeEventListener(dragEndEvent.name, deactivate);
 		};
 	}, [dragging]);
 
 	return [
-		handleMouseDown,
+		dragHandler,
 		activate,
 		deactivate
 	];
