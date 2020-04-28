@@ -36,7 +36,7 @@ const useStopDragging = ({ limits, stop, initialPos, colorStopRef, onPosChange, 
 		onPosChange({ id, offset: limitedPos });
 	};
 
-	const [handleMouseDown, activate] = useDragging({
+	const [drag] = useDragging({
 		onDragStart: ({ clientX }) => {
 			setPosStart(clientX);
 
@@ -46,13 +46,8 @@ const useStopDragging = ({ limits, stop, initialPos, colorStopRef, onPosChange, 
 		onDragEnd: () => onDragEnd(stop.id)
 	});
 
-	useEffect(() => {
-		const { pointX } = stop;
-		pointX && activate({ clientX: pointX });
-	}, []);
-
 	return [
-		handleMouseDown,
+		drag,
 	];
 };
 
