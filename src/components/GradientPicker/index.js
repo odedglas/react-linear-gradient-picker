@@ -21,12 +21,11 @@ const mapIdToPalette = (palette) => palette.map((color, index) => ({
 	id: color.id || index + 1
 }));
 
-const mapPaletteToStops = ({ palette, activeId, activePoint, width }) => palette.map((color) => ({
+const mapPaletteToStops = ({ palette, activeId, width }) => palette.map((color) => ({
 	...color,
 	id: color.id,
 	offset: width * color.offset - HALF_STOP_WIDTH,
-	isActive: color.id === activeId,
-	pointX: activePoint
+	isActive: color.id === activeId
 }));
 
 const getPaletteColor = (palette, id) => {
@@ -48,7 +47,6 @@ const GradientPicker = ({
 	palette = mapIdToPalette(palette);
 
 	const [activeColorId, setActiveColorId] = useState(1);
-	const [activePoint, setActivePoint] = useState();
 
 	const limits = useMemo(() => {
 		const min = -HALF_STOP_WIDTH;
@@ -57,7 +55,7 @@ const GradientPicker = ({
 		return { min, max, drop: stopRemovalDrop };
 	}, [width]);
 
-	const handleColorAdd = ({ offset, pointX }) => {
+	const handleColorAdd = ({ offset }) => {
 		if (palette.length >= maxStops) return;
 
 		const { color } = getPaletteColor(palette, activeColorId);
@@ -65,7 +63,7 @@ const GradientPicker = ({
 
 		const updatedPalette = [...palette, entry];
 
-		setActivePoint(pointX);
+		setActiveColorId(entry.id);
 		handlePaletteChange(updatedPalette);
 	};
 
@@ -137,7 +135,6 @@ const GradientPicker = ({
 				width={paletteWidth}
 				disabled={stopsHolderDisabled}
 				stops={mapPaletteToStops({
-					activePoint,
 					palette,
 					width: paletteWidth,
 					activeId: activeColorId
