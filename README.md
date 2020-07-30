@@ -74,7 +74,7 @@ const App = () => {
     const [angle, setAngle] = useState(25);
 
     return (
-        <AnglePicker angle={angle} onChange={setAngle}/>
+        <AnglePicker angle={angle} setAngle={setAngle}/>
     );
 };
 ```
