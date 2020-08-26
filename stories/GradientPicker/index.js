@@ -6,36 +6,24 @@ import UseCase from './UseCase';
 
 import 'rc-color-picker/assets/index.css';
 
-/**
- * (c) https://stackoverflow.com/questions/21646738/convert-hex-to-rgba
- */
-function addOpacityToHex(hex, a = 1) {
-	let c;
-	if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
-		c = hex.substring(1).split('');
-		if (c.length === 3) {
-			c = [c[0], c[0], c[1], c[1], c[2], c[2]];
-		}
-		c = '0x' + c.join('');
-		return 'rgba(' + [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(',') + ',' + a + ')';
-	}
-	if (/rgb\((\d{1,3}), (\d{1,3}), (\d{1,3})\)/.test(hex)) { /** RGB color */
-		return hex.replace('rgb', 'rgba').replace(')', `, ${a})`);
-	}
-	throw new Error('Bad Hex');
-}
+const rgbToRgba = (rgb, a = 1) => rgb
+	.replace('rgb(', 'rgba(')
+	.replace(')', `, ${a})`)
 
 const WrapperPropTypes = {
 	onSelect: PropTypes.func
 };
 
-const WrappedSketchPicker = ({ onSelect, ...rest }) => (
-	<SketchPicker {...rest}
-		color={addOpacityToHex(rest.color, rest.opacity)}
-		onChange={c => {
-			onSelect(c.hex, c.rgb.a);
-		}}/>
-);
+const WrappedSketchPicker = ({ onSelect, ...rest }) => {
+	return (
+		<SketchPicker {...rest}
+					  color={rgbToRgba(rest.color, rest.opacity)}
+					  onChange={c => {
+						  const { r, g, b, a } = c.rgb;
+						  onSelect(`rgb(${r}, ${g}, ${b})`, a);
+					  }}/>
+	);
+}
 
 WrappedSketchPicker.propTypes = WrapperPropTypes;
 
@@ -49,9 +37,9 @@ WrappedColorPicker.propTypes = WrapperPropTypes;
 
 const SketchPickerStory = () => (
 	<UseCase palette={[
-		{ offset: '0.00', color: '#eef10b' },
-		{ offset: '0.49', color: '#d78025' },
-		{ offset: '1.00', color: '#7e20cf' }
+		{ offset: '0.00', color: 'rgb(238, 241, 11)' },
+		{ offset: '0.49', color: 'rgb(215, 128, 37)' },
+		{ offset: '1.00', color: 'rgb(126, 32, 207)' }
 	]} link={'https://github.com/react-component/color-picker'} title={'rc-color-picker'} ColorPicker={WrappedSketchPicker}/>
 );
 

@@ -27,9 +27,9 @@ const WrappedColorPicker = ({ onSelect, ...rest }) => (
 
 const App = () => {
     const [palette, setPalette] = useState([
-        { offset: '0.00', color: '#eef10b' },
-        { offset: '0.49', color: '#d78025' },
-        { offset: '1.00', color: '#7e20cf' }
+        { offset: '0.00', color: 'rgb(238, 241, 11)' },
+        { offset: '0.49', color: 'rgb(215, 128, 37)' },
+        { offset: '1.00', color: 'rgb(126, 32, 207)' }
     ]);
 
     return (
@@ -50,18 +50,19 @@ const App = () => {
 | Name | Type | Default Value | Required? | Description
 |-|-|-|-|-
 | `palette` | `PaletteColor[]` | `undefined` | Yes | The gradient pickers color palette, Each palette color struct is described below
-| `onPaletteChange` | `Function` | `undefined` | Yes | The function to trigger upon palette change (Can be neither from stop drag or color select).
+| `onPaletteChange` | `Function` | `undefined` | Yes | The function to trigger upon palette change (Can be either from stop drag or color select).
 | `paletteHeight` | `Number` | `32` | No | The stops palette display area height 
 | `width` | `Number` | `400` | No | Determines the width of the gradient picker
 | `stopRemovalDrop` | `Number` | `50` | No | Sets the Y stop drop removal offset, If the user will drag the color stop further than specified, Color will be removed
 | `maxStops` | `Number` | `5` | No | The max gradient picker palette length can have
 | `minStops` | `Number` | `2` | No | The min gradient picker palette length can have
 
-PaletteColor = shape({
-	color: string.isRequired,
-	offset: string.isRequired,
-	opacity: number,
-});
+|> Palette Color
+| Name | Type | Default Value | Required? | Description
+|-|-|-|-|-
+| `color` | `String` | `` | Yes | The stop color, can be either hex of rgb format.
+| `offset`| `Number` | `` | `Yes` | The stop color offset in percent.
+| `opacity`| `Number` | `1` | `No` | The stop color opacity.
 
 ## Angle Picke Usage
 <img width="200" alt="gradient_preview" src="/assets/ap.png"> <br/>
@@ -97,32 +98,24 @@ import { SketchPicker } from 'react-color';
 import { GradientPickerPopover } from 'react-linear-gradient-picker';
 import './index.css';
 
-/**
- * (c) https://stackoverflow.com/questions/21646738/convert-hex-to-rgba
- */
-function addOpacityToHex(hex, a = 1){
-  var c;
-  if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
-      c= hex.substring(1).split('');
-      if(c.length== 3){
-          c= [c[0], c[0], c[1], c[1], c[2], c[2]];
-      }
-      c= '0x'+c.join('');
-      return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+','+a+')';
-  }
-  if (/rgb\((\d{1,3}), (\d{1,3}), (\d{1,3})\)/.test(hex)) { /** RGB color */
-    return hex.replace('rgb', 'rgba').replace(')', `, ${a})`);
-  }
-  throw new Error('Bad Hex');
-}
+const rgbToRgba = (rgb, a = 1) => rgb
+	.replace('rgb(', 'rgba(')
+	.replace(')', `, ${a})`)
 
-const WrappedSketchPicker = ({ onSelect, ...rest }) => (
-	<SketchPicker {...rest}
-		color={addOpacityToHex(rest.color, rest.opacity)}
-		onChange={c => {
-			onSelect(c.hex, c.rgb.a);
-		}}/>
-);
+const WrapperPropTypes = {
+	onSelect: PropTypes.func
+};
+
+const WrappedSketchPicker = ({ onSelect, ...rest }) => {
+	return (
+		<SketchPicker {...rest}
+					  color={rgbToRgba(rest.color, rest.opacity)}
+					  onChange={c => {
+						  const { r, g, b, a } = c.rgb;
+						  onSelect(`rgb(${r}, ${g}, ${b})`, a);
+					  }}/>
+	);
+}
 
 const initialPallet = [
 	{ offset: '0.00', color: 'rgb(238, 241, 11)' },
