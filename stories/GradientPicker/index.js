@@ -45,14 +45,14 @@ const SketchPickerStory = () => (
 
 const ColorPickerStory = () => (
 	<UseCase palette={[
-		{ offset: '0.00', color: 'rgb(126, 32, 207)' },
-		{ offset: '0.42', color: 'rgb(208, 2, 27)' },
-			{ offset: '1.00', color: 'rgb(0, 204, 255)' }
+		{ offset: '0.00', color: '#7e20cf' },
+		{ offset: '0.42', color: '#d0021b' },
+		{ offset: '1.00', color: '#00ccff' }
 	]} link={'https://github.com/casesandberg/react-color'} title={'react-color'} ColorPicker={WrappedColorPicker}/>
 );
 
 const DefaultPickerStory = () => (
-	<UseCase title="Default Picker" palette={[{ offset: '0', color: 'rgb(255, 0, 0)' }, { offset: '0.3', color: 'rgb(0, 255, 0)' }, { offset: '1', color: 'rgb(0, 0, 255)' }]}/>
+	<UseCase title="Default Picker" palette={[{ offset: '0', color: '#FF0000' }, { offset: '0.3', color: '#00FF00' }, { offset: '1', color: '#0000FF' }]}/>
 );
 
 export {
