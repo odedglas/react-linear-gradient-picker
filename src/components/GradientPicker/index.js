@@ -46,7 +46,7 @@ const GradientPicker = ({
 }) => {
 	palette = mapIdToPalette(palette);
 
-	const [activeColorId, setActiveColorId] = useState(1);
+	const [activeColorId, setActiveColorId] = useState(palette[0].id);
 
 	const limits = useMemo(() => {
 		const min = -HALF_STOP_WIDTH;
