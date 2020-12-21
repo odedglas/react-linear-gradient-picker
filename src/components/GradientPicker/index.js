@@ -42,7 +42,8 @@ const GradientPicker = ({
 	maxStops = DEFAULT_MAX_STOPS,
 	children,
 	flatStyle = false,
-	onPaletteChange
+	onPaletteChange,
+	setDragOverPopover,
 }) => {
 	palette = mapIdToPalette(palette);
 
@@ -80,6 +81,11 @@ const GradientPicker = ({
 
 	const onStopDragStart = (id) => {
 		setActiveColorId(id);
+		setDragOverPopover(true)
+	};
+
+	const onStopDragEnd = (id) => {
+		setDragOverPopover(false)
 	};
 
 	const handleColorSelect = (color, opacity = 1) => {
@@ -145,6 +151,7 @@ const GradientPicker = ({
 				onAddColor={handleColorAdd}
 				onDeleteColor={handleColorDelete}
 				onDragStart={onStopDragStart}
+				onDragEnd={onStopDragEnd}
 			/>
 			{colorPicker()}
 		</div>
