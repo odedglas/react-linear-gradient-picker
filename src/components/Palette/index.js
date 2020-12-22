@@ -9,7 +9,7 @@ const Palette = ({ palette, width, height }) => {
 	const gradientId = useMemo(generateGradientId, [palette.length]);
 
 	return (
-		<div className="palette" style={{ width, height }}>
+		<div className="palette" style={{ width, height, float: 'left' }}>
 			<svg width="100%" height="100%">
 				<defs>
 					<linearGradient id={gradientId} x1="0" y1="0.5" x2="1" y2="0.5"> {

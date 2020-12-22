@@ -138,6 +138,25 @@ const GradientPicker = ({
 	return (
 		<div className="gp">
 			<Palette width={paletteWidth} height={paletteHeight} palette={palette}/>
+			<div style={{
+				position: 'absolute',
+				height: paletteHeight,
+				marginTop: paletteHeight / 4,
+				width: paletteWidth + 30
+			}}>
+				<button className="icon-trash" style={{float: 'right'}} 
+					onClick={
+						() => {
+							handleColorDelete(activeColorId);
+						}
+					}>
+					<div className="trash-lid" style={{backgroundColor: '#909090'}}></div>
+					<div className="trash-container" style={{backgroundColor: '#909090'}}></div>
+					<div className="trash-line-1"></div>
+					<div className="trash-line-2"></div>
+					<div className="trash-line-3"></div>
+				</button>
+			</div>
 			<ColorStopsHolder
 				width={paletteWidth}
 				disabled={stopsHolderDisabled}
@@ -154,6 +173,116 @@ const GradientPicker = ({
 				onDragEnd={onStopDragEnd}
 			/>
 			{colorPicker()}
+			<style jsx global>
+				{`
+					.icon-trash {
+						width: 20px;
+						height: 20px;
+						position: relative;
+						overflow: hidden;
+						margin-left: 25px;
+						margin-bottom: 25px;
+						border: 0;
+						background: transparent;
+					}
+
+					.icon-trash:hover, .icon-trash:focus, .icon-trash:active {
+						cursor: pointer;
+						border: 0;
+						background: transparent;
+						outline: 0;
+					}
+
+					.icon-trash .trash-lid {
+						width: 62%;
+						height: 10%;
+						position: absolute;
+						left: 50%;
+						margin-left: -31%;
+						top: 10.5%;
+						background-color: #000;
+						border-top-left-radius: 80%;
+						border-top-right-radius: 80%;
+						-webkit-transform: rotate(-5deg);
+						-moz-transform: rotate(-5deg);
+						-ms-transform: rotate(-5deg);
+						transform: rotate(-5deg); 
+					}
+
+					.icon-trash .trash-lid:after {
+						content: "";
+						width: 26%;
+						height: 100%;
+						position: absolute;
+						left: 50%;
+						margin-left: -13%;
+						margin-top: -10%;
+						background-color: inherit;
+						border-top-left-radius: 30%;
+						border-top-right-radius: 30%;
+						-webkit-transform: rotate(-1deg);
+						-moz-transform: rotate(-1deg);
+						-ms-transform: rotate(-1deg);
+						transform: rotate(-1deg); 
+					}
+
+					.icon-trash .trash-container {
+						width: 56%;
+						height: 65%;
+						position: absolute;
+						left: 50%;
+						margin-left: -28%;
+						bottom: 10%;
+						background-color: #000;
+						border-bottom-left-radius: 25%;
+						border-bottom-right-radius: 25%;
+					}
+
+					.icon-trash .trash-container:after {
+						content: "";
+						width: 110%;
+						height: 12%;
+						position: absolute;
+						left: 50%;
+						margin-left: -55%;
+						top: 0;
+						background-color: inherit;
+						border-bottom-left-radius: 55%;
+						border-bottom-right-radius: 55%;
+					}
+
+					.icon-trash .trash-line-1 {
+						width: 4%;
+						height: 50%;
+						position: absolute;
+						left: 38%;
+						margin-left: -2%;
+						bottom: 17%;
+						background-color: #fff;
+					}
+
+					.icon-trash .trash-line-2 {
+						width: 4%;
+						height: 50%;
+						position: absolute;
+						left: 50%;
+						margin-left: -2%;
+						bottom: 17%;
+						background-color: #fff;
+					}
+
+					.icon-trash .trash-line-3 {
+						width: 4%;
+						height: 50%;
+						position: absolute;
+						left: 62%;
+						margin-left: -2%;
+						bottom: 17%;
+						background-color: #fff;
+					}
+
+				`}
+			</style>
 		</div>
 	);
 };
