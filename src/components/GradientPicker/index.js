@@ -139,10 +139,10 @@ const GradientPicker = ({
 		<div className="gp">
 			<Palette width={paletteWidth} height={paletteHeight} palette={palette}/>
 			<div style={{
-				position: 'absolute',
+				position: 'fixed',
 				height: paletteHeight,
 				marginTop: paletteHeight / 4,
-				width: paletteWidth + 30
+				width: paletteWidth + 60
 			}}>
 				<button className="icon-trash" style={{float: 'right'}} 
 					onClick={
