@@ -137,41 +137,45 @@ const GradientPicker = ({
 
 	return (
 		<div className="gp">
-			<Palette width={paletteWidth} height={paletteHeight} palette={palette}/>
 			<div style={{
-				position: 'fixed',
-				height: paletteHeight,
-				marginTop: paletteHeight / 4,
-				width: paletteWidth + 60
+				display: 'flex',
+				flexDirection: 'column',
+				alignItems: 'left',
+				width: paletteWidth,
+				paddingLeft: 10
 			}}>
-				<button className="icon-trash" style={{float: 'right'}} 
-					onClick={
-						() => {
-							handleColorDelete(activeColorId);
-						}
-					}>
-					<div className="trash-lid" style={{backgroundColor: '#909090'}}></div>
-					<div className="trash-container" style={{backgroundColor: '#909090'}}></div>
-					<div className="trash-line-1"></div>
-					<div className="trash-line-2"></div>
-					<div className="trash-line-3"></div>
-				</button>
-			</div>
-			<ColorStopsHolder
-				width={paletteWidth}
-				disabled={stopsHolderDisabled}
-				stops={mapPaletteToStops({
-					palette,
+				<Palette width={paletteWidth - 50} height={paletteHeight} palette={palette}/>
+				<div style={{
+					position: 'fixed',
+					height: paletteHeight,
+					marginTop: 1,
 					width: paletteWidth,
-					activeId: activeColorId
-				})}
-				limits={limits}
-				onPosChange={handleStopPosChange}
-				onAddColor={handleColorAdd}
-				onDeleteColor={handleColorDelete}
-				onDragStart={onStopDragStart}
-				onDragEnd={onStopDragEnd}
-			/>
+				}}>
+					<button className="icon-trash"
+						onClick={
+							() => {
+								handleColorDelete(activeColorId);
+							}
+						}>
+						<div className="icon-trash-background"></div>
+					</button>
+				</div>
+				<ColorStopsHolder
+					width={paletteWidth - 50}
+					disabled={stopsHolderDisabled}
+					stops={mapPaletteToStops({
+						palette,
+						width: paletteWidth - 50,
+						activeId: activeColorId
+					})}
+					limits={limits}
+					onPosChange={handleStopPosChange}
+					onAddColor={handleColorAdd}
+					onDeleteColor={handleColorDelete}
+					onDragStart={onStopDragStart}
+					onDragEnd={onStopDragEnd}
+				/>
+			</div>
 			{colorPicker()}
 			<style jsx global>
 				{`
@@ -180,105 +184,27 @@ const GradientPicker = ({
 						height: 20px;
 						position: relative;
 						overflow: hidden;
-						margin-left: 25px;
-						margin-bottom: 25px;
-						border: 0;
+						padding: 15px;
+						border: 1px solid #a7a2a2;
 						background: transparent;
+						float: right;
+						border-radius: 3px;
+						margin-right: 5px;
+					}
+
+					.icon-trash-background {
+						margin-top: -10px;
+    					margin-left: -10px;
+						width: 20px;
+						height: 20px;
+						background-size: contain;
+						background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMTc5MiIgdmlld0JveD0iMCAwIDE3OTIgMTc5MiIgd2lkdGg9IjE3OTIiPjxwYXRoIGQ9Ik03MDQgNzM2djU3NnEwIDE0LTkgMjN0LTIzIDloLTY0cS0xNCAwLTIzLTl0LTktMjN2LTU3NnEwLTE0IDktMjN0MjMtOWg2NHExNCAwIDIzIDl0OSAyM3ptMjU2IDB2NTc2cTAgMTQtOSAyM3QtMjMgOWgtNjRxLTE0IDAtMjMtOXQtOS0yM3YtNTc2cTAtMTQgOS0yM3QyMy05aDY0cTE0IDAgMjMgOXQ5IDIzem0yNTYgMHY1NzZxMCAxNC05IDIzdC0yMyA5aC02NHEtMTQgMC0yMy05dC05LTIzdi01NzZxMC0xNCA5LTIzdDIzLTloNjRxMTQgMCAyMyA5dDkgMjN6bTEyOCA3MjR2LTk0OGgtODk2djk0OHEwIDIyIDcgNDAuNXQxNC41IDI3IDEwLjUgOC41aDgzMnEzIDAgMTAuNS04LjV0MTQuNS0yNyA3LTQwLjV6bS02NzItMTA3Nmg0NDhsLTQ4LTExN3EtNy05LTE3LTExaC0zMTdxLTEwIDItMTcgMTF6bTkyOCAzMnY2NHEwIDE0LTkgMjN0LTIzIDloLTk2djk0OHEwIDgzLTQ3IDE0My41dC0xMTMgNjAuNWgtODMycS02NiAwLTExMy01OC41dC00Ny0xNDEuNXYtOTUyaC05NnEtMTQgMC0yMy05dC05LTIzdi02NHEwLTE0IDktMjN0MjMtOWgzMDlsNzAtMTY3cTE1LTM3IDU0LTYzdDc5LTI2aDMyMHE0MCAwIDc5IDI2dDU0IDYzbDcwIDE2N2gzMDlxMTQgMCAyMyA5dDkgMjN6IiBzdHlsZT0iJiMxMDsgICAgZmlsbDogIzQwM2MzYzsmIzEwOyIvPjwvc3ZnPg==')
 					}
 
 					.icon-trash:hover, .icon-trash:focus, .icon-trash:active {
 						cursor: pointer;
-						border: 0;
 						background: transparent;
 						outline: 0;
-					}
-
-					.icon-trash .trash-lid {
-						width: 62%;
-						height: 10%;
-						position: absolute;
-						left: 50%;
-						margin-left: -31%;
-						top: 10.5%;
-						background-color: #000;
-						border-top-left-radius: 80%;
-						border-top-right-radius: 80%;
-						-webkit-transform: rotate(-5deg);
-						-moz-transform: rotate(-5deg);
-						-ms-transform: rotate(-5deg);
-						transform: rotate(-5deg); 
-					}
-
-					.icon-trash .trash-lid:after {
-						content: "";
-						width: 26%;
-						height: 100%;
-						position: absolute;
-						left: 50%;
-						margin-left: -13%;
-						margin-top: -10%;
-						background-color: inherit;
-						border-top-left-radius: 30%;
-						border-top-right-radius: 30%;
-						-webkit-transform: rotate(-1deg);
-						-moz-transform: rotate(-1deg);
-						-ms-transform: rotate(-1deg);
-						transform: rotate(-1deg); 
-					}
-
-					.icon-trash .trash-container {
-						width: 56%;
-						height: 65%;
-						position: absolute;
-						left: 50%;
-						margin-left: -28%;
-						bottom: 10%;
-						background-color: #000;
-						border-bottom-left-radius: 25%;
-						border-bottom-right-radius: 25%;
-					}
-
-					.icon-trash .trash-container:after {
-						content: "";
-						width: 110%;
-						height: 12%;
-						position: absolute;
-						left: 50%;
-						margin-left: -55%;
-						top: 0;
-						background-color: inherit;
-						border-bottom-left-radius: 55%;
-						border-bottom-right-radius: 55%;
-					}
-
-					.icon-trash .trash-line-1 {
-						width: 4%;
-						height: 50%;
-						position: absolute;
-						left: 38%;
-						margin-left: -2%;
-						bottom: 17%;
-						background-color: #fff;
-					}
-
-					.icon-trash .trash-line-2 {
-						width: 4%;
-						height: 50%;
-						position: absolute;
-						left: 50%;
-						margin-left: -2%;
-						bottom: 17%;
-						background-color: #fff;
-					}
-
-					.icon-trash .trash-line-3 {
-						width: 4%;
-						height: 50%;
-						position: absolute;
-						left: 62%;
-						margin-left: -2%;
-						bottom: 17%;
-						background-color: #fff;
 					}
 
 				`}
