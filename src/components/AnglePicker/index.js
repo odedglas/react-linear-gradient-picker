@@ -9,7 +9,7 @@ import {
 } from '../../lib';
 import './index.css';
 
-const AnglePicker = ({ angle, setAngle, size = 48, snap = 5 }) => {
+const AnglePicker = ({ angle, setAngle, size = 48, snap = 5, setDragOverPopover }) => {
 	const pickerRef = useRef();
 	const sizeStyle = { height: size, width: size };
 
@@ -25,12 +25,15 @@ const AnglePicker = ({ angle, setAngle, size = 48, snap = 5 }) => {
 	};
 
 	const [drag] = useDragging({
-		onDragStart: (e) => onAngleChange(e, true),
+		onDragStart: (e) => {
+			setDragOverPopover(true);
+			onAngleChange(e, true);
+		},
 		onDrag: onAngleChange,
 		onDragEnd: (angle) => {
 			if (!angle) return;
 			const snappedAngle = snapAngle(angle, snap);
-
+			setDragOverPopover(false);
 			setAngle(snappedAngle);
 		}
 	});

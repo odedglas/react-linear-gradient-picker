@@ -81,11 +81,11 @@ const GradientPicker = ({
 
 	const onStopDragStart = (id) => {
 		setActiveColorId(id);
-		setDragOverPopover(true)
+		setDragOverPopover(true);
 	};
 
 	const onStopDragEnd = (id) => {
-		setDragOverPopover(false)
+		setDragOverPopover(false);
 	};
 
 	const handleColorSelect = (color, opacity = 1) => {
