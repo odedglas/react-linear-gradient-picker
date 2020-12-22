@@ -142,7 +142,6 @@ const GradientPicker = ({
 				flexDirection: 'column',
 				alignItems: 'left',
 				width: paletteWidth,
-				paddingLeft: 10
 			}}>
 				<Palette width={paletteWidth - 50} height={paletteHeight} palette={palette}/>
 				<div style={{
