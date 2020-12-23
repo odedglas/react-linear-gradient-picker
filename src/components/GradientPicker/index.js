@@ -143,7 +143,7 @@ const GradientPicker = ({
 				alignItems: 'left',
 				width: paletteWidth,
 			}}>
-				<Palette width={paletteWidth - 50} height={paletteHeight} palette={palette}/>
+				<Palette width={paletteWidth - 40} height={paletteHeight} palette={palette}/>
 				<div style={{
 					position: 'fixed',
 					height: paletteHeight,
@@ -160,11 +160,11 @@ const GradientPicker = ({
 					</button>
 				</div>
 				<ColorStopsHolder
-					width={paletteWidth - 50}
+					width={paletteWidth - 40}
 					disabled={stopsHolderDisabled}
 					stops={mapPaletteToStops({
 						palette,
-						width: paletteWidth - 50,
+						width: paletteWidth - 40,
 						activeId: activeColorId
 					})}
 					limits={limits}
@@ -188,7 +188,6 @@ const GradientPicker = ({
 						background: transparent;
 						float: right;
 						border-radius: 3px;
-						margin-right: 5px;
 					}
 
 					.icon-trash-background {
