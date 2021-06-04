@@ -145,7 +145,7 @@ const GradientPicker = ({
 			}}>
 				<Palette width={paletteWidth - 45} height={paletteHeight} palette={palette}/>
 				<div style={{
-					position: 'fixed',
+					position: 'absolute',
 					height: paletteHeight,
 					marginTop: 1,
 					width: paletteWidth,
