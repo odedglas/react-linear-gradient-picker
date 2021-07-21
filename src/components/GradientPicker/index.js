@@ -1,9 +1,9 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import ColorStopsHolder from '../ColorStopsHolder/index';
 import Palette from '../Palette/index';
 import ColorPicker from '../ColorPicker/index';
 import { GRADIENT_PICKER_PROP_TYPES } from '../propTypes/index';
-import { sortPalette } from '../../lib/index';
+import { sortPalette, getGradientPreview } from '../../lib/index';
 import {
 	HALF_STOP_WIDTH,
 	DEFAULT_HEIGHT,
@@ -42,7 +42,10 @@ const GradientPicker = ({
 	maxStops = DEFAULT_MAX_STOPS,
 	children,
 	flatStyle = false,
-	onPaletteChange
+	onPaletteChange,
+	mode,
+	color: solidColor,
+	onColorChange,
 }) => {
 	palette = mapIdToPalette(palette);
 
@@ -87,7 +90,13 @@ const GradientPicker = ({
 			activeColorId === c.id ? { ...c, color, opacity } : c
 		);
 
-		handlePaletteChange(palette);
+		if (mode === 'gradient') {
+			handlePaletteChange(palette);
+		}
+
+		if (mode === 'solid') {
+			onColorChange(color);
+		}
 	};
 
 	const handlePaletteChange = (palette) => {
@@ -106,7 +115,11 @@ const GradientPicker = ({
 	};
 
 	const colorPicker = () => {
-		const { color, opacity } = getPaletteColor(palette, activeColorId);
+		let { color, opacity } = getPaletteColor(palette, activeColorId);
+
+		if (mode === 'solid') {
+			color = solidColor;
+		}
 
 		const props = {
 			color,
@@ -126,26 +139,34 @@ const GradientPicker = ({
 		return React.cloneElement(child, props);
 	};
 
+	useEffect(() => {
+		setActiveColorId(1);
+	}, [mode]);
+
 	const paletteWidth = width - HALF_STOP_WIDTH;
 	const stopsHolderDisabled = palette.length >= maxStops;
 
 	return (
 		<div className="gp">
-			<Palette width={paletteWidth} height={paletteHeight} palette={palette}/>
-			<ColorStopsHolder
-				width={paletteWidth}
-				disabled={stopsHolderDisabled}
-				stops={mapPaletteToStops({
-					palette,
-					width: paletteWidth,
-					activeId: activeColorId
-				})}
-				limits={limits}
-				onPosChange={handleStopPosChange}
-				onAddColor={handleColorAdd}
-				onDeleteColor={handleColorDelete}
-				onDragStart={onStopDragStart}
-			/>
+			{mode === 'gradient' ? (
+				<>
+					<Palette width={paletteWidth} height={paletteHeight} palette={palette}/>
+					<ColorStopsHolder
+						width={paletteWidth}
+						disabled={stopsHolderDisabled}
+						stops={mapPaletteToStops({
+							palette,
+							width: paletteWidth,
+							activeId: activeColorId
+						})}
+						limits={limits}
+						onPosChange={handleStopPosChange}
+						onAddColor={handleColorAdd}
+						onDeleteColor={handleColorDelete}
+						onDragStart={onStopDragStart}
+					/>
+				</>
+			) : null}
 			{colorPicker()}
 		</div>
 	);

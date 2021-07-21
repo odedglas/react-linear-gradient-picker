@@ -56,7 +56,10 @@ export const GRADIENT_PICKER_PROP_TYPES = {
 	maxStops: number,
 	minStops: number,
 	flatStyle: bool,
-	palette: arrayOf(PALETTE_COLOR_SHAPE)
+	palette: arrayOf(PALETTE_COLOR_SHAPE),
+	mode: string.isRequired,
+	setMode: func,
+	color: string,
 };
 
 export const ANGLE_PICKER_PROP_TYPES = {

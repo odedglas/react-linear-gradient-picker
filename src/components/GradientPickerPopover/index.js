@@ -19,11 +19,14 @@ const GradientPickerPopover = ({
 	showAnglePicker = false,
 	angle,
 	setAngle,
+	mode = 'solid',
+	setMode,
+	color,
 	...gradientPickerProps
 }) => {
-
 	const togglePicker = () => setOpen(!open);
-	const { background } = getGradientPreview(palette, angle);
+	const { background: gradientColor } = getGradientPreview(palette, angle);
+	const background = mode === 'gradient' ? gradientColor : color;
 
 	const onAngleInputChange = (angle) => {
 		angle = angle > 360 ? angle - 360 : angle;
@@ -39,8 +42,12 @@ const GradientPickerPopover = ({
 				<>
 					<div className="overlay" onClick={() => setOpen(false)}/>
 					<div className="popover">
-						<GradientPicker {...gradientPickerProps} palette={palette} flatStyle/>
-						{ showAnglePicker && (
+						<div className="mode-picker">
+							<p onClick={() => setMode('solid')}>solid</p>
+							<p onClick={() => setMode('gradient')}>gradient</p>
+						</div>
+						<GradientPicker {...gradientPickerProps} palette={palette} color={color} mode={mode} angle={angle} flatStyle/>
+						{ showAnglePicker && mode === 'gradient' && (
 							<div className="angle-holder">
 								<AnglePicker angle={angle} setAngle={setAngle} size={32}/>
 								<div className="angle-inputs">

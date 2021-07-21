@@ -4,30 +4,11 @@ import { SketchPicker } from 'react-color';
 import GradientPickerPopover from '../../src/components/GradientPickerPopover';
 import './index.css';
 
-/**
- * (c) https://stackoverflow.com/questions/21646738/convert-hex-to-rgba
- */
-function addOpacityToHex(hex, a = 1) {
-	let c;
-	if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
-		c = hex.substring(1).split('');
-		if (c.length === 3) {
-			c = [c[0], c[0], c[1], c[1], c[2], c[2]];
-		}
-		c = '0x' + c.join('');
-		return 'rgba(' + [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(',') + ',' + a + ')';
-	}
-	if (/rgb\((\d{1,3}), (\d{1,3}), (\d{1,3})\)/.test(hex)) { /** RGB color */
-		return hex.replace('rgb', 'rgba').replace(')', `, ${a})`);
-	}
-	throw new Error('Bad Hex');
-}
-
 const WrappedSketchPicker = ({ onSelect, ...rest }) => (
 	<SketchPicker {...rest}
-		color={addOpacityToHex(rest.color, rest.opacity)}
+		color={rest.color}
 		onChange={c => {
-			onSelect(c.hex, c.rgb.a);
+			onSelect(`rgba(${c.rgb.r}, ${c.rgb.g}, ${c.rgb.b}, ${c.rgb.a})`);
 		}}/>
 );
 
@@ -35,15 +16,29 @@ WrappedSketchPicker.propTypes = {
 	onSelect: PropTypes.func
 };
 
-const initialPallet = [
-	{ offset: '0.00', color: 'rgb(238, 241, 11)' },
-	{ offset: '1.00', color: 'rgb(126, 32, 207)' }
-];
+const COLOR_MODES = {
+	SOLID: 'solid',
+	GRADIENT: 'gradient'
+};
 
-const PopoverStory = ({ showAngle = false}) => {
+const PopoverStory = ({ showAngle = false }) => {
+	const initialPallet = [
+		{ offset: '0.00', color: 'rgba(255, 0, 150, 1)' },
+		{ offset: '1.00', color: 'rgba(126, 32, 207, 1)' }
+	];
+
+	const initialColor = 'rgba(255, 0, 150, 1)';
+	const initialMode = COLOR_MODES.SOLID;
+
 	const [open, setOpen] = useState(false);
+	const [mode, setMode] = useState(initialMode);
 	const [angle, setAngle] = useState(90);
 	const [palette, setPalette] = useState(initialPallet);
+	const [color, setColor] = useState(initialColor);
+
+	const setGradient = (paletteArray) => {
+		setPalette(paletteArray);
+	}
 
 	return (
 		<GradientPickerPopover {...{
@@ -55,8 +50,12 @@ const PopoverStory = ({ showAngle = false}) => {
 			width: 220,
 			maxStops: 3,
 			paletteHeight: 32,
-			palette,
-			onPaletteChange: setPalette
+			palette: palette,
+			onPaletteChange: setGradient,
+			color,
+			onColorChange: setColor,
+			mode,
+			setMode,
 		}}>
 			<WrappedSketchPicker/>
 		</GradientPickerPopover>
