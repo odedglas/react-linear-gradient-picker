@@ -92,7 +92,12 @@ const GradientPicker = ({
 
 	const handlePaletteChange = (palette) => {
 		const sortedPalette = sortPalette(palette)
-			.map(({ offset, ...rest }) => ({ offset: Number(offset).toFixed(3), ...rest }));
+			.map(({ offset, id, ...rest }) => ({
+				id,
+				offset: Number(offset).toFixed(3),
+				active: id === activeColorId,
+				...rest
+			}));
 
 		onPaletteChange(sortedPalette);
 	};

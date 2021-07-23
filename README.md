@@ -63,6 +63,7 @@ const App = () => {
 | `color` | `String` | `` | Yes | The stop color, can be either hex of rgb format.
 | `offset`| `Number` | `` | `Yes` | The stop color offset in percent.
 | `opacity`| `Number` | `1` | `No` | The stop color opacity.
+| `active`| `Boolean` | `` | `No` | Rather the current color is active (selected) or not.
 
 ## Angle Picke Usage
 <img width="200" alt="gradient_preview" src="/assets/ap.png"> <br/>
