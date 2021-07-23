@@ -1,6 +1,6 @@
 {
   "name": "react-linear-gradient-picker",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "React linear gradient picker",
   "main": "dist/index.js",
   "scripts": {
@@ -57,6 +57,6 @@
     "webpack-cli": "^3.3.9"
   },
   "dependencies": {
-    "linear-gradient-parser": "^1.1.7"
+    "linear-gradient-parser": "^1.1.8"
   }
 }
