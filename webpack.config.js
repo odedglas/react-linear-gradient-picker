@@ -24,8 +24,7 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				loaders: [ 'style-loader', 'css-loader'],
-				include: path.resolve(__dirname, '../')
+				use: [MiniCssExtractPlugin.loader, "css-loader"],
 			},
 			{
 				test: /\.(png|jp(e*)g)$/,
@@ -45,7 +44,9 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new MiniCssExtractPlugin()
+		new MiniCssExtractPlugin({
+			filename: 'index.css'
+		}),
 	],
 	optimization: {
 		minimize: true,

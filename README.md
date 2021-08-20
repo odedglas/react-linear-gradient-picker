@@ -18,6 +18,7 @@ npm i react-linear-gradient-picker
 import React, { useState } from 'react';
 import { Panel as ColorPicker } from 'rc-color-picker';
 import { GradientPicker } from 'react-linear-gradient-picker';
+import 'react-linear-gradient-picker/dist/index.css';
 
 const WrappedColorPicker = ({ onSelect, ...rest }) => (
 	<ColorPicker {...rest} onChange={c => {
@@ -39,7 +40,7 @@ const App = () => {
             palette,
             onPaletteChange: setPalette
         }}>
-            <ColorPicker/>
+            <WrappedColorPicker/>
         </GradientPicker>
     );
 };
@@ -71,6 +72,7 @@ const App = () => {
 ```js
 import React, { useState } from 'react';
 import { AnglePicker } from 'react-linear-gradient-picker';
+import 'react-linear-gradient-picker/dist/index.css';
 
 const App = () => {
     const [angle, setAngle] = useState(25);
@@ -97,7 +99,7 @@ const App = () => {
 import React, { useState } from 'react';
 import { SketchPicker } from 'react-color';
 import { GradientPickerPopover } from 'react-linear-gradient-picker';
-import './index.css';
+import 'react-linear-gradient-picker/dist/index.css';
 
 const rgbToRgba = (rgb, a = 1) => rgb
 	.replace('rgb(', 'rgba(')
