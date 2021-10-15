@@ -1,6 +1,6 @@
 {
   "name": "react-linear-gradient-picker",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "React linear gradient picker",
   "main": "dist/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "lint": "eslint .",
     "build": "webpack --config ./webpack.config.js",
     "deploy-storybook": "storybook-to-ghpages",
-    "prepublish": "npm run build && npm run deploy-storybook"
+    "prepublishOnly": "npm run build && npm run deploy-storybook"
   },
   "repository": {
     "type": "git",
