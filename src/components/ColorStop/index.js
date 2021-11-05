@@ -16,7 +16,7 @@ const ColorStop = ({ stop, limits, onPosChange, onDeleteColor, onDragStart = noo
 		colorStopRef
 	});
 
-	const { offset, color, isActive } = stop;
+	const { offset, color, isActive, opacity = 1 } = stop;
 
 	return (
 		<div className={isActive ? 'cs active' : 'cs'}
@@ -25,6 +25,7 @@ const ColorStop = ({ stop, limits, onPosChange, onDeleteColor, onDragStart = noo
 			onMouseDown={drag}
 			onTouchStart={drag}>
 			<div style={{ backgroundColor: color }}/>
+			<div className={'with-opacity'} style={{ backgroundColor: color, opacity: opacity }}/>
 		</div>
 	);
 };
