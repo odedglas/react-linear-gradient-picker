@@ -14,7 +14,7 @@ module.exports = {
 		path: path.join(__dirname, 'dist'),
 		filename: 'index.js',
 		library: 'linearGradientPicker',
-		libraryTarget: 'umd'
+		libraryTarget: 'commonjs2'
 	},
 	module: {
 		rules: [

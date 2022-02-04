@@ -1,9 +1,9 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import ColorStopsHolder from '../ColorStopsHolder/index';
 import Palette from '../Palette/index';
 import ColorPicker from '../ColorPicker/index';
 import { GRADIENT_PICKER_PROP_TYPES } from '../propTypes/index';
-import { sortPalette } from '../../lib/index';
+import { sortPalette, noop } from '../../lib/index';
 import {
 	HALF_STOP_WIDTH,
 	DEFAULT_HEIGHT,
@@ -29,7 +29,8 @@ const mapPaletteToStops = ({ palette, activeId, width }) => palette.map((color) 
 }));
 
 const getPaletteColor = (palette, id) => {
-	const color = palette.find(color => color.id === id);
+	const color = palette.find(color => color.id === id) || palette[0];
+
 	return { ...color, offset: Number(color.offset) };
 };
 
@@ -42,7 +43,8 @@ const GradientPicker = ({
 	maxStops = DEFAULT_MAX_STOPS,
 	children,
 	flatStyle = false,
-	onPaletteChange
+	onPaletteChange,
+	onColorStopSelect = noop
 }) => {
 	palette = mapIdToPalette(palette);
 
@@ -79,7 +81,12 @@ const GradientPicker = ({
 	};
 
 	const onStopDragStart = (id) => {
-		setActiveColorId(id);
+		if (id !== activeColorId) {
+			setActiveColorId(id);
+
+			const color = palette.find((color) => color.id === id);
+			onColorStopSelect(color);
+		}
 	};
 
 	const handleColorSelect = (color, opacity = 1) => {
