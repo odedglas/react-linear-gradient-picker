@@ -44,10 +44,10 @@ const useDragging = ({ onDragStart = noop, onDrag, onDragEnd = noop }) => {
 		onDragStart(handler.coordinates(e));
 	};
 
-	const deactivate = () => {
+	const deactivate = (e) => {
 		setDragging(false);
 
-		onDragEnd(context.change);
+		onDragEnd(context.handler.coordinates(e));
 		setContext({});
 	};
 
