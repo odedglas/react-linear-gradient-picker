@@ -9,32 +9,23 @@ module.exports = {
 	externals: {
 		'react': 'react',
 	},
-	target: 'node',
+	target: 'web',
 	output: {
 		path: path.join(__dirname, 'dist'),
 		filename: 'index.js',
-		library: 'linearGradientPicker',
-		libraryTarget: 'commonjs2'
+		library: {
+			type: 'commonjs2'
+		}
 	},
 	module: {
 		rules: [
 			{
-				test: /\.svg/,
-				loaders: [ 'svg-url-loader' ]
-			},
-			{
 				test: /\.css$/,
-				use: [MiniCssExtractPlugin.loader, "css-loader"],
+				use: [MiniCssExtractPlugin.loader, 'css-loader'],
 			},
 			{
 				test: /\.(png|jp(e*)g)$/,
-				use: [{
-					loader: 'url-loader',
-					options: {
-						limit: 8000, // Convert images < 8kb to base64 strings
-						name: 'images/[hash]-[name].[ext]'
-					}
-				}]
+				type: 'asset/inline'
 			},
 			{
 				test: /\.(js|jsx)$/,
@@ -50,6 +41,13 @@ module.exports = {
 	],
 	optimization: {
 		minimize: true,
-		minimizer: [ new TerserPlugin() ],
+		minimizer: [ new TerserPlugin({
+			terserOptions: {
+				output: {
+					comments: false
+				}
+			},
+			extractComments: false
+		}) ],
 	}
 };
