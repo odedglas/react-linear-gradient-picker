@@ -20,7 +20,7 @@ const getGradientPreview = (palette, angle = 90) => {
 		stops: palette
 	});
 
-	return { gradient, background, angle};
+	return { gradient, background, angle };
 };
 
 export default getGradientPreview;

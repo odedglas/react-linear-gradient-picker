@@ -21,7 +21,6 @@ const GradientPickerPopover = ({
 	setAngle,
 	...gradientPickerProps
 }) => {
-
 	const togglePicker = () => setOpen(!open);
 	const { background } = getGradientPreview(palette, angle);
 
