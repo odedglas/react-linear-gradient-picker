@@ -1,6 +1,6 @@
 {
   "name": "react-linear-gradient-picker",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "React linear gradient picker",
   "main": "dist/index.js",
   "scripts": {
@@ -33,6 +33,7 @@
     "@storybook/addon-essentials": "^6.4.0",
     "@storybook/addon-links": "^6.4.0",
     "@storybook/manager-webpack5": "^6.4.0",
+    "@storybook/builder-webpack5": "^6.4.0",
     "@storybook/cli": "^6.4.0",
     "@storybook/react": "^6.4.0",
     "@storybook/storybook-deployer": "^2.8.1",
@@ -58,7 +59,6 @@
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
-    "@storybook/builder-webpack5": "^6.4.0",
     "linear-gradient-parser": "^1.1.8"
   }
 }
