@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import ColorStopsHolder from '../ColorStopsHolder/index';
 import Palette from '../Palette/index';
 import ColorPicker from '../ColorPicker/index';

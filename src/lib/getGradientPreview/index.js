@@ -1,4 +1,6 @@
-import parser from 'linear-gradient-parser';
+import getStopColor from '../getStopColor';
+import getStopOffset from '../getStopOffset';
+import angleToGradientCords from '../angleToGradientCords';
 
 /**
  * @typedef {Object} PaletteColor
@@ -8,16 +10,33 @@ import parser from 'linear-gradient-parser';
  */
 
 /**
+ * Formats into linear gradient background property
+ * @param {Number} angle - The linear gradient degree
+ * @param {Stop[]} stops - The linear gradient stops
+ * @returns {String}
+ */
+const asBackground = ({ angle, stops }) => stops.length === 1 ? stops[0].color : `linear-gradient(${angle}deg, ${
+	stops
+		.map(stop => `${stop.color} ${stop.offset}%`)
+		.join(', ')
+})`;
+
+/**
  * Returns a given gradient palette and angle a background preview
  * @param {PaletteColor[]} palette
  * @param {Number} angle
  */
 const getGradientPreview = (palette, angle = 90) => {
-	const gradient = parser.getGradientCords(angle);
+	const gradient = angleToGradientCords(angle);
 
-	const { background } = parser.getBackground({
-		...gradient,
-		stops: palette
+	const stops = palette.map(({ offset, color, opacity }) => ({
+		offset: getStopOffset(offset),
+		color: getStopColor(color, opacity)
+	}));
+
+	const background = asBackground({
+		angle,
+		stops
 	});
 
 	return { gradient, background, angle };

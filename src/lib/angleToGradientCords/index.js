@@ -32,15 +32,20 @@ const degreesToRadians = (degrees) => ((degrees * Math.PI) / 180);
 /**
  * Returns a start / end coordinates of a given angle
  * @param {Number} angle
- * @returns {{startPoint: {x: Number, y: Number}, endPoint: {x: Number, y: Number}}}
+ * @returns {x1: Number, y1: Number, x2: Number, y2: Number}}
  */
-const getAngleCords = (angle = 0) => {
+const angleToGradientCords = (angle = 0) => {
     const adjustedAngle = ((CIRCLE_DEGREES - angle) % CIRCLE_DEGREES);
 
     const startPoint = anglePoint(degreesToRadians(START_POINT_RATIO - adjustedAngle));
     const endPoint = anglePoint(degreesToRadians(END_POINT_RATIO - adjustedAngle));
 
-    return { startPoint, endPoint };
+    return {
+        x1: startPoint.x,
+        y1: startPoint.y,
+        x2: endPoint.x,
+        y2: endPoint.y
+    };
 };
 
-export default getAngleCords;
+export default angleToGradientCords;

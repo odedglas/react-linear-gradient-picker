@@ -63,4 +63,8 @@ const PopoverStory = ({ showAngle = false}) => {
 	);
 };
 
+PopoverStory.propTypes = {
+	showAngle: PropTypes.bool
+};
+
 export default PopoverStory;
