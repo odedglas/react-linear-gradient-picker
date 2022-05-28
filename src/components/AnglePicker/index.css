@@ -7,7 +7,7 @@
     display: inline-block;
     position: relative;
     cursor: pointer;
-    margin-top: -4px;
+    margin-top: -2px;
 }
 
 .controls-wrapper .ap .apc {
@@ -35,7 +35,6 @@
 }
 
 .controls-wrapper .ai {
-    border-radius: 4px;
     background: #f2f2f2;
     display: flex;
     flex: 1;
@@ -56,4 +55,5 @@
     padding: 5px;
     cursor: pointer;
     user-select: none;
+    font-size: 14px;
 }

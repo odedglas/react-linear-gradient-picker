@@ -39,7 +39,7 @@ const GradientPickerPopover = ({
 							<GradientTypePicker gradientType={gradientType}
 								onGradientTypeChange={setGradientType}/>
 							{ (showAnglePicker && supportsAnglePicker) && (
-								<AnglePicker angle={angle} setAngle={setAngle} size={32}/>
+								<AnglePicker angle={angle} setAngle={setAngle} size={28}/>
 							)}
 						</div>
 						<GradientPicker {...gradientPickerProps} palette={palette} flatStyle/>
