@@ -9,7 +9,7 @@ import angleToGradientCords from '../angleToGradientCords';
  * @param {GradientType} type - The gradient type
  * @returns {String}
  */
-const asBackground = ({ angle, stops, type = 'linear' }) => {
+const asBackground = ({ angle, stops, type }) => {
 	const anglePrefix = type === 'linear' ? `${angle}deg, ` : '';
 
 	return stops.length === 1 ? stops[0].color : `${type}-gradient(${anglePrefix}${
@@ -17,14 +17,15 @@ const asBackground = ({ angle, stops, type = 'linear' }) => {
 			.map(stop => `${stop.color} ${stop.offset}%`)
 			.join(', ', )
 	})`;
-}
+};
 
 /**
  * Returns a given gradient palette and angle a background preview
  * @param {PaletteColor[]} palette
  * @param {Number} angle
+ * @param {GradientType} gradientType
  */
-const getGradientPreview = (palette, angle = 90) => {
+const getGradientPreview = (palette, angle = 90, gradientType = 'linear') => {
 	const gradient = angleToGradientCords(angle);
 
 	const stops = palette.map(({ offset, color, opacity }) => ({
@@ -34,7 +35,8 @@ const getGradientPreview = (palette, angle = 90) => {
 
 	const background = asBackground({
 		angle,
-		stops
+		stops,
+		type: gradientType
 	});
 
 	return { gradient, background, angle };

@@ -9,20 +9,10 @@ import {
 } from '../../lib';
 import './index.css';
 
-/**
- * Normalizes a given angle to be up to 360 deg.
- * @param angle
- * @returns {*|number}
- */
-const normalizeAngle = (angle) => {
-	angle = angle > 360 ? angle - 360 : angle;
-	return angle < 0 ? angle + 360 : angle;
-};
-
 const AnglePicker = ({
 	angle,
 	setAngle,
-	size = 48,
+	size = 24,
 	snap = 5
 }) => {
 	const pickerRef = useRef();
@@ -35,7 +25,7 @@ const AnglePicker = ({
 		const clamped = clampAngle(degrees);
 		const angle = useSnap ? snapAngle(clamped, snap) : clamped;
 
-		setAngle(normalizeAngle(angle));
+		setAngle(angle);
 	};
 
 	const [drag] = useDragging({
@@ -50,18 +40,18 @@ const AnglePicker = ({
 	});
 
 	return (
-		<div className="angle-holder">
+		<>
 			<div className="ap" ref={pickerRef} onMouseDown={drag} onTouchStart={drag} style={sizeStyle}>
 				<span className="apc" style={{ transform: `rotate(${angle}deg)`, height: size }}>
 					<i className="aph"/>
 				</span>
 			</div>
-			<div className="angle-inputs">
+			<div className="ai">
 				<span onClick={() => setAngle(angle - 1)}>&#8722;</span>
 				<input value={`${angle}°`} disabled/>
 				<span onClick={() => setAngle(angle + 1)}>&#43;</span>
 			</div>
-		</div>
+		</>
 	);
 };
 
