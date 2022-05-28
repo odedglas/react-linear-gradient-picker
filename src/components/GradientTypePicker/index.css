@@ -14,14 +14,14 @@
 }
 
 .type-picker.active {
-    border: 1px solid rgb(135 128 128);
+    border: 1px solid #4374AD;
     filter: grayscale(0);
 }
 
 .type-picker.lg {
-    background: linear-gradient(270deg,#ddd,#4374AD);
+    background: linear-gradient(270deg, #ddd, #4374AD);
 }
 
 .type-picker.rg {
-    background: radial-gradient(circle,#fff 0,#4374AD 100%);
+    background: radial-gradient(circle, #fff 0, #4374AD 100%);
 }

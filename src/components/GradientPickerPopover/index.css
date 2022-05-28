@@ -47,31 +47,3 @@
     justify-content: space-around;
     align-items: center;
 }
-
-.type-picker-wrapper {
-    display: inline-flex;
-    margin-right: 16px;
-}
-
-.type-picker {
-    height: 24px;
-    width: 24px;
-    border: 1px solid rgb(238, 238, 238);
-    filter: grayscale(1);
-    margin-right: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.type-picker.active {
-    border: 1px solid rgb(135 128 128);
-    filter: grayscale(0);
-}
-
-.type-picker.lg {
-    background: linear-gradient(270deg,#ddd,#4374AD);
-}
-
-.type-picker.rg {
-    background: radial-gradient(circle,#fff 0,#4374AD 100%);
-}
