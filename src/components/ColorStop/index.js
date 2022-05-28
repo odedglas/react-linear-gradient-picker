@@ -23,6 +23,7 @@ const ColorStop = ({ stop, limits, onPosChange, onDeleteColor, onDragStart = noo
 			ref={colorStopRef}
 			style={{ left: offset }}
 			onMouseDown={drag}
+		 	onDoubleClick={() => onDeleteColor(stop.id)}
 			onTouchStart={drag}>
 			<div style={{ backgroundColor: color, opacity }}/>
 		</div>

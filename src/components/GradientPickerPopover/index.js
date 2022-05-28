@@ -24,13 +24,6 @@ const GradientPickerPopover = ({
 	const togglePicker = () => setOpen(!open);
 	const { background } = getGradientPreview(palette, angle);
 
-	const onAngleInputChange = (angle) => {
-		angle = angle > 360 ? angle - 360 : angle;
-		angle = angle < 0 ? angle + 360 : angle;
-
-		setAngle(angle);
-	};
-
 	return (
 		<div className="gpw">
 			{ trigger(background, togglePicker) }
@@ -40,14 +33,7 @@ const GradientPickerPopover = ({
 					<div className="popover">
 						<GradientPicker {...gradientPickerProps} palette={palette} flatStyle/>
 						{ showAnglePicker && (
-							<div className="angle-holder">
-								<AnglePicker angle={angle} setAngle={setAngle} size={32}/>
-								<div className="angle-inputs">
-									<span onClick={() => onAngleInputChange(angle - 1)}>&#8722;</span>
-									<input value={`${angle}°`} disabled/>
-									<span onClick={() => onAngleInputChange(angle + 1)}>&#43;</span>
-								</div>
-							</div>
+							<AnglePicker angle={angle} setAngle={setAngle} size={32}/>
 						)}
 					</div>
 				</>
