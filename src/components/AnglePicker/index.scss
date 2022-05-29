@@ -1,0 +1,61 @@
+.controls-wrapper {
+    .ap {
+        flex: none;
+        box-sizing: border-box;
+        background-color: #fff;
+        border: 1px solid #4374AD;
+        border-radius: 50%;
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+        margin-top: -2px;
+
+        .apc {
+            width: 6px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .aph {
+            width: 6px;
+            height: 6px;
+            background-color: #4374AD;
+            display: inline-block;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 4px;
+            margin: auto;
+            cursor: pointer;
+        }
+    }
+
+    .ai {
+        background: #f2f2f2;
+        display: flex;
+        flex: 1;
+        margin: 0 12px;
+        justify-content: space-around;
+        align-items: center;
+
+        input {
+            border: none;
+            text-align: center;
+            width: 48px;
+            color: #0C0C09;
+            background: inherit;
+        }
+
+        span {
+            padding: 5px;
+            cursor: pointer;
+            user-select: none;
+            font-size: 14px;
+        }
+    }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { func, string } from 'prop-types';
-import './index.css';
+import './index.scss';
 
 const GRADIENT_TYPES = {
 	LINEAR: 'linear',

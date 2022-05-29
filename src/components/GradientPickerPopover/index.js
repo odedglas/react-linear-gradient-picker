@@ -4,7 +4,7 @@ import { getGradientPreview } from '../../lib';
 import AnglePicker from '../AnglePicker';
 import GradientPicker from '../GradientPicker';
 import GradientTypePicker, { GRADIENT_TYPES } from '../GradientTypePicker';
-import './index.css';
+import './index.scss';
 
 const defaultTrigger = (background, togglePicker) => (
 	<div className="trigger" onClick={togglePicker}>

@@ -7,7 +7,7 @@ import {
 	snapAngle,
 	pointDegrees
 } from '../../lib';
-import './index.css';
+import './index.scss';
 
 const AnglePicker = ({
 	angle,

@@ -12,7 +12,7 @@ import {
 	DEFAULT_MAX_STOPS,
 	DEFAULT_MIN_STOPS
 } from './constants';
-import './index.css';
+import './index.scss';
 
 const nextColorId = (palette) => Math.max(...palette.map(({ id }) => id)) + 1;
 

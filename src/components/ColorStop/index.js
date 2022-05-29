@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { noop } from '../../lib';
 import { STOP_PROP_TYPES } from '../propTypes';
 import useStopDragging from './hooks/useStopDragging';
-import './index.css';
+import './index.scss';
 
 const ColorStop = ({ stop, limits, onPosChange, onDeleteColor, onDragStart = noop, onDragEnd = noop}) => {
 	const colorStopRef = useRef();
