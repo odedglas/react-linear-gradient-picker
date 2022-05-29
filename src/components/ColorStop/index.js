@@ -18,7 +18,7 @@ const ColorStop = ({ stop, limits, onPosChange, onDeleteColor, onDragStart = noo
 	});
 
 	useEffect(() => {
-		setTimeout(() => setAllowRemoveOnDoubleClick(true), 1000);
+		setTimeout(() => setAllowRemoveOnDoubleClick(true), 500);
 	}, []);
 
 	const { offset, color, isActive, opacity } = stop;
