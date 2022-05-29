@@ -70,6 +70,7 @@ export const GRADIENT_PICKER_POPOVER_PROP_TYPES = {
 	...GRADIENT_PICKER_PROP_TYPES,
 	...ANGLE_PICKER_PROP_TYPES,
 	showAnglePicker: bool,
+	showGradientTypePicker: bool,
 	open: bool.isRequired,
 	setOpen: func.isRequired,
 	trigger: func,

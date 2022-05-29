@@ -17,7 +17,8 @@ const GradientPickerPopover = ({
 	open = false,
 	setOpen,
 	trigger = defaultTrigger,
-	showAnglePicker = false,
+	showAnglePicker = true,
+	showGradientTypePicker = true,
 	angle,
 	setAngle,
 	...gradientPickerProps
@@ -26,6 +27,7 @@ const GradientPickerPopover = ({
 	const togglePicker = () => setOpen(!open);
 	const { background } = getGradientPreview(palette, angle, gradientType);
 
+	const showControlPanel = showGradientTypePicker || showAnglePicker;
 	const supportsAnglePicker = gradientType === GRADIENT_TYPES.LINEAR;
 
 	return (
@@ -35,13 +37,15 @@ const GradientPickerPopover = ({
 				<>
 					<div className="overlay" onClick={() => setOpen(false)}/>
 					<div className="popover">
-						<div className="controls-wrapper">
-							<GradientTypePicker gradientType={gradientType}
-								onGradientTypeChange={setGradientType}/>
-							{ (showAnglePicker && supportsAnglePicker) && (
-								<AnglePicker angle={angle} setAngle={setAngle} size={28}/>
-							)}
-						</div>
+						{ showControlPanel && (
+							<div className="controls-wrapper">
+								<GradientTypePicker gradientType={gradientType}
+									onGradientTypeChange={setGradientType}/>
+								{ (showAnglePicker && supportsAnglePicker) && (
+									<AnglePicker angle={angle} setAngle={setAngle} size={28}/>
+								)}
+							</div>
+						)}
 						<GradientPicker {...gradientPickerProps} palette={palette} flatStyle/>
 					</div>
 				</>
