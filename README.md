@@ -136,7 +136,6 @@ const App = () => {
 			setOpen,
 			angle,
 			setAngle,
-			showAnglePicker: true,
 			width: 220,
 			maxStops: 3,
 			paletteHeight: 32,
@@ -158,8 +157,8 @@ export default App;
 | `trigger` | `React Component` | `defaultTrigger` | No | The popover trigger component, Will use default implementation if empty.
 | `open` | `Boolean` | `false` | Yes | Controls the popover open state
 | `setOpen` | `Function` | `undefined` | Yes | The setOpen method to be called upon open changes
-| `showGradientTypePicker` | `Boolean` | `true` | No | Will add to gradient picker the angle picker component at the bottom
-| `showAnglePicker` | `Boolean` | `true` | No | Will add to gradient picker the angle picker component at the bottom
+| `showGradientTypePicker` | `Boolean` | `true` | No | Rather to show the `gradientType` picker control.
+| `showAnglePicker` | `Boolean` | `true` | No | Rather to show the `anglePicker` picker control.
 | `angle` | `Number` | `undefined` | No | The angle picker angle value
 | `setAngle` | `Function` | `undefined` | No | Then angle picker setAngle method to be called upon angle changes
 
