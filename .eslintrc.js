@@ -16,9 +16,14 @@ module.exports = {
 		'ecmaVersion': 2018,
 		'sourceType': 'module'
 	},
+	'settings': {
+		'react': {
+			'version': '16.8.0'
+		},
+	},
 	'rules': {
 		'indent': [
-			'error',
+			'off',
 			'tab'
 		],
 		'quotes': [

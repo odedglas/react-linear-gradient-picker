@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { COLORS } from './constants';
-import './index.css';
+import './index.scss';
 
 const ColorPicker = ({ onSelect }) => (
 	<div className="cp">

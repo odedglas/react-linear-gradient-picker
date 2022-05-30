@@ -40,7 +40,7 @@ const initialPallet = [
 	{ offset: '1.00', color: 'rgb(126, 32, 207)' }
 ];
 
-const PopoverStory = ({ showAngle = false}) => {
+const PopoverStory = ({ showAngle, showType}) => {
 	const [open, setOpen] = useState(false);
 	const [angle, setAngle] = useState(90);
 	const [palette, setPalette] = useState(initialPallet);
@@ -52,6 +52,7 @@ const PopoverStory = ({ showAngle = false}) => {
 			angle,
 			setAngle,
 			showAnglePicker: showAngle,
+			showGradientTypePicker: showType,
 			width: 220,
 			maxStops: 3,
 			paletteHeight: 32,
@@ -61,6 +62,11 @@ const PopoverStory = ({ showAngle = false}) => {
 			<WrappedSketchPicker/>
 		</GradientPickerPopover>
 	);
+};
+
+PopoverStory.propTypes = {
+	showAngle: PropTypes.bool,
+	showType: PropTypes.bool,
 };
 
 export default PopoverStory;

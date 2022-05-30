@@ -10,7 +10,8 @@ const baseStorybookConfig = {
     },
     addons: [
         '@storybook/addon-essentials',
-        '@storybook/addon-links'
+        '@storybook/addon-links',
+        '@storybook/preset-scss'
     ]
 };
 

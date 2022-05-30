@@ -8,7 +8,7 @@ import 'rc-color-picker/assets/index.css';
 
 const rgbToRgba = (rgb, a = 1) => rgb
 	.replace('rgb(', 'rgba(')
-	.replace(')', `, ${a})`)
+	.replace(')', `, ${a})`);
 
 const WrapperPropTypes = {
 	onSelect: PropTypes.func
@@ -17,13 +17,13 @@ const WrapperPropTypes = {
 const WrappedSketchPicker = ({ onSelect, ...rest }) => {
 	return (
 		<SketchPicker {...rest}
-					  color={rgbToRgba(rest.color, rest.opacity)}
-					  onChange={c => {
-						  const { r, g, b, a } = c.rgb;
-						  onSelect(`rgb(${r}, ${g}, ${b})`, a);
-					  }}/>
+			color={rgbToRgba(rest.color, rest.opacity)}
+			onChange={c => {
+				const { r, g, b, a } = c.rgb;
+				onSelect(`rgb(${r}, ${g}, ${b})`, a);
+			}}/>
 	);
-}
+};
 
 WrappedSketchPicker.propTypes = WrapperPropTypes;
 

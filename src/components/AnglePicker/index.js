@@ -7,9 +7,14 @@ import {
 	snapAngle,
 	pointDegrees
 } from '../../lib';
-import './index.css';
+import './index.scss';
 
-const AnglePicker = ({ angle, setAngle, size = 48, snap = 5 }) => {
+const AnglePicker = ({
+	angle,
+	setAngle,
+	size = 24,
+	snap = 5
+}) => {
 	const pickerRef = useRef();
 	const sizeStyle = { height: size, width: size };
 
@@ -21,7 +26,6 @@ const AnglePicker = ({ angle, setAngle, size = 48, snap = 5 }) => {
 		const angle = useSnap ? snapAngle(clamped, snap) : clamped;
 
 		setAngle(angle);
-		return angle;
 	};
 
 	const [drag] = useDragging({
@@ -36,11 +40,18 @@ const AnglePicker = ({ angle, setAngle, size = 48, snap = 5 }) => {
 	});
 
 	return (
-		<div className="ap" ref={pickerRef} onMouseDown={drag} onTouchStart={drag} style={sizeStyle}>
-			<span className="apc" style={{ transform: `rotate(${angle}deg)`, height: size }}>
-				<i className="aph"/>
-			</span>
-		</div>
+		<>
+			<div className="ap" ref={pickerRef} onMouseDown={drag} onTouchStart={drag} style={sizeStyle}>
+				<span className="apc" style={{ transform: `rotate(${angle}deg)`, height: size }}>
+					<i className="aph"/>
+				</span>
+			</div>
+			<div className="ai">
+				<span onClick={() => setAngle(angle - 1)}>&#8722;</span>
+				<input value={`${angle}°`} disabled/>
+				<span onClick={() => setAngle(angle + 1)}>&#43;</span>
+			</div>
+		</>
 	);
 };
 

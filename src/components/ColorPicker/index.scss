@@ -1,0 +1,13 @@
+.cp {
+  div {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+
+    &:hover {
+      border: 1px solid #fff;
+    }
+  }
+}

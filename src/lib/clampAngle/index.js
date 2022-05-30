@@ -1,14 +1,16 @@
 /**
- * Bounds an angle into circle degrees
+ * Clamps an angle into given boundaries
  * @param {Number} angle
+ * @param {Number} min
+ * @param {Number} max
  * @returns {Number}
  */
-const clampAngle = (angle) => {
-	if (angle < 0) {
+const clampAngle = (angle, min = 0, max = 360) => {
+	if (angle < min) {
 		return 360 + angle;
 	}
 
-	if (angle > 360) {
+	if (angle > max) {
 		return angle - 360;
 	}
 

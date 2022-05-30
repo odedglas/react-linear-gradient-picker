@@ -24,6 +24,14 @@ module.exports = {
 				use: [MiniCssExtractPlugin.loader, 'css-loader'],
 			},
 			{
+				test: /\.s[ac]ss$/i,
+				use: [
+					MiniCssExtractPlugin.loader,
+					'css-loader',
+					'sass-loader'
+				],
+			},
+			{
 				test: /\.(png|jp(e*)g)$/,
 				type: 'asset/inline'
 			},

@@ -66,31 +66,6 @@ const App = () => {
 | `opacity`| `Number` | `1` | `No` | The stop color opacity.
 | `active`| `Boolean` | `` | `No` | Rather the current color is active (selected) or not.
 
-## Angle Picke Usage
-<img width="200" alt="gradient_preview" src="/assets/ap.png"> <br/>
-
-```js
-import React, { useState } from 'react';
-import { AnglePicker } from 'react-linear-gradient-picker';
-import 'react-linear-gradient-picker/dist/index.css';
-
-const App = () => {
-    const [angle, setAngle] = useState(25);
-
-    return (
-        <AnglePicker angle={angle} setAngle={setAngle}/>
-    );
-};
-```
-
-### Accepted props
-
-| Name | Type | Default Value | Required? | Description
-|-|-|-|-|-
-| `angle` | `Number` | `undefined` | Yes | The controlled angle.
-| `setAngle` | `Function` | `undefined` | Yes | The set angle method to be trigger after an angle was changes.
-| `size` | `Number` | `48` | No | Determines the size of the angle picker
-| `snap` | `Number` | `5` | No | Determines the angle change snapping, Can be removed with setting as 0
 
 ## Gradient Picker Popover Usage
 <img width="200" alt="gradient_popover_preview" src="/assets/gpp.jpg"> <br/>
@@ -136,7 +111,6 @@ const App = () => {
 			setOpen,
 			angle,
 			setAngle,
-			showAnglePicker: true,
 			width: 220,
 			maxStops: 3,
 			paletteHeight: 32,
@@ -158,8 +132,35 @@ export default App;
 | `trigger` | `React Component` | `defaultTrigger` | No | The popover trigger component, Will use default implementation if empty.
 | `open` | `Boolean` | `false` | Yes | Controls the popover open state
 | `setOpen` | `Function` | `undefined` | Yes | The setOpen method to be called upon open changes
-| `showAnglePicker` | `Boolean` | `false` | No | Will add to gradient picker the angle picker component at the bottom
+| `showGradientTypePicker` | `Boolean` | `true` | No | Rather to show the `gradientType` picker control.
+| `showAnglePicker` | `Boolean` | `true` | No | Rather to show the `anglePicker` picker control.
 | `angle` | `Number` | `undefined` | No | The angle picker angle value
 | `setAngle` | `Function` | `undefined` | No | Then angle picker setAngle method to be called upon angle changes
 
-* This component accepts all of GradientPicker pros.
+* This component accepts all of `<GradientPicker/>` pros.
+
+## Angle Picker Usage
+<img width="200" alt="gradient_preview" src="/assets/ap.png"> <br/>
+
+```js
+import React, { useState } from 'react';
+import { AnglePicker } from 'react-linear-gradient-picker';
+import 'react-linear-gradient-picker/dist/index.css';
+
+const App = () => {
+    const [angle, setAngle] = useState(25);
+
+    return (
+        <AnglePicker angle={angle} setAngle={setAngle}/>
+    );
+};
+```
+
+### Accepted props
+
+| Name | Type | Default Value | Required? | Description
+|-|-|-|-|-
+| `angle` | `Number` | `undefined` | Yes | The controlled angle.
+| `setAngle` | `Function` | `undefined` | Yes | The set angle method to be trigger after an angle was changes.
+| `size` | `Number` | `48` | No | Determines the size of the angle picker
+| `snap` | `Number` | `5` | No | Determines the angle change snapping, Can be removed with setting as 0

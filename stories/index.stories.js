@@ -8,8 +8,9 @@ import './Story.css';
 storiesOf('Gradient Picker', module)
 	.add('React Color Picker', SketchPickerStory)
 	.add('React Color', ColorPickerStory)
-	.add('Popover', () => (<PopoverStory/>))
-	.add('Popover With Angle Picker', () => (<PopoverStory showAngle={true}/>))
+	.add('Default Popover', () => (<PopoverStory/>))
+	.add('Popover Without Angle Picker', () => (<PopoverStory showAngle={false}/>))
+	.add('Popover Without Type Picker', () => (<PopoverStory  showType={false} showAngle={false}/>))
 	.add('Default Color Picker', DefaultPickerStory);
 
 storiesOf('Angle Picker', module)
