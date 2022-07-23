@@ -21,9 +21,14 @@ const GradientPickerPopover = ({
 	showGradientTypePicker = true,
 	angle,
 	setAngle,
+	gradientType: controlledGradientType,
+	setGradientType: setControlledGradientType,
 	...gradientPickerProps
 }) => {
-	const [gradientType, setGradientType] = useState(GRADIENT_TYPES.LINEAR);
+	const [internalGradientType, setInternalGradientType] = useState(controlledGradientType || GRADIENT_TYPES.LINEAR);
+	const gradientType = controlledGradientType || internalGradientType;
+	const setGradientType = setControlledGradientType || setInternalGradientType;
+
 	const togglePicker = () => setOpen(!open);
 	const { background } = getGradientPreview(palette, angle, gradientType);
 
@@ -55,5 +60,7 @@ const GradientPickerPopover = ({
 };
 
 GradientPickerPopover.propTypes = GRADIENT_PICKER_POPOVER_PROP_TYPES;
+
+export { GRADIENT_TYPES };
 
 export default GradientPickerPopover;

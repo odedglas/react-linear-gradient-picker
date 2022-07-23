@@ -2,7 +2,7 @@ import React from 'react';
 import { func, string } from 'prop-types';
 import './index.scss';
 
-const GRADIENT_TYPES = {
+export const GRADIENT_TYPES = {
 	LINEAR: 'linear',
 	RADIAL: 'radial'
 };
@@ -27,7 +27,5 @@ GradientTypePicker.propTypes = {
 	gradientType: string,
 	onGradientTypeChange: func
 };
-
-export { GRADIENT_TYPES };
 
 export default GradientTypePicker;
