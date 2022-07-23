@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { SketchPicker } from 'react-color';
-import GradientPickerPopover from '../../src/components/GradientPickerPopover';
+import GradientPickerPopover, { GRADIENT_TYPES } from '../../src/components/GradientPickerPopover';
 import './index.css';
 
 /**
@@ -43,6 +43,7 @@ const initialPallet = [
 const PopoverStory = ({ showAngle, showType}) => {
 	const [open, setOpen] = useState(false);
 	const [angle, setAngle] = useState(90);
+	const [gradientType, setGradientType] = useState(GRADIENT_TYPES.LINEAR);
 	const [palette, setPalette] = useState(initialPallet);
 
 	return (
@@ -57,7 +58,9 @@ const PopoverStory = ({ showAngle, showType}) => {
 			maxStops: 3,
 			paletteHeight: 32,
 			palette,
-			onPaletteChange: setPalette
+			onPaletteChange: setPalette,
+			gradientType,
+			setGradientType
 		}}>
 			<WrappedSketchPicker/>
 		</GradientPickerPopover>
