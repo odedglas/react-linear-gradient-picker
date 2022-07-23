@@ -43,7 +43,7 @@ const initialPallet = [
 const PopoverStory = ({ showAngle, showType}) => {
 	const [open, setOpen] = useState(false);
 	const [angle, setAngle] = useState(90);
-	const [gradientType, setGradientType] = useState(GRADIENT_TYPES.RADIAL);
+	const [gradientType, setGradientType] = useState(GRADIENT_TYPES.LINEAR);
 	const [palette, setPalette] = useState(initialPallet);
 
 	return (
