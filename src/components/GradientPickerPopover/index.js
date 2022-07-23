@@ -25,7 +25,7 @@ const GradientPickerPopover = ({
 	setGradientType: setControlledGradientType,
 	...gradientPickerProps
 }) => {
-	const [internalGradientType, setInternalGradientType] = useState(controlledGradientType || GRADIENT_TYPES.LINEAR);
+	const [internalGradientType, setInternalGradientType] = useState(GRADIENT_TYPES.LINEAR);
 	const gradientType = controlledGradientType || internalGradientType;
 	const setGradientType = setControlledGradientType || setInternalGradientType;
 
