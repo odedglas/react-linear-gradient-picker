@@ -44,6 +44,7 @@ const GradientPicker = ({
 	children,
 	flatStyle = false,
 	onPaletteChange,
+	onPaletteChangeEnd = noop,
 	onColorStopSelect = noop
 }) => {
 	palette = mapIdToPalette(palette);
@@ -67,7 +68,7 @@ const GradientPicker = ({
 		const updatedPalette = [...palette, entry];
 
 		setActiveColorId(entry.id);
-		handlePaletteChange(updatedPalette);
+		handlePaletteChange(updatedPalette, true);
 	};
 
 	const handleColorDelete = (id) => {
@@ -77,7 +78,7 @@ const GradientPicker = ({
 		const activeId = updatedPalette.reduce((a, x) => x.offset < a.offset ? x : a, updatedPalette[0]).id;
 
 		setActiveColorId(activeId);
-		handlePaletteChange(updatedPalette);
+		handlePaletteChange(updatedPalette, true);
 	};
 
 	const onStopDragStart = (id) => {
@@ -97,7 +98,7 @@ const GradientPicker = ({
 		handlePaletteChange(palette);
 	};
 
-	const handlePaletteChange = (palette) => {
+	const handlePaletteChange = (palette, isEnd) => {
 		const sortedPalette = sortPalette(palette)
 			.map(({ offset, id, ...rest }) => ({
 				...rest,
@@ -107,14 +108,19 @@ const GradientPicker = ({
 			}));
 
 		onPaletteChange(sortedPalette);
+
+		if (isEnd) {
+			// change end handler
+			onPaletteChangeEnd(sortedPalette);
+		}
 	};
 
-	const handleStopPosChange = ({ id, offset }) => {
+	const handleStopPosChange = ({ id, offset }, isEnd) => {
 		const updatedPalette = palette.map(c =>
 			id === c.id ? { ...c, offset: (offset + HALF_STOP_WIDTH) / width } : c
 		);
 
-		handlePaletteChange(updatedPalette);
+    handlePaletteChange(updatedPalette, isEnd);
 	};
 
 	const colorPicker = () => {
@@ -154,6 +160,7 @@ const GradientPicker = ({
 				})}
 				limits={limits}
 				onPosChange={handleStopPosChange}
+        onDragEnd={(params) => handleStopPosChange(params, true)}
 				onAddColor={handleColorAdd}
 				onDeleteColor={handleColorDelete}
 				onDragStart={onStopDragStart}

@@ -18,7 +18,7 @@ const getColorStopRefTop = (ref) => {
 const useStopDragging = ({ limits, stop, initialPos, colorStopRef, onPosChange, onDragStart, onDragEnd, onDeleteColor}) => {
 	const [posStart, setPosStart] = useState(initialPos);
 
-	const handleDrag = ({ clientX, clientY }) => {
+	const handleDrag = ({ clientX, clientY }, isEnd) => {
 		const { id, offset } = stop;
 		const { min, max } = limits;
 
@@ -33,7 +33,11 @@ const useStopDragging = ({ limits, stop, initialPos, colorStopRef, onPosChange, 
 		const dragOffset = offset - posStart;
 		const limitedPos = limitPos(dragOffset + clientX, min, max);
 
-		onPosChange({ id, offset: limitedPos });
+    if (isEnd) {
+      onDragEnd({ id, offset: limitedPos })
+    } else {
+      onPosChange({ id, offset: limitedPos });
+    }
 	};
 
 	const [drag] = useDragging({
@@ -43,7 +47,7 @@ const useStopDragging = ({ limits, stop, initialPos, colorStopRef, onPosChange, 
 			onDragStart(stop.id);
 		},
 		onDrag: handleDrag,
-		onDragEnd: () => onDragEnd(stop.id)
+		onDragEnd: (param) => handleDrag(param, isEnd)
 	});
 
 	return [
