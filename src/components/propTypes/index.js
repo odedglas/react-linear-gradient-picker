@@ -1,4 +1,4 @@
-import { number, string, bool, arrayOf, func, shape } from 'prop-types';
+import { number, string, bool, arrayOf, func, shape, oneOf } from 'prop-types';
 
 const STOP_SHAPE = shape({
 	id: number.isRequired,
@@ -21,6 +21,8 @@ const PALETTE_COLOR_SHAPE = shape({
 	opacity: number,
 });
 
+const DIRECTION_VALUES = ['horizontal', 'vertical'];
+
 export const STOP_PROP_TYPES = {
 	stop: STOP_SHAPE.isRequired,
 	limits: LIMITS_SHAPE.isRequired,
@@ -40,12 +42,14 @@ export const STOPS_HOLDER_PROP_TYPES = {
 	onDeleteColor: func.isRequired,
 	onDragStart: func,
 	onDragEnd: func,
+	direction: oneOf(DIRECTION_VALUES)
 };
 
 export const PALETTE_PROP_TYPES = {
 	width: number.isRequired,
 	height: number.isRequired,
-	palette: arrayOf(PALETTE_COLOR_SHAPE).isRequired
+	palette: arrayOf(PALETTE_COLOR_SHAPE).isRequired,
+	direction: oneOf(DIRECTION_VALUES)
 };
 
 export const GRADIENT_PICKER_PROP_TYPES = {
@@ -56,7 +60,8 @@ export const GRADIENT_PICKER_PROP_TYPES = {
 	maxStops: number,
 	minStops: number,
 	flatStyle: bool,
-	palette: arrayOf(PALETTE_COLOR_SHAPE)
+	palette: arrayOf(PALETTE_COLOR_SHAPE),
+	direction: oneOf(DIRECTION_VALUES)
 };
 
 export const ANGLE_PICKER_PROP_TYPES = {

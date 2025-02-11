@@ -11,3 +11,5 @@ export const DEFAULT_HEIGHT = 32;
 export const DEFAULT_MAX_STOPS = 5;
 
 export const DEFAULT_MIN_STOPS = 2;
+
+export const DEFAULT_DIRECTION = 'horizontal';

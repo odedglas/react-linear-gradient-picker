@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import ColorStopsHolder from '../ColorStopsHolder/index';
 import Palette from '../Palette/index';
 import ColorPicker from '../ColorPicker/index';
@@ -10,7 +10,8 @@ import {
 	DEFAULT_WIDTH,
 	DEFAULT_STOP_REMOVAL_DROP,
 	DEFAULT_MAX_STOPS,
-	DEFAULT_MIN_STOPS
+	DEFAULT_MIN_STOPS,
+	DEFAULT_DIRECTION
 } from './constants';
 import './index.scss';
 
@@ -44,12 +45,15 @@ const GradientPicker = ({
 	children,
 	flatStyle = false,
 	onPaletteChange,
-	onColorStopSelect = noop
+	onColorStopSelect = noop,
+	direction = DEFAULT_DIRECTION,
+	autoHidePicker = false
 }) => {
 	palette = mapIdToPalette(palette);
-
+	const [isPickerOpen, setPickerOpen] = React.useState(false);
 	const [defaultActiveColor] = palette;
 	const [activeColorId, setActiveColorId] = useState(defaultActiveColor.id);
+	const wrapperRef = useRef(null);
 
 	const limits = useMemo(() => {
 		const min = -HALF_STOP_WIDTH;
@@ -58,8 +62,41 @@ const GradientPicker = ({
 		return { min, max, drop: stopRemovalDrop };
 	}, [width]);
 
+	React.useEffect(() => {
+		if (!autoHidePicker) {
+			setPickerOpen(true);
+		}
+	}, [autoHidePicker, setPickerOpen]);
+
+	React.useEffect(() => {
+		function onClickOutsidePicker(e) {
+			const isInsidePicker = wrapperRef.current && wrapperRef.current.contains(e.target);
+			const closesTarget = e.target.closest('.color-picker') || e.target.closest('.gp .csh');
+
+			if (!isInsidePicker || !closesTarget) {
+				setPickerOpen(false);
+			}
+
+		}
+
+		if (autoHidePicker && isPickerOpen) {
+			setTimeout(() => {
+				document.addEventListener('click', onClickOutsidePicker);
+			},100);
+		}
+
+		return () => {
+			document.removeEventListener('click', onClickOutsidePicker);
+		};
+
+	}, [isPickerOpen, autoHidePicker, setPickerOpen, wrapperRef]);
+
 	const handleColorAdd = ({ offset }) => {
 		if (palette.length >= maxStops) return;
+		if (autoHidePicker) {
+			console.log('handleColorAdd');
+			setPickerOpen(true);
+		}
 
 		const { color } = getPaletteColor(palette, activeColorId);
 		const entry = { id: nextColorId(palette), offset: offset / width, color };
@@ -81,6 +118,12 @@ const GradientPicker = ({
 	};
 
 	const onStopDragStart = (id) => {
+		setPickerOpen(true);
+		if (autoHidePicker) {
+			console.log('onStopDragStart');
+			setPickerOpen(true);
+		}
+
 		if (id !== activeColorId) {
 			setActiveColorId(id);
 
@@ -123,11 +166,13 @@ const GradientPicker = ({
 		const props = {
 			color,
 			opacity,
+			className: 'color-picker',
 			...(flatStyle && {
 				width,
-				className: 'gp-flat',
+				className: 'gp-flat color-picker',
 			}),
-			onSelect: handleColorSelect
+			onSelect: handleColorSelect,
+			direction
 		};
 
 		if (!children) {
@@ -142,8 +187,21 @@ const GradientPicker = ({
 	const stopsHolderDisabled = palette.length >= maxStops;
 
 	return (
-		<div className="gp">
-			<Palette width={paletteWidth} height={paletteHeight} palette={palette}/>
+		<div
+			ref={wrapperRef}
+			className="gp"
+			style={
+				direction === 'vertical' ?
+					{ flexDirection: 'row' } :
+					{}
+			}
+		>
+			<Palette
+				width={paletteWidth}
+				height={paletteHeight}
+				palette={palette}
+				direction={direction}
+			/>
 			<ColorStopsHolder
 				width={paletteWidth}
 				disabled={stopsHolderDisabled}
@@ -157,8 +215,9 @@ const GradientPicker = ({
 				onAddColor={handleColorAdd}
 				onDeleteColor={handleColorDelete}
 				onDragStart={onStopDragStart}
+				direction={direction}
 			/>
-			{colorPicker()}
+				{isPickerOpen && colorPicker()}
 		</div>
 	);
 };
