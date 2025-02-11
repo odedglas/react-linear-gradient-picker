@@ -62,7 +62,7 @@ export const GRADIENT_PICKER_PROP_TYPES = {
 	flatStyle: bool,
 	palette: arrayOf(PALETTE_COLOR_SHAPE),
 	direction: oneOf(DIRECTION_VALUES),
-	autoHidePicker: bool
+	autoHideColorPicker: bool
 };
 
 export const ANGLE_PICKER_PROP_TYPES = {

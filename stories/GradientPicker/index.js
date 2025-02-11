@@ -96,7 +96,7 @@ const VerticalPickerStory = () => (
 	</>
 );
 
-const VerticalPickerStoryAutoHidePicker = () => (
+const VerticalPickerStoryAutoHideColorPicker = () => (
 	<>
 		<UseCase
 			palette={[
@@ -108,12 +108,12 @@ const VerticalPickerStoryAutoHidePicker = () => (
 			title={'rc-color-picker'}
 			ColorPicker={PositionAbsoluteSketchPicker}
 			direction="vertical"
-			autoHidePicker
+			autoHideColorPicker
 		/>
 	</>
 );
 
-const HorizontalPickerStoryAutoHidePicker = () => (
+const HorizontalPickerStoryAutoHideColorPicker = () => (
 	<>
 		<UseCase
 			palette={[
@@ -125,7 +125,7 @@ const HorizontalPickerStoryAutoHidePicker = () => (
 			title={'rc-color-picker'}
 			ColorPicker={PositionAbsoluteSketchPicker}
 			direction="horizontal"
-			autoHidePicker
+			autoHideColorPicker
 		/>
 	</>
 );
@@ -145,8 +145,8 @@ const DefaultPickerStory = () => (
 export {
 	SketchPickerStory,
 	VerticalPickerStory,
-	VerticalPickerStoryAutoHidePicker,
-	HorizontalPickerStoryAutoHidePicker,
+	VerticalPickerStoryAutoHideColorPicker,
+	HorizontalPickerStoryAutoHideColorPicker,
 	ColorPickerStory,
 	DefaultPickerStory,
 };
