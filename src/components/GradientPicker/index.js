@@ -80,15 +80,12 @@ const GradientPicker = ({
 		}
 
 		if (autoHidePicker && isPickerOpen) {
-			setTimeout(() => {
-				document.addEventListener('click', onClickOutsidePicker);
-			},100);
+			document.addEventListener('click', onClickOutsidePicker);
 		}
 
 		return () => {
 			document.removeEventListener('click', onClickOutsidePicker);
 		};
-
 	}, [isPickerOpen, autoHidePicker, setPickerOpen, wrapperRef]);
 
 	const handleColorAdd = ({ offset }) => {
