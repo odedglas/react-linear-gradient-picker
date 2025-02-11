@@ -61,7 +61,8 @@ export const GRADIENT_PICKER_PROP_TYPES = {
 	minStops: number,
 	flatStyle: bool,
 	palette: arrayOf(PALETTE_COLOR_SHAPE),
-	direction: oneOf(DIRECTION_VALUES)
+	direction: oneOf(DIRECTION_VALUES),
+	autoHidePicker: bool
 };
 
 export const ANGLE_PICKER_PROP_TYPES = {
