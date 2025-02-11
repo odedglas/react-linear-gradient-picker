@@ -10,18 +10,18 @@ const Palette = ({ palette, width, height, direction }) => {
 
 	return (
 		<div className="palette" style={
-			{...(direction === 'horizontal'
-				? { width, height }
-				: { width: height, height: width })
+			{...(direction === 'vertical'
+				? { width: height, height: width }
+				: { width, height })
 			}
 		}>
 			<svg width="100%" height="100%">
 				<defs>
 					<linearGradient
 						id={gradientId}
-						{...(direction === 'horizontal'
-							? { x1: 0, y1: 0.5, x2: 1, y2: 0.5 }
-							: { x1: 0.5, y1: 0, x2: 0.5, y2: 1 })
+						{...(direction === 'vertical'
+							? { x1: 0.5, y1: 0, x2: 0.5, y2: 1 }
+							: { x1: 0, y1: 0.5, x2: 1, y2: 0.5 })
 						}
 						> {
 						sortedPalette.map(({ id, offset, color, opacity = 1 }) =>

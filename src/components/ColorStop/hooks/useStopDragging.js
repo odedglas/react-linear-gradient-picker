@@ -29,19 +29,7 @@ const useStopDragging = ({ limits, stop, initialPos, colorStopRef, onPosChange, 
 		const dragOffset = offset - posStart;
 		let limitedPos;
 
-		if (direction === 'horizontal') {
-			// Removing if out of drop limit on Y axis.
-			const top = getColorStopRefTop(colorStopRef);
-			if (Math.abs(clientY - top) > limits.drop) {
-				//deactivate();
-				return onDeleteColor(id);
-			}
-
-			// Limit movements
-			limitedPos = limitPos(dragOffset + clientX, min, max);
-
-			onPosChange({ id, offset: limitedPos });
-		} else {
+		if (direction === 'vertical') {
 			// Removing if out of drop limit on X axis.
 			const left = getColorStopRefLeft(colorStopRef);
 			if (Math.abs(clientX - left) > limits.drop) {
@@ -51,6 +39,16 @@ const useStopDragging = ({ limits, stop, initialPos, colorStopRef, onPosChange, 
 
 			// Limit movements
 			limitedPos = limitPos(dragOffset + clientY, min, max);
+		} else {
+			// Removing if out of drop limit on Y axis.
+			const top = getColorStopRefTop(colorStopRef);
+			if (Math.abs(clientY - top) > limits.drop) {
+				//deactivate();
+				return onDeleteColor(id);
+			}
+
+			// Limit movements
+			limitedPos = limitPos(dragOffset + clientX, min, max);
 		}
 
 		onPosChange({ id, offset: limitedPos });
@@ -58,7 +56,7 @@ const useStopDragging = ({ limits, stop, initialPos, colorStopRef, onPosChange, 
 
 	const [drag] = useDragging({
 		onDragStart: ({ clientX, clientY }) => {
-			setPosStart(direction === 'horizontal' ? clientX : clientY);
+			setPosStart(direction === 'vertical' ? clientY : clientX );
 
 			onDragStart(stop.id);
 		},
