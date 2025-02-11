@@ -26,9 +26,9 @@ const ColorStop = ({ stop, limits, onPosChange, onDeleteColor, onDragStart = noo
 
 	return (
 		<div
-			className={isActive ? 'cs active' : 'cs'}
+			className={`cs ${direction} ${isActive ? 'active' : ''}`}
 			ref={colorStopRef}
-			style={direction === 'horizontal' ? { left: offset } : { top: offset, transform: 'rotate(-90deg) translate(4px, 2px)' } }
+			style={direction === 'vertical' ? { top: offset } : { left: offset } }
 			onMouseDown={drag}
 			onDoubleClick={() => {
 				allowRemoveOnDoubleClick && onDeleteColor(stop.id);

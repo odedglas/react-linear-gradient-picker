@@ -35,8 +35,9 @@ const PositionAbsoluteSketchPicker = ({ onSelect, direction, ...rest }) => {
 				position: 'absolute',
 				display: 'flex',
 				justifyContent: 'center',
-				...(direction === 'vertical' ?
-					{ flexDirection: 'column', height: '100%' } : { flexDirection: 'row', width: '100%' } )
+				...(direction === 'vertical'
+					? { flexDirection: 'column', height: '100%' }
+					: { flexDirection: 'row', width: '100%' } )
 			}}
 			>
 		<SketchPicker {...rest}

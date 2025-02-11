@@ -3,8 +3,8 @@ import ColorStop from '../ColorStop/index';
 import { STOPS_HOLDER_PROP_TYPES } from '../propTypes';
 
 const getStopsHolderStyle = (width, disabled, direction) => ({
-	width: direction === 'horizontal' ? width : 17 ,
-	height: direction === 'horizontal' ? 17 : width,
+	width: direction === 'vertical' ?  17 : width ,
+	height: direction === 'vertical' ? width : 17,
 	position: 'relative',
 	cursor: disabled ? 'default' : 'crosshair',
 });
@@ -17,17 +17,14 @@ const ColorStopsHolder = ({ width, direction, stops, disabled = false, onAddColo
 		if (e.button) return;
 		let offset;
 
-		if (direction === 'horizontal') {
-			offset = e.clientX - e.target.getBoundingClientRect().left;
-		} else {
+		if (direction === 'vertical') {
 			offset = e.clientY - e.target.getBoundingClientRect().top;
+		} else {
+			offset = e.clientX - e.target.getBoundingClientRect().left;
 		}
 
 		onAddColor({ offset });
 	};
-
-	console.log('width');
-	console.log(width);
 
 	return (
 		<div className="csh" style={getStopsHolderStyle(width, disabled, direction)} onMouseDown={handleColorAdd}>

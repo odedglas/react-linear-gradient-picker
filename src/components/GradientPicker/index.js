@@ -94,7 +94,6 @@ const GradientPicker = ({
 	const handleColorAdd = ({ offset }) => {
 		if (palette.length >= maxStops) return;
 		if (autoHidePicker) {
-			console.log('handleColorAdd');
 			setPickerOpen(true);
 		}
 
@@ -120,7 +119,6 @@ const GradientPicker = ({
 	const onStopDragStart = (id) => {
 		setPickerOpen(true);
 		if (autoHidePicker) {
-			console.log('onStopDragStart');
 			setPickerOpen(true);
 		}
 
@@ -189,12 +187,7 @@ const GradientPicker = ({
 	return (
 		<div
 			ref={wrapperRef}
-			className="gp"
-			style={
-				direction === 'vertical' ?
-					{ flexDirection: 'row' } :
-					{}
-			}
+			className={`gp ${direction}`}
 		>
 			<Palette
 				width={paletteWidth}
