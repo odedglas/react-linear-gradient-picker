@@ -1,6 +1,7 @@
 import React from 'react';
 import ColorStop from '../ColorStop/index';
 import { STOPS_HOLDER_PROP_TYPES } from '../propTypes';
+import { COLOR_STOP_HOLDER_CLASSNAME } from './constants';
 
 const getStopsHolderStyle = (width, disabled, direction) => ({
 	width: direction === 'vertical' ?  17 : width ,
@@ -27,7 +28,7 @@ const ColorStopsHolder = ({ width, direction, stops, disabled = false, onAddColo
 	};
 
 	return (
-		<div className="csh" style={getStopsHolderStyle(width, disabled, direction)} onMouseDown={handleColorAdd}>
+		<div className={COLOR_STOP_HOLDER_CLASSNAME} style={getStopsHolderStyle(width, disabled, direction)} onMouseDown={handleColorAdd}>
 			{stops.map(stop =>
 				<ColorStop key={stop.id} stop={stop} direction={direction} {...rest} />
 			)}

@@ -1,3 +1,5 @@
+import { COLOR_STOP_HOLDER_CLASSNAME } from '../ColorStopsHolder/constants';
+
 const STOP_WIDTH = 10;
 
 export const HALF_STOP_WIDTH = STOP_WIDTH / 2;
@@ -13,3 +15,9 @@ export const DEFAULT_MAX_STOPS = 5;
 export const DEFAULT_MIN_STOPS = 2;
 
 export const DEFAULT_DIRECTION = 'horizontal';
+
+export const GRADIENT_PICKER_CLASSNAME = 'gp';
+
+export const COLOR_PICKER_CLASSNAME = 'color-picker';
+
+export const IGNORED_CLICK_OUTSIDE_SELECTORS = [`.${COLOR_PICKER_CLASSNAME}`, `.${GRADIENT_PICKER_CLASSNAME} .${COLOR_STOP_HOLDER_CLASSNAME}`];

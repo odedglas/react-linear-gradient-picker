@@ -1,9 +1,10 @@
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useState, useMemo, useRef, useCallback } from 'react';
 import ColorStopsHolder from '../ColorStopsHolder/index';
 import Palette from '../Palette/index';
 import ColorPicker from '../ColorPicker/index';
 import { GRADIENT_PICKER_PROP_TYPES } from '../propTypes/index';
 import { sortPalette, noop } from '../../lib/index';
+import { useClickOutside } from '../hooks/useClickOutside';
 import {
 	HALF_STOP_WIDTH,
 	DEFAULT_HEIGHT,
@@ -11,7 +12,10 @@ import {
 	DEFAULT_STOP_REMOVAL_DROP,
 	DEFAULT_MAX_STOPS,
 	DEFAULT_MIN_STOPS,
-	DEFAULT_DIRECTION
+	DEFAULT_DIRECTION,
+	GRADIENT_PICKER_CLASSNAME,
+	COLOR_PICKER_CLASSNAME,
+	IGNORED_CLICK_OUTSIDE_SELECTORS
 } from './constants';
 import './index.scss';
 
@@ -53,7 +57,7 @@ const GradientPicker = ({
 	const [isPickerOpen, setPickerOpen] = React.useState(false);
 	const [defaultActiveColor] = palette;
 	const [activeColorId, setActiveColorId] = useState(defaultActiveColor.id);
-	const wrapperRef = useRef(null);
+	const pickerRef = useRef(null);
 
 	const limits = useMemo(() => {
 		const min = -HALF_STOP_WIDTH;
@@ -68,25 +72,14 @@ const GradientPicker = ({
 		}
 	}, [autoHideColorPicker, setPickerOpen]);
 
-	React.useEffect(() => {
-		function onClickOutsidePicker(e) {
-			const isInsidePicker = wrapperRef.current && wrapperRef.current.contains(e.target);
-			const closesTarget = e.target.closest('.color-picker') || e.target.closest('.gp .csh');
+	const closePicker = useCallback(() => setPickerOpen(false), [setPickerOpen]);
 
-			if (!isInsidePicker || !closesTarget) {
-				setPickerOpen(false);
-			}
-
-		}
-
-		if (autoHideColorPicker && isPickerOpen) {
-			document.addEventListener('click', onClickOutsidePicker);
-		}
-
-		return () => {
-			document.removeEventListener('click', onClickOutsidePicker);
-		};
-	}, [isPickerOpen, autoHideColorPicker, setPickerOpen, wrapperRef]);
+	useClickOutside({
+		pickerRef,
+		callback: closePicker,
+		ignoredSelectors: IGNORED_CLICK_OUTSIDE_SELECTORS,
+		enabled: autoHideColorPicker,
+	});
 
 	const handleColorAdd = ({ offset }) => {
 		if (palette.length >= maxStops) return;
@@ -161,10 +154,10 @@ const GradientPicker = ({
 		const props = {
 			color,
 			opacity,
-			className: 'color-picker',
+			className: COLOR_PICKER_CLASSNAME,
 			...(flatStyle && {
 				width,
-				className: 'gp-flat color-picker',
+				className: `gp-flat ${COLOR_PICKER_CLASSNAME}`,
 			}),
 			onSelect: handleColorSelect,
 			direction
@@ -183,8 +176,8 @@ const GradientPicker = ({
 
 	return (
 		<div
-			ref={wrapperRef}
-			className={`gp ${direction}`}
+			ref={pickerRef}
+			className={`${GRADIENT_PICKER_CLASSNAME} ${direction}`}
 		>
 			<Palette
 				width={paletteWidth}
