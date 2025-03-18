@@ -3,6 +3,7 @@ import { noop } from '../../lib';
 import { STOP_PROP_TYPES } from '../propTypes';
 import useStopDragging from './hooks/useStopDragging';
 import './index.scss';
+import {DIRECTIONS} from "../GradientPicker/constants";
 
 const ColorStop = ({ stop, limits, onPosChange, onDeleteColor, onDragStart = noop, onDragEnd = noop, direction}) => {
 	const colorStopRef = useRef();
@@ -28,7 +29,7 @@ const ColorStop = ({ stop, limits, onPosChange, onDeleteColor, onDragStart = noo
 		<div
 			className={`cs ${direction} ${isActive ? 'active' : ''}`}
 			ref={colorStopRef}
-			style={direction === 'vertical' ? { top: offset } : { left: offset }}
+			style={direction === DIRECTIONS.HORIZONTAL ? { left: offset } : { top: offset }}
 			onMouseDown={drag}
 			onDoubleClick={() => {
 				allowRemoveOnDoubleClick && onDeleteColor(stop.id);

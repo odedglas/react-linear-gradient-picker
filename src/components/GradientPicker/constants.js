@@ -14,7 +14,12 @@ export const DEFAULT_MAX_STOPS = 5;
 
 export const DEFAULT_MIN_STOPS = 2;
 
-export const DEFAULT_DIRECTION = 'horizontal';
+export const DIRECTIONS = {
+  HORIZONTAL: 'horizontal',
+  VERTICAL: 'vertical',
+};
+
+export const DEFAULT_DIRECTION = DIRECTIONS.HORIZONTAL;
 
 export const GRADIENT_PICKER_CLASSNAME = 'gp';
 

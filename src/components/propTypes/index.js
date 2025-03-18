@@ -1,4 +1,5 @@
 import { number, string, bool, arrayOf, func, shape, oneOf } from 'prop-types';
+import {DIRECTIONS} from '../GradientPicker/constants';
 
 const STOP_SHAPE = shape({
 	id: number.isRequired,
@@ -21,7 +22,7 @@ const PALETTE_COLOR_SHAPE = shape({
 	opacity: number,
 });
 
-const DIRECTION_VALUES = ['horizontal', 'vertical'];
+const DIRECTION_VALUES = Object.values(DIRECTIONS);
 
 export const STOP_PROP_TYPES = {
 	stop: STOP_SHAPE.isRequired,

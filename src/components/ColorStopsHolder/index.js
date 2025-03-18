@@ -1,11 +1,13 @@
 import React from 'react';
 import ColorStop from '../ColorStop/index';
 import { STOPS_HOLDER_PROP_TYPES } from '../propTypes';
+import { DIRECTIONS } from '../GradientPicker/constants';
 import { COLOR_STOP_HOLDER_CLASSNAME } from './constants';
 
+
 const getStopsHolderStyle = (width, disabled, direction) => ({
-	width: direction === 'vertical' ?  17 : width ,
-	height: direction === 'vertical' ? width : 17,
+	width: direction === DIRECTIONS.HORIZONTAL ? width : 17,
+	height: direction === DIRECTIONS.HORIZONTAL ? 17 : width,
 	position: 'relative',
 	cursor: disabled ? 'default' : 'crosshair',
 });
@@ -16,13 +18,9 @@ const ColorStopsHolder = ({ width, direction, stops, disabled = false, onAddColo
 		e.preventDefault();
 
 		if (e.button) return;
-		let offset;
-
-		if (direction === 'vertical') {
-			offset = e.clientY - e.target.getBoundingClientRect().top;
-		} else {
-			offset = e.clientX - e.target.getBoundingClientRect().left;
-		}
+		const offset = direction === DIRECTIONS.HORIZONTAL
+			? e.clientX - e.target.getBoundingClientRect().left
+			: e.clientY - e.target.getBoundingClientRect().top;
 
 		onAddColor({ offset });
 	};
