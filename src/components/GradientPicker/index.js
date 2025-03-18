@@ -107,7 +107,6 @@ const GradientPicker = ({
 	};
 
 	const onStopDragStart = (id) => {
-		setPickerOpen(true);
 		if (popoverColorPicker) {
 			setPickerOpen(true);
 		}
