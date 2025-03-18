@@ -57,7 +57,7 @@ const App = () => {
 | `stopRemovalDrop` | `Number` | `50`          | No | Sets the Y stop drop removal offset, If the user will drag the color stop further than specified, Color will be removed
 | `maxStops`        | `Number` | `5`           | No | The max gradient picker palette length can have
 | `minStops`        | `Number` | `2`           | No | The min gradient picker palette length can have
-| `autoHideColorPicker` | `Boolean` | `false`       | No | By default the `ColorPicker` is always present.
+| `popoverColorPicker` | `Boolean` | `false`       | No | Determines if color picker is popover or always present.
 | `direction` | `horizontal`\|`vertical`| `horizontal` | No | Determines the direction of the gradient picker.
 
 |> Palette Color

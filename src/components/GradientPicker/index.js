@@ -51,7 +51,7 @@ const GradientPicker = ({
 	onPaletteChange,
 	onColorStopSelect = noop,
 	direction = DEFAULT_DIRECTION,
-	autoHideColorPicker = false
+	popoverColorPicker = false
 }) => {
 	palette = mapIdToPalette(palette);
 	const [isPickerOpen, setPickerOpen] = React.useState(false);
@@ -67,10 +67,10 @@ const GradientPicker = ({
 	}, [width]);
 
 	React.useEffect(() => {
-		if (!autoHideColorPicker) {
+		if (!popoverColorPicker) {
 			setPickerOpen(true);
 		}
-	}, [autoHideColorPicker, setPickerOpen]);
+	}, [popoverColorPicker, setPickerOpen]);
 
 	const closePicker = useCallback(() => setPickerOpen(false), [setPickerOpen]);
 
@@ -78,12 +78,12 @@ const GradientPicker = ({
 		pickerRef,
 		callback: closePicker,
 		ignoredSelectors: IGNORED_CLICK_OUTSIDE_SELECTORS,
-		enabled: autoHideColorPicker,
+		enabled: popoverColorPicker,
 	});
 
 	const handleColorAdd = ({ offset }) => {
 		if (palette.length >= maxStops) return;
-		if (autoHideColorPicker) {
+		if (popoverColorPicker) {
 			setPickerOpen(true);
 		}
 
@@ -108,7 +108,7 @@ const GradientPicker = ({
 
 	const onStopDragStart = (id) => {
 		setPickerOpen(true);
-		if (autoHideColorPicker) {
+		if (popoverColorPicker) {
 			setPickerOpen(true);
 		}
 
