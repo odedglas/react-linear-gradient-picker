@@ -1,5 +1,5 @@
 import { number, string, bool, arrayOf, func, shape, oneOf } from 'prop-types';
-import {DIRECTIONS} from '../GradientPicker/constants';
+import { DIRECTIONS } from '../GradientPicker/constants';
 
 const STOP_SHAPE = shape({
 	id: number.isRequired,

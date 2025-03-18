@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { noop } from '../../lib';
 import { STOP_PROP_TYPES } from '../propTypes';
+import { DIRECTIONS } from '../GradientPicker/constants';
 import useStopDragging from './hooks/useStopDragging';
 import './index.scss';
-import {DIRECTIONS} from "../GradientPicker/constants";
 
 const ColorStop = ({ stop, limits, onPosChange, onDeleteColor, onDragStart = noop, onDragEnd = noop, direction}) => {
 	const colorStopRef = useRef();
