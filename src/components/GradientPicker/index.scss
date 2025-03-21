@@ -13,4 +13,28 @@
         box-shadow: none!important;
         transform: none!important;
     }
+
+    &.color-picker-mode-popover {
+        .color-picker-wrapper {
+            position: relative;
+            width: 100%;
+            flex: 0;
+
+            .color-picker {
+                position: absolute;
+                display: flex;
+                justify-content: center;
+            }
+        }
+
+        &.vertical .color-picker-wrapper .color-picker {
+            flex-direction: column;
+            height: 100%;
+        }
+
+        &.horizontal .color-picker-wrapper .color-picker {
+            flex-direction: row;
+            width: 100%;
+        }
+    }
 }

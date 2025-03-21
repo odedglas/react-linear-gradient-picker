@@ -48,17 +48,17 @@ const App = () => {
 
 ### Accepted props
 
-| Name              | Type | Default Value | Required? | Description
-|-------------------|-|---------------|-|-
-| `palette`         | `PaletteColor[]` | `undefined`   | Yes | The gradient pickers color palette, Each palette color struct is described below
-| `onPaletteChange` | `Function` | `undefined`   | Yes | The function to trigger upon palette change (Can be either from stop drag or color select).
-| `paletteHeight`   | `Number` | `32`          | No | The stops palette display area height 
-| `width`           | `Number` | `400`         | No | Determines the width of the gradient picker
-| `stopRemovalDrop` | `Number` | `50`          | No | Sets the Y stop drop removal offset, If the user will drag the color stop further than specified, Color will be removed
-| `maxStops`        | `Number` | `5`           | No | The max gradient picker palette length can have
-| `minStops`        | `Number` | `2`           | No | The min gradient picker palette length can have
-| `popoverColorPicker` | `Boolean` | `false`       | No | Determines if color picker is popover or always present.
-| `direction` | `horizontal`\|`vertical`| `horizontal` | No | Determines the direction of the gradient picker.
+| Name              | Type                     | Default Value         | Required? | Description
+|-------------------|--------------------------|-----------------------|-|-
+| `palette`         | `PaletteColor[]`         | `undefined`           | Yes | The gradient pickers color palette, Each palette color struct is described below
+| `onPaletteChange` | `Function`               | `undefined`           | Yes | The function to trigger upon palette change (Can be either from stop drag or color select).
+| `paletteHeight`   | `Number`                 | `32`                  | No | The stops palette display area height 
+| `width`           | `Number`                 | `400`                 | No | Determines the width of the gradient picker
+| `stopRemovalDrop` | `Number`                 | `50`                  | No | Sets the Y stop drop removal offset, If the user will drag the color stop further than specified, Color will be removed
+| `maxStops`        | `Number`                 | `5`                   | No | The max gradient picker palette length can have
+| `minStops`        | `Number`                 | `2`                   | No | The min gradient picker palette length can have
+| `colorPickerMode` | `String`                 | `static` \| `popover` | No | Determines the mode of the color picker picker component, by default `static` will always present otherwise will act as popover which will appear upon interaction.
+| `direction`       | `horizontal`\|`vertical` | `horizontal`          | No | Determines the direction of the gradient picker.
 
 |> Palette Color
 | Name | Type | Default Value | Required? | Description

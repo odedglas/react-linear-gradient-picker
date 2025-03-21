@@ -1,5 +1,5 @@
 import { number, string, bool, arrayOf, func, shape, oneOf } from 'prop-types';
-import { DIRECTIONS } from '../GradientPicker/constants';
+import { DIRECTIONS, COLOR_PICKER_MODS } from '../GradientPicker/constants';
 
 const STOP_SHAPE = shape({
 	id: number.isRequired,
@@ -23,6 +23,7 @@ const PALETTE_COLOR_SHAPE = shape({
 });
 
 const DIRECTION_VALUES = Object.values(DIRECTIONS);
+const COLOR_PICKER_MODS_VALUES = Object.values(COLOR_PICKER_MODS);
 
 export const STOP_PROP_TYPES = {
 	stop: STOP_SHAPE.isRequired,
@@ -63,7 +64,7 @@ export const GRADIENT_PICKER_PROP_TYPES = {
 	flatStyle: bool,
 	palette: arrayOf(PALETTE_COLOR_SHAPE),
 	direction: oneOf(DIRECTION_VALUES),
-	popoverColorPicker: bool
+	colorPickerMode: oneOf(COLOR_PICKER_MODS_VALUES)
 };
 
 export const ANGLE_PICKER_PROP_TYPES = {

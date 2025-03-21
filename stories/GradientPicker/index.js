@@ -11,8 +11,7 @@ const rgbToRgba = (rgb, a = 1) => rgb
 	.replace(')', `, ${a})`);
 
 const WrapperPropTypes = {
-	onSelect: PropTypes.func,
-	direction: PropTypes.oneOf(['horizontal', 'vertical']),
+	onSelect: PropTypes.func
 };
 
 const WrappedSketchPicker = ({ onSelect, ...rest }) => {
@@ -27,31 +26,6 @@ const WrappedSketchPicker = ({ onSelect, ...rest }) => {
 };
 
 WrappedSketchPicker.propTypes = WrapperPropTypes;
-
-const PositionAbsoluteSketchPicker = ({ onSelect, direction, ...rest }) => {
-	return (
-		<div style={{ position: 'relative', width: '100%', flex: 0 }}>
-			<div style={{
-				position: 'absolute',
-				display: 'flex',
-				justifyContent: 'center',
-				...(direction === 'vertical'
-					? { flexDirection: 'column', height: '100%' }
-					: { flexDirection: 'row', width: '100%' } )
-			}}
-			>
-		<SketchPicker {...rest}
-			color={rgbToRgba(rest.color, rest.opacity)}
-			onChange={c => {
-				const { r, g, b, a } = c.rgb;
-				onSelect(`rgb(${r}, ${g}, ${b})`, a);
-			}}/>
-			</div>
-		</div>
-	);
-};
-
-PositionAbsoluteSketchPicker.propTypes = WrapperPropTypes;
 
 const WrappedColorPicker = ({ onSelect, ...rest }) => (
 	<ColorPicker {...rest} onChange={c => {
@@ -106,9 +80,9 @@ const VerticalPickerStoryPopoverColorPicker = () => (
 			]}
 			link={'https://github.com/react-component/color-picker'}
 			title={'rc-color-picker'}
-			ColorPicker={PositionAbsoluteSketchPicker}
+			ColorPicker={WrappedSketchPicker}
 			direction="vertical"
-			popoverColorPicker
+			colorPickerMode="popover"
 		/>
 	</>
 );
@@ -123,9 +97,9 @@ const HorizontalPickerStoryPopoverColorPicker = () => (
 			]}
 			link={'https://github.com/react-component/color-picker'}
 			title={'rc-color-picker'}
-			ColorPicker={PositionAbsoluteSketchPicker}
+			ColorPicker={WrappedSketchPicker}
 			direction="horizontal"
-			popoverColorPicker
+			colorPickerMode="popover"
 		/>
 	</>
 );
