@@ -20,19 +20,19 @@
             width: 100%;
             flex: 0;
 
-            .color-picker {
+            .color-picker-wrapper-inner {
                 position: absolute;
                 display: flex;
                 justify-content: center;
             }
         }
 
-        &.vertical .color-picker-wrapper .color-picker {
+        &.vertical .color-picker-wrapper .color-picker-wrapper-inner {
             flex-direction: column;
             height: 100%;
         }
 
-        &.horizontal .color-picker-wrapper .color-picker {
+        &.horizontal .color-picker-wrapper .color-picker-wrapper-inner {
             flex-direction: row;
             width: 100%;
         }

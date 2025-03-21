@@ -150,9 +150,10 @@ const GradientPicker = ({
 		const props = {
 			color,
 			opacity,
+			className: COLOR_PICKER_CLASSNAME,
 			...(flatStyle && {
 				width,
-				className: 'gp-flat',
+				className: `gp-flat ${COLOR_PICKER_CLASSNAME}`,
 			}),
 			onSelect: handleColorSelect,
 		};
@@ -195,7 +196,7 @@ const GradientPicker = ({
 				direction={direction}
 			/>
 				<div className="color-picker-wrapper">
-					<div className={COLOR_PICKER_CLASSNAME}>{showColorPicker && colorPicker()}</div>
+					<div className="color-picker-wrapper-inner">{showColorPicker && colorPicker()}</div>
 				</div>
 		</div>
 	);
