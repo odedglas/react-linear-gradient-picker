@@ -43,6 +43,67 @@ const SketchPickerStory = () => (
 	]} link={'https://github.com/react-component/color-picker'} title={'rc-color-picker'} ColorPicker={WrappedSketchPicker}/>
 );
 
+const VerticalPickerStory = () => (
+	<>
+		<UseCase
+			palette={[
+				{ offset: '0.00', color: 'rgb(238, 241, 11)' },
+				{ offset: '0.49', color: 'rgb(215, 128, 37)' },
+				{ offset: '1.00', color: 'rgb(126, 32, 207)' }
+			]}
+			link={'https://github.com/react-component/color-picker'}
+			title={'rc-color-picker'}
+			ColorPicker={WrappedSketchPicker}
+			direction="vertical"
+		/>
+		<UseCase
+			palette={[
+				{ offset: '0.00', color: 'rgb(238, 241, 11)' },
+				{ offset: '0.49', color: 'rgb(215, 128, 37)' },
+				{ offset: '1.00', color: 'rgb(126, 32, 207)' }
+			]}
+			link={'https://github.com/react-component/color-picker'}
+			title={'rc-color-picker'}
+			ColorPicker={WrappedSketchPicker}
+			direction="vertical"
+		/>
+	</>
+);
+
+const VerticalPickerStoryPopoverColorPicker = () => (
+	<>
+		<UseCase
+			palette={[
+				{ offset: '0.00', color: 'rgb(238, 241, 11)' },
+				{ offset: '0.49', color: 'rgb(215, 128, 37)' },
+				{ offset: '1.00', color: 'rgb(126, 32, 207)' }
+			]}
+			link={'https://github.com/react-component/color-picker'}
+			title={'rc-color-picker'}
+			ColorPicker={WrappedSketchPicker}
+			direction="vertical"
+			colorPickerMode="popover"
+		/>
+	</>
+);
+
+const HorizontalPickerStoryPopoverColorPicker = () => (
+	<>
+		<UseCase
+			palette={[
+				{ offset: '0.00', color: 'rgb(238, 241, 11)' },
+				{ offset: '0.49', color: 'rgb(215, 128, 37)' },
+				{ offset: '1.00', color: 'rgb(126, 32, 207)' }
+			]}
+			link={'https://github.com/react-component/color-picker'}
+			title={'rc-color-picker'}
+			ColorPicker={WrappedSketchPicker}
+			direction="horizontal"
+			colorPickerMode="popover"
+		/>
+	</>
+);
+
 const ColorPickerStory = () => (
 	<UseCase palette={[
 		{ offset: '0.00', color: '#7e20cf' },
@@ -57,6 +118,9 @@ const DefaultPickerStory = () => (
 
 export {
 	SketchPickerStory,
+	VerticalPickerStory,
+	VerticalPickerStoryPopoverColorPicker,
+	HorizontalPickerStoryPopoverColorPicker,
 	ColorPickerStory,
-	DefaultPickerStory
+	DefaultPickerStory,
 };

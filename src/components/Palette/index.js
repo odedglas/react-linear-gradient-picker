@@ -1,18 +1,30 @@
 import React, { useMemo } from 'react';
 import { sortPalette } from '../../lib';
 import { PALETTE_PROP_TYPES } from '../propTypes';
+import { DIRECTIONS } from '../GradientPicker/constants';
 
 const generateGradientId = () => '' + Math.random().toString(36).substr(2, 9);
 
-const Palette = ({ palette, width, height }) => {
+const Palette = ({ palette, width, height, direction }) => {
 	const sortedPalette = sortPalette(palette);
 	const gradientId = useMemo(generateGradientId, [palette.length]);
 
 	return (
-		<div className="palette" style={{ width, height }}>
+		<div className="palette" style={
+			{...(direction === DIRECTIONS.HORIZONTAL
+				? { width, height }
+				: { width: height, height: width })
+			}
+		}>
 			<svg width="100%" height="100%">
 				<defs>
-					<linearGradient id={gradientId} x1="0" y1="0.5" x2="1" y2="0.5"> {
+					<linearGradient
+						id={gradientId}
+						{...(direction === DIRECTIONS.HORIZONTAL
+							? { x1: 0, y1: 0.5, x2: 1, y2: 0.5 }
+							: { x1: 0.5, y1: 0, x2: 0.5, y2: 1 })
+						}
+						> {
 						sortedPalette.map(({ id, offset, color, opacity = 1 }) =>
 							<stop key={id} offset={offset} style={{ stopColor: color, stopOpacity: opacity }}/>
 						)}

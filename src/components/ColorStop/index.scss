@@ -16,4 +16,8 @@
     .active {
         background-position: left center;
     }
+
+    &.vertical {
+        transform: rotate(-90deg) translate(4px, 2px);
+    }
 }

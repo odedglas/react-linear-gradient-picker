@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import useDragging from '../../hooks/useDragging';
+import { DIRECTIONS } from '../../GradientPicker/constants';
 
 /**
  * Limits a client drag movement within given min / max
@@ -10,35 +11,43 @@ import useDragging from '../../hooks/useDragging';
  */
 const limitPos = (offset, min, max) => Math.max(Math.min(offset, max), min);
 
-const getColorStopRefTop = (ref) => {
+const getColorStopRefCoordinate = (ref, direction) => {
 	if (!ref.current) return 0;
-	return ref.current.getBoundingClientRect().top;
+	const rect = ref.current.getBoundingClientRect();
+
+	return direction === DIRECTIONS.HORIZONTAL
+		? rect.top
+		: rect.left;
 };
 
-const useStopDragging = ({ limits, stop, initialPos, colorStopRef, onPosChange, onDragStart, onDragEnd, onDeleteColor}) => {
+const getDeleteDistanceFromColorStopToCoordinate = (direction, coordinates, colorStopRef) => {
+	const start = direction === DIRECTIONS.HORIZONTAL ? coordinates.clientY : coordinates.clientX;
+	const end = getColorStopRefCoordinate(colorStopRef, direction);
+
+	return Math.abs(start - end);
+};
+
+const useStopDragging = ({ limits, stop, initialPos, colorStopRef, onPosChange, onDragStart, onDragEnd, onDeleteColor, direction}) => {
 	const [posStart, setPosStart] = useState(initialPos);
 
-	const handleDrag = ({ clientX, clientY }) => {
+	const handleDrag = (coordinates) => {
 		const { id, offset } = stop;
 		const { min, max } = limits;
+		const dragOffset = offset - posStart;
 
-		// Removing if out of drop limit on Y axis.
-		const top = getColorStopRefTop(colorStopRef);
-		if (Math.abs(clientY - top) > limits.drop) {
-			//deactivate();
+		if (getDeleteDistanceFromColorStopToCoordinate(direction, coordinates, colorStopRef) > limits.drop) {
 			return onDeleteColor(id);
 		}
-
 		// Limit movements
-		const dragOffset = offset - posStart;
-		const limitedPos = limitPos(dragOffset + clientX, min, max);
+		const clientCoordinate = direction === DIRECTIONS.HORIZONTAL ? coordinates.clientX : coordinates.clientY;
+		const limitedPos = limitPos(dragOffset + clientCoordinate, min, max);
 
 		onPosChange({ id, offset: limitedPos });
 	};
 
 	const [drag] = useDragging({
-		onDragStart: ({ clientX }) => {
-			setPosStart(clientX);
+		onDragStart: ({ clientX, clientY }) => {
+			setPosStart(direction === DIRECTIONS.HORIZONTAL ? clientX : clientY );
 
 			onDragStart(stop.id);
 		},

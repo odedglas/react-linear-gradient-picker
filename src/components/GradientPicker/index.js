@@ -1,16 +1,23 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useCallback } from 'react';
 import ColorStopsHolder from '../ColorStopsHolder/index';
 import Palette from '../Palette/index';
 import ColorPicker from '../ColorPicker/index';
 import { GRADIENT_PICKER_PROP_TYPES } from '../propTypes/index';
 import { sortPalette, noop } from '../../lib/index';
+import { useClickOutside } from '../hooks/useClickOutside';
 import {
 	HALF_STOP_WIDTH,
 	DEFAULT_HEIGHT,
 	DEFAULT_WIDTH,
 	DEFAULT_STOP_REMOVAL_DROP,
 	DEFAULT_MAX_STOPS,
-	DEFAULT_MIN_STOPS
+	DEFAULT_MIN_STOPS,
+	DEFAULT_DIRECTION,
+	DEFAULT_COLOR_PICKER_MOD,
+	GRADIENT_PICKER_CLASSNAME,
+	COLOR_PICKER_CLASSNAME,
+	IGNORED_CLICK_OUTSIDE_SELECTORS,
+	COLOR_PICKER_MODS
 } from './constants';
 import './index.scss';
 
@@ -44,12 +51,16 @@ const GradientPicker = ({
 	children,
 	flatStyle = false,
 	onPaletteChange,
-	onColorStopSelect = noop
+	onColorStopSelect = noop,
+	direction = DEFAULT_DIRECTION,
+	colorPickerMode = DEFAULT_COLOR_PICKER_MOD
 }) => {
 	palette = mapIdToPalette(palette);
-
+	const [showColorPicker, setShowColorPicker] = React.useState(colorPickerMode === COLOR_PICKER_MODS.STATIC);
 	const [defaultActiveColor] = palette;
 	const [activeColorId, setActiveColorId] = useState(defaultActiveColor.id);
+	const pickerRef = useRef(null);
+	const isPopoverColorPicker = colorPickerMode === COLOR_PICKER_MODS.POPOVER;
 
 	const limits = useMemo(() => {
 		const min = -HALF_STOP_WIDTH;
@@ -58,8 +69,20 @@ const GradientPicker = ({
 		return { min, max, drop: stopRemovalDrop };
 	}, [width]);
 
+	const closePicker = useCallback(() => setShowColorPicker(false), [setShowColorPicker]);
+
+	useClickOutside({
+		pickerRef,
+		callback: closePicker,
+		ignoredSelectors: IGNORED_CLICK_OUTSIDE_SELECTORS,
+		enabled: isPopoverColorPicker,
+	});
+
 	const handleColorAdd = ({ offset }) => {
 		if (palette.length >= maxStops) return;
+		if (isPopoverColorPicker) {
+			setShowColorPicker(true);
+		}
 
 		const { color } = getPaletteColor(palette, activeColorId);
 		const entry = { id: nextColorId(palette), offset: offset / width, color };
@@ -81,6 +104,10 @@ const GradientPicker = ({
 	};
 
 	const onStopDragStart = (id) => {
+		if (isPopoverColorPicker) {
+			setShowColorPicker(true);
+		}
+
 		if (id !== activeColorId) {
 			setActiveColorId(id);
 
@@ -123,11 +150,12 @@ const GradientPicker = ({
 		const props = {
 			color,
 			opacity,
+			className: COLOR_PICKER_CLASSNAME,
 			...(flatStyle && {
 				width,
-				className: 'gp-flat',
+				className: `gp-flat ${COLOR_PICKER_CLASSNAME}`,
 			}),
-			onSelect: handleColorSelect
+			onSelect: handleColorSelect,
 		};
 
 		if (!children) {
@@ -142,8 +170,16 @@ const GradientPicker = ({
 	const stopsHolderDisabled = palette.length >= maxStops;
 
 	return (
-		<div className="gp">
-			<Palette width={paletteWidth} height={paletteHeight} palette={palette}/>
+		<div
+			ref={pickerRef}
+			className={`${GRADIENT_PICKER_CLASSNAME} color-picker-mode-${colorPickerMode} ${direction}`}
+		>
+			<Palette
+				width={paletteWidth}
+				height={paletteHeight}
+				palette={palette}
+				direction={direction}
+			/>
 			<ColorStopsHolder
 				width={paletteWidth}
 				disabled={stopsHolderDisabled}
@@ -157,8 +193,11 @@ const GradientPicker = ({
 				onAddColor={handleColorAdd}
 				onDeleteColor={handleColorDelete}
 				onDragStart={onStopDragStart}
+				direction={direction}
 			/>
-			{colorPicker()}
+				<div className="color-picker-wrapper">
+					<div className="color-picker-wrapper-inner">{showColorPicker && colorPicker()}</div>
+				</div>
 		</div>
 	);
 };
