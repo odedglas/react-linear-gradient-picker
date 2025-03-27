@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import { SketchPicker } from 'react-color';
+
 import GradientPickerPopover, { GRADIENT_TYPES } from '../../src/components/GradientPickerPopover';
 import './index.css';
 
@@ -8,68 +9,73 @@ import './index.css';
  * (c) https://stackoverflow.com/questions/21646738/convert-hex-to-rgba
  */
 function addOpacityToHex(hex, a = 1) {
-	let c;
-	if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
-		c = hex.substring(1).split('');
-		if (c.length === 3) {
-			c = [c[0], c[0], c[1], c[1], c[2], c[2]];
-		}
-		c = '0x' + c.join('');
-		return 'rgba(' + [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(',') + ',' + a + ')';
-	}
-	if (/rgb\((\d{1,3}), (\d{1,3}), (\d{1,3})\)/.test(hex)) { /** RGB color */
-		return hex.replace('rgb', 'rgba').replace(')', `, ${a})`);
-	}
-	throw new Error('Bad Hex');
+  let c;
+  if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
+    c = hex.substring(1).split('');
+    if (c.length === 3) {
+      c = [c[0], c[0], c[1], c[1], c[2], c[2]];
+    }
+    c = '0x' + c.join('');
+    return 'rgba(' + [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(',') + ',' + a + ')';
+  }
+  if (/rgb\((\d{1,3}), (\d{1,3}), (\d{1,3})\)/.test(hex)) {
+    /** RGB color */
+    return hex.replace('rgb', 'rgba').replace(')', `, ${a})`);
+  }
+  throw new Error('Bad Hex');
 }
 
 const WrappedSketchPicker = ({ onSelect, ...rest }) => (
-	<SketchPicker {...rest}
-		color={addOpacityToHex(rest.color, rest.opacity)}
-		onChange={c => {
-			onSelect(c.hex, c.rgb.a);
-		}}/>
+  <SketchPicker
+    {...rest}
+    color={addOpacityToHex(rest.color, rest.opacity)}
+    onChange={c => {
+      onSelect(c.hex, c.rgb.a);
+    }}
+  />
 );
 
 WrappedSketchPicker.propTypes = {
-	onSelect: PropTypes.func
+  onSelect: PropTypes.func,
 };
 
 const initialPallet = [
-	{ offset: '0.00', color: 'rgb(238, 241, 11)' },
-	{ offset: '1.00', color: 'rgb(126, 32, 207)' }
+  { offset: '0.00', color: 'rgb(238, 241, 11)' },
+  { offset: '1.00', color: 'rgb(126, 32, 207)' },
 ];
 
-const PopoverStory = ({ showAngle, showType}) => {
-	const [open, setOpen] = useState(false);
-	const [angle, setAngle] = useState(90);
-	const [gradientType, setGradientType] = useState(GRADIENT_TYPES.LINEAR);
-	const [palette, setPalette] = useState(initialPallet);
+const PopoverStory = ({ showAngle, showType }) => {
+  const [open, setOpen] = useState(false);
+  const [angle, setAngle] = useState(90);
+  const [gradientType, setGradientType] = useState(GRADIENT_TYPES.LINEAR);
+  const [palette, setPalette] = useState(initialPallet);
 
-	return (
-		<GradientPickerPopover {...{
-			open,
-			setOpen,
-			angle,
-			setAngle,
-			showAnglePicker: showAngle,
-			showGradientTypePicker: showType,
-			width: 220,
-			maxStops: 3,
-			paletteHeight: 32,
-			palette,
-			onPaletteChange: setPalette,
-			gradientType,
-			setGradientType
-		}}>
-			<WrappedSketchPicker/>
-		</GradientPickerPopover>
-	);
+  return (
+    <GradientPickerPopover
+      {...{
+        open,
+        setOpen,
+        angle,
+        setAngle,
+        showAnglePicker: showAngle,
+        showGradientTypePicker: showType,
+        width: 220,
+        maxStops: 3,
+        paletteHeight: 32,
+        palette,
+        onPaletteChange: setPalette,
+        gradientType,
+        setGradientType,
+      }}
+    >
+      <WrappedSketchPicker />
+    </GradientPickerPopover>
+  );
 };
 
 PopoverStory.propTypes = {
-	showAngle: PropTypes.bool,
-	showType: PropTypes.bool,
+  showAngle: PropTypes.bool,
+  showType: PropTypes.bool,
 };
 
 export default PopoverStory;

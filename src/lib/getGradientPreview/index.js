@@ -1,6 +1,6 @@
+import angleToGradientCords from '../angleToGradientCords';
 import getStopColor from '../getStopColor';
 import getStopOffset from '../getStopOffset';
-import angleToGradientCords from '../angleToGradientCords';
 
 /**
  * Formats into linear gradient background property
@@ -10,13 +10,9 @@ import angleToGradientCords from '../angleToGradientCords';
  * @returns {String}
  */
 const asBackground = ({ angle, stops, type }) => {
-	const anglePrefix = type === 'linear' ? `${angle}deg, ` : '';
+  const anglePrefix = type === 'linear' ? `${angle}deg, ` : '';
 
-	return stops.length === 1 ? stops[0].color : `${type}-gradient(${anglePrefix}${
-		stops
-			.map(stop => `${stop.color} ${stop.offset}%`)
-			.join(', ', )
-	})`;
+  return stops.length === 1 ? stops[0].color : `${type}-gradient(${anglePrefix}${stops.map(stop => `${stop.color} ${stop.offset}%`).join(', ')})`;
 };
 
 /**
@@ -26,20 +22,20 @@ const asBackground = ({ angle, stops, type }) => {
  * @param {GradientType} gradientType
  */
 const getGradientPreview = (palette, angle = 90, gradientType = 'linear') => {
-	const gradient = angleToGradientCords(angle);
+  const gradient = angleToGradientCords(angle);
 
-	const stops = palette.map(({ offset, color, opacity }) => ({
-		offset: getStopOffset(offset),
-		color: getStopColor(color, opacity)
-	}));
+  const stops = palette.map(({ offset, color, opacity }) => ({
+    offset: getStopOffset(offset),
+    color: getStopColor(color, opacity),
+  }));
 
-	const background = asBackground({
-		angle,
-		stops,
-		type: gradientType
-	});
+  const background = asBackground({
+    angle,
+    stops,
+    type: gradientType,
+  });
 
-	return { gradient, background, angle };
+  return { gradient, background, angle };
 };
 
 export default getGradientPreview;

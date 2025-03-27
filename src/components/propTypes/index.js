@@ -1,85 +1,86 @@
 import { number, string, bool, arrayOf, func, shape, oneOf } from 'prop-types';
+
 import { DIRECTIONS, COLOR_PICKER_MODS } from '../GradientPicker/constants';
 
 const STOP_SHAPE = shape({
-	id: number.isRequired,
-	color: string.isRequired,
-	offset: number.isRequired,
-	isActive: bool.isRequired,
-	pointX: number
+  id: number.isRequired,
+  color: string.isRequired,
+  offset: number.isRequired,
+  isActive: bool.isRequired,
+  pointX: number,
 });
 
 const LIMITS_SHAPE = shape({
-	min: number.isRequired,
-	max: number.isRequired,
-	drop: number,
+  min: number.isRequired,
+  max: number.isRequired,
+  drop: number,
 });
 
 const PALETTE_COLOR_SHAPE = shape({
-	id: number,
-	color: string.isRequired,
-	offset: string.isRequired,
-	opacity: number,
+  id: number,
+  color: string.isRequired,
+  offset: string.isRequired,
+  opacity: number,
 });
 
 const DIRECTION_VALUES = Object.values(DIRECTIONS);
 const COLOR_PICKER_MODS_VALUES = Object.values(COLOR_PICKER_MODS);
 
 export const STOP_PROP_TYPES = {
-	stop: STOP_SHAPE.isRequired,
-	limits: LIMITS_SHAPE.isRequired,
-	onPosChange: func.isRequired,
-	onDeleteColor: func.isRequired,
-	onDragStart: func,
-	onDragEnd: func
+  stop: STOP_SHAPE.isRequired,
+  limits: LIMITS_SHAPE.isRequired,
+  onPosChange: func.isRequired,
+  onDeleteColor: func.isRequired,
+  onDragStart: func,
+  onDragEnd: func,
 };
 
 export const STOPS_HOLDER_PROP_TYPES = {
-	width: number.isRequired,
-	stops: arrayOf(STOP_SHAPE),
-	limits: LIMITS_SHAPE,
-	disabled: bool,
-	onPosChange: func.isRequired,
-	onAddColor: func.isRequired,
-	onDeleteColor: func.isRequired,
-	onDragStart: func,
-	onDragEnd: func,
-	direction: oneOf(DIRECTION_VALUES)
+  width: number.isRequired,
+  stops: arrayOf(STOP_SHAPE),
+  limits: LIMITS_SHAPE,
+  disabled: bool,
+  onPosChange: func.isRequired,
+  onAddColor: func.isRequired,
+  onDeleteColor: func.isRequired,
+  onDragStart: func,
+  onDragEnd: func,
+  direction: oneOf(DIRECTION_VALUES),
 };
 
 export const PALETTE_PROP_TYPES = {
-	width: number.isRequired,
-	height: number.isRequired,
-	palette: arrayOf(PALETTE_COLOR_SHAPE).isRequired,
-	direction: oneOf(DIRECTION_VALUES)
+  width: number.isRequired,
+  height: number.isRequired,
+  palette: arrayOf(PALETTE_COLOR_SHAPE).isRequired,
+  direction: oneOf(DIRECTION_VALUES),
 };
 
 export const GRADIENT_PICKER_PROP_TYPES = {
-	onPaletteChange: func.isRequired,
-	paletteHeight: number,
-	width: number,
-	stopRemovalDrop: number,
-	maxStops: number,
-	minStops: number,
-	flatStyle: bool,
-	palette: arrayOf(PALETTE_COLOR_SHAPE),
-	direction: oneOf(DIRECTION_VALUES),
-	colorPickerMode: oneOf(COLOR_PICKER_MODS_VALUES)
+  onPaletteChange: func.isRequired,
+  paletteHeight: number,
+  width: number,
+  stopRemovalDrop: number,
+  maxStops: number,
+  minStops: number,
+  flatStyle: bool,
+  palette: arrayOf(PALETTE_COLOR_SHAPE),
+  direction: oneOf(DIRECTION_VALUES),
+  colorPickerMode: oneOf(COLOR_PICKER_MODS_VALUES),
 };
 
 export const ANGLE_PICKER_PROP_TYPES = {
-	angle: number.isRequired,
-	setAngle: func.isRequired,
-	size: number,
-	snap: number
+  angle: number.isRequired,
+  setAngle: func.isRequired,
+  size: number,
+  snap: number,
 };
 
 export const GRADIENT_PICKER_POPOVER_PROP_TYPES = {
-	...GRADIENT_PICKER_PROP_TYPES,
-	...ANGLE_PICKER_PROP_TYPES,
-	showAnglePicker: bool,
-	showGradientTypePicker: bool,
-	open: bool.isRequired,
-	setOpen: func.isRequired,
-	trigger: func,
+  ...GRADIENT_PICKER_PROP_TYPES,
+  ...ANGLE_PICKER_PROP_TYPES,
+  showAnglePicker: bool,
+  showGradientTypePicker: bool,
+  open: bool.isRequired,
+  setOpen: func.isRequired,
+  trigger: func,
 };

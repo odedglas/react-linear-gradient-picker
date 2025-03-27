@@ -6,12 +6,11 @@
  * @returns {Number}
  */
 const pointDegrees = (pointX, pointY, center) => {
-	const y = pointY - center.y;
-	const x = pointX - center.x;
+  const y = pointY - center.y;
+  const x = pointX - center.x;
 
-	const radians = Math.atan2(y, x);
-	return Math.round(radians * (180/Math.PI)) + 90;
+  const radians = Math.atan2(y, x);
+  return Math.round(radians * (180 / Math.PI)) + 90;
 };
-
 
 export default pointDegrees;

@@ -1,27 +1,27 @@
 .type-picker-wrapper {
-    display: inline-flex;
-    margin-right: 16px;
+  display: inline-flex;
+  margin-right: 16px;
 
-    .type-picker {
-        height: 24px;
-        width: 24px;
-        border: 1px solid rgb(238, 238, 238);
-        filter: grayscale(1);
-        margin-right: 8px;
-        cursor: pointer;
-        transition: all 0.2s ease;
+  .type-picker {
+    height: 24px;
+    width: 24px;
+    border: 1px solid rgb(238, 238, 238);
+    filter: grayscale(1);
+    margin-right: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
 
-        &.active {
-            border: 1px solid #4374AD;
-            filter: grayscale(0);
-        }
-
-        &.lg {
-            background: linear-gradient(270deg, #ddd, #4374AD);
-        }
-
-        &.rg {
-            background: radial-gradient(circle, #fff 0, #4374AD 100%);
-        }
+    &.active {
+      border: 1px solid #4374ad;
+      filter: grayscale(0);
     }
+
+    &.lg {
+      background: linear-gradient(270deg, #ddd, #4374ad);
+    }
+
+    &.rg {
+      background: radial-gradient(circle, #fff 0, #4374ad 100%);
+    }
+  }
 }

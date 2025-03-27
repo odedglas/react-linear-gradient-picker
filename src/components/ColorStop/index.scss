@@ -1,23 +1,23 @@
 .cs {
-    height: 17px;
+  height: 17px;
+  position: absolute;
+  width: 11px;
+  cursor: pointer;
+  background: url(./ColorStop.png) right center;
+
+  div {
+    height: 7px;
+    left: 2px;
+    width: 7px;
     position: absolute;
-    width: 11px;
-    cursor: pointer;
-    background: url(./ColorStop.png) right center;
+    top: 8px;
+  }
 
-    div {
-        height: 7px;
-        left: 2px;
-        width: 7px;
-        position: absolute;
-        top: 8px;
-    }
+  .active {
+    background-position: left center;
+  }
 
-    .active {
-        background-position: left center;
-    }
-
-    &.vertical {
-        transform: rotate(-90deg) translate(4px, 2px);
-    }
+  &.vertical {
+    transform: rotate(-90deg) translate(4px, 2px);
+  }
 }

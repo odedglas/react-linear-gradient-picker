@@ -13,7 +13,7 @@ import { useEffect } from 'react';
  * @param {[string]} config.ignoredSelectors clicks inside these selectors don't fire the `callback`.
  * @param {boolean} config.enabled determines whether the hook is enabled.
  */
-export const useClickOutside = ({pickerRef, callback, ignoredSelectors, enabled }) => {
+export const useClickOutside = ({ pickerRef, callback, ignoredSelectors, enabled }) => {
   useEffect(() => {
     function onClickOutside(e) {
       const isInsidePicker = pickerRef.current && pickerRef.current.contains(e.target);
@@ -33,5 +33,5 @@ export const useClickOutside = ({pickerRef, callback, ignoredSelectors, enabled 
         document.removeEventListener('click', onClickOutside);
       }
     };
-  }, [callback, ignoredSelectors, enabled]);
+  }, [callback, ignoredSelectors, enabled, pickerRef]);
 };

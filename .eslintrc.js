@@ -1,52 +1,40 @@
 module.exports = {
-	'env': {
-		'es6': true,
-		'jest': true,
-		'node': true,
-		'browser': true
-	},
-	'extends': [
-		'eslint:recommended',
-		'plugin:react/recommended',
-		'plugin:import/errors',
-		'plugin:import/warnings',
-		// 'plugin:react-hooks'
-	],
-	'parserOptions': {
-		'ecmaVersion': 2018,
-		'sourceType': 'module'
-	},
-	'settings': {
-		'react': {
-			'version': '16.8.0'
-		},
-	},
-	'rules': {
-		'indent': [
-			'off',
-			'tab'
-		],
-		'quotes': [
-			'error',
-			'single'
-		],
-		'semi': [
-			'error',
-			'always'
-		],
-		'eqeqeq': [
-			'error',
-			'always'
-		],
-		'no-trailing-spaces': ['error', { 'ignoreComments': true }],
-		'consistent-this': 2,
-		'import/no-self-import': 2,
-		'import/no-internal-modules': 0,
-		'import/no-dynamic-require': 0,
-		'import/no-useless-path-segments': 2,
-		'import/order': 1,
-		'import/newline-after-import': 2,
-		// "react-hooks/rules-of-hooks": "error",
-		// "react-hooks/exhaustive-deps": "warn"
-	}
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
+  },
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:react-hooks/recommended', 'plugin:import/recommended', 'plugin:import/react', 'prettier'],
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
+  plugins: ['react', 'react-hooks', 'import'],
+  rules: {
+    'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'error',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'error',
+    'import/order': [
+      'error',
+      {
+        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+        'newlines-between': 'always',
+        alphabetize: { order: 'asc', caseInsensitive: true },
+      },
+    ],
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx'],
+      },
+    },
+  },
 };

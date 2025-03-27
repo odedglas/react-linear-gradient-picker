@@ -5,8 +5,8 @@ const sortByOffset = ({ offset: offset1 }, { offset: offset2 }) => offset1 - off
  * @param palette
  * @returns {PaletteColor[]}
  */
-const sortPalette = (palette) => {
-	return palette.sort(sortByOffset);
+const sortPalette = palette => {
+  return palette.sort(sortByOffset);
 };
 
 export default sortPalette;

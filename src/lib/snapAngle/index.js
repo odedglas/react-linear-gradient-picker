@@ -5,12 +5,14 @@
  * @returns {Number}
  */
 const snapAngle = (angle, snap = 0) => {
-	const module = angle % snap;
+  const module = angle % snap;
 
-	if (module === 0) { return angle; }
+  if (module === 0) {
+    return angle;
+  }
 
-	const snappingAddition = module > snap / 2 ? snap - module : (-1 * module);
-	return angle + snappingAddition;
+  const snappingAddition = module > snap / 2 ? snap - module : -1 * module;
+  return angle + snappingAddition;
 };
 
 export default snapAngle;
