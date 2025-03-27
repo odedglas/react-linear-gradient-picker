@@ -5,7 +5,7 @@ import parseRgb, { rgbRegExp } from '../colors/parseRgb';
 
 interface ColorClassifier {
   regexps: RegExp[];
-  handler: (color: string, opacity?: number) => Color;
+  handler: (color: string, opacity?: number) => Color | undefined;
 }
 
 const colorClassifiers: ColorClassifier[] = [
@@ -28,6 +28,10 @@ const getStopColor = (color: string, opacity?: number): string => {
   }
 
   const parsedColor = classifier.handler(color, opacity);
+
+  if (!parsedColor) {
+    throw new Error(`Stop color - ${color} is not a valid color`);
+  }
 
   return formatRgb(parsedColor);
 };
