@@ -17,6 +17,9 @@ module.exports = {
       type: 'commonjs2',
     },
   },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+  },
   module: {
     rules: [
       {
@@ -32,15 +35,15 @@ module.exports = {
         type: 'asset/inline',
       },
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'builtin:swc-loader',
           options: {
             jsc: {
               parser: {
-                syntax: 'ecmascript',
-                jsx: true,
+                syntax: 'typescript',
+                tsx: true,
               },
               transform: {
                 react: {
@@ -49,10 +52,6 @@ module.exports = {
                   refresh: false,
                 },
               },
-              externalHelpers: true,
-            },
-            env: {
-              targets: 'Chrome >= 48',
             },
           },
         },

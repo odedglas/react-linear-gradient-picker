@@ -7,5 +7,6 @@ export { default as getGradientPreview } from './getGradientPreview';
 export { default as getStopColor } from './getStopColor';
 export { default as getStopOffset } from './getStopOffset';
 export { default as noop } from './noop';
+export { default as pointDegrees } from './pointDegrees';
 export { default as snapAngle } from './snapAngle';
 export { default as sortPalette } from './sortPalette'; 
