@@ -8,7 +8,7 @@
     "lint": "eslint . --ext .js,.jsx",
     "lint:fix": "eslint . --ext .js,.jsx --fix",
     "format": "prettier --write \"**/*.{js,jsx,json,md,scss}\"",
-    "build": "webpack --config ./webpack.config.js",
+    "build": "rspack build",
     "deploy-storybook": "storybook-to-ghpages",
     "prepublishOnly": "npm run build && npm run deploy-storybook"
   },
@@ -32,6 +32,9 @@
     "@babel/plugin-transform-runtime": "^7.18.0",
     "@babel/preset-env": "^7.18.0",
     "@babel/preset-react": "^7.17.0",
+    "@rspack/core": "^1.2.8",
+    "@rspack/cli": "^1.2.8",
+    "@swc/helpers": "^0.5.3",
     "@storybook/addon-essentials": "^6.4.0",
     "@storybook/addon-links": "^6.4.0",
     "@storybook/builder-webpack5": "^6.4.0",
@@ -40,7 +43,6 @@
     "@storybook/preset-scss": "^1.0.3",
     "@storybook/react": "^6.4.0",
     "@storybook/storybook-deployer": "^2.8.1",
-    "babel-loader": "^8.2.5",
     "classnames": "^2.3.1",
     "css-loader": "^6.7.1",
     "eslint": "^8.57.0",
@@ -48,7 +50,6 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-react": "^7.34.0",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "mini-css-extract-plugin": "^2.6.0",
     "prettier": "^3.2.5",
     "prop-types": "^15.7.2",
     "rc-color-picker": "^1.1.5",
@@ -58,9 +59,6 @@
     "sass": "^1.52.1",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.0.0",
-    "svg-url-loader": "^3.0.2",
-    "terser-webpack-plugin": "^5.3.1",
-    "webpack": "^5.72.1",
-    "webpack-cli": "^4.9.2"
+    "svg-url-loader": "^3.0.2"
   }
 }
