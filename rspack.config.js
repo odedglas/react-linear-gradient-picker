@@ -5,7 +5,7 @@ const { rspack } = require('@rspack/core');
 
 const config = {
   mode: 'production',
-  entry: './src/index.js',
+  entry: './src/index.ts',
   devtool: 'source-map',
   externals: {
     react: 'react',

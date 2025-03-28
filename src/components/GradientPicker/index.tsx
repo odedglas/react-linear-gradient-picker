@@ -24,10 +24,10 @@ import './index.scss';
 
 const nextColorId = (palette: PaletteColor[]): number => Math.max(...palette.map(({ id }) => id)) + 1;
 
-const mapIdToPalette = (palette: PaletteColor[]): PaletteColor[] =>
+const mapIdToPalette = (palette: PaletteColor[] | GradientPickerProps['palette']): PaletteColor[] =>
   palette.map((color, index) => ({
     ...color,
-    id: color.id || index + 1,
+    id: ('id' in color && color.id) || index + 1,
   }));
 
 const mapPaletteToStops = ({ palette, activeId, width }: PaletteToStopsParams): Stop[] =>
@@ -135,7 +135,7 @@ const GradientPicker: React.FC<GradientPickerProps> = ({
       active: id === activeColorId,
     }));
 
-    onPaletteChange(sortedPalette);
+    onPaletteChange(sortedPalette as PaletteColor[]);
   };
 
   const handleStopPosChange = ({ id, offset }: StopPosChangeParams): void => {

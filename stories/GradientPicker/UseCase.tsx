@@ -1,10 +1,18 @@
-import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 import { GradientPicker } from '../../src';
-import { getGradientPreview } from '../../src/lib';
+import { ColorStop, getGradientPreview } from '../../src/lib';
 
-const UseCase = ({ palette, ColorPicker, link, title, colorPickerMode, direction }) => {
+interface UseCaseProps {
+  palette: ColorStop[];
+  title: string;
+  ColorPicker?: any; // eslint-disable-line
+  link?: string;
+  direction?: 'horizontal' | 'vertical';
+  colorPickerMode?: 'static' | 'popover';
+}
+
+const UseCase = ({ palette, ColorPicker, link, title, colorPickerMode = 'static', direction = 'horizontal' }: UseCaseProps) => {
   const [localPalette, setLocalPalette] = useState(palette);
 
   const { background, angle } = getGradientPreview(localPalette);
@@ -31,7 +39,7 @@ const UseCase = ({ palette, ColorPicker, link, title, colorPickerMode, direction
             colorPickerMode,
           }}
         >
-          {ColorPicker ? <ColorPicker /> : null}
+          {ColorPicker ? <ColorPicker /> : <></>}
         </GradientPicker>
         <hr />
         <h4>Background preview for {angle} Angle</h4>
@@ -39,15 +47,6 @@ const UseCase = ({ palette, ColorPicker, link, title, colorPickerMode, direction
       </div>
     </div>
   );
-};
-
-UseCase.propTypes = {
-  palette: PropTypes.array,
-  ColorPicker: PropTypes.any,
-  link: PropTypes.string,
-  title: PropTypes.string,
-  direction: PropTypes.oneOf(['horizontal', 'vertical']),
-  colorPickerMode: PropTypes.oneOf(['static', 'popover']),
 };
 
 export default UseCase;

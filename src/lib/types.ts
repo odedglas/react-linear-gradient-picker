@@ -1,8 +1,8 @@
 export interface ColorStop {
-  id: number;
+  id?: number;
   color: string;
   offset: number;
-  opacity: number;
+  opacity?: number;
 }
 
 export interface Point {

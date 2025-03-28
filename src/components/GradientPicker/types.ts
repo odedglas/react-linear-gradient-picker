@@ -4,13 +4,13 @@ export interface PaletteColor {
   id: number;
   offset: number;
   color: string;
-  opacity: number;
+  opacity?: number;
   active?: boolean;
   isActive?: boolean;
 }
 
 export interface GradientPickerProps {
-  palette: PaletteColor[];
+  palette: Omit<PaletteColor, 'id'>[];
   paletteHeight?: number;
   width?: number;
   stopRemovalDrop?: number;

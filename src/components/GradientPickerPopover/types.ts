@@ -2,7 +2,7 @@ import { PaletteColor } from '../GradientPicker/types';
 import { GradientType } from '../GradientTypePicker/types';
 
 export interface GradientPickerPopoverProps {
-  palette: PaletteColor[];
+  palette: Omit<PaletteColor, 'id'>[];
   open?: boolean;
   setOpen: (open: boolean) => void;
   trigger?: (background: string, togglePicker: () => void) => React.ReactElement;
@@ -12,5 +12,4 @@ export interface GradientPickerPopoverProps {
   setAngle?: (angle: number) => void;
   gradientType?: GradientType;
   setGradientType?: (type: GradientType) => void;
-  [key: string]: any; // For other GradientPicker props
 }

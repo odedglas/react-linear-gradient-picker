@@ -16,6 +16,7 @@ interface GradientConfig {
 
 interface GradientPreview {
   background: string;
+  angle: number;
   gradient: GradientCoordinates;
 }
 
@@ -47,7 +48,7 @@ const getGradientPreview = (palette: ColorStop[], angle = 90, gradientType: Grad
 
   const background = asBackground({ angle, stops, type: gradientType });
 
-  return { background, gradient };
+  return { background, gradient, angle };
 };
 
 export default getGradientPreview;
