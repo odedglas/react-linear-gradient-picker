@@ -1,7 +1,7 @@
 export interface ColorStop {
   id: number;
   color: string;
-  offset: string;
+  offset: number;
   opacity: number;
 }
 

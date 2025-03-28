@@ -1,9 +1,8 @@
-import { ColorStop } from '../../lib/types';
 import { DIRECTIONS, COLOR_PICKER_MODS } from './constants';
 
 export interface PaletteColor {
   id: number;
-  offset: string;
+  offset: number;
   color: string;
   opacity: number;
   active?: boolean;

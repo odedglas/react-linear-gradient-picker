@@ -1,6 +1,6 @@
 import { ColorStop } from '../types';
 
-const sortByOffset = (a: ColorStop, b: ColorStop): number => Number(a.offset) - Number(b.offset);
+const sortByOffset = (a: ColorStop, b: ColorStop): number => a.offset - b.offset;
 
 /**
  * Sorts a given palette by its stops offset.
