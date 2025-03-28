@@ -1,14 +1,20 @@
 import React, { useState, useRef, useEffect } from 'react';
-
 import { noop } from '../../lib';
 import { DIRECTIONS } from '../GradientPicker/constants';
-import { STOP_PROP_TYPES } from '../propTypes';
-
 import useStopDragging from './hooks/useStopDragging';
+import { ColorStopProps } from './types';
 import './index.scss';
 
-const ColorStop = ({ stop, limits, onPosChange, onDeleteColor, onDragStart = noop, onDragEnd = noop, direction }) => {
-  const colorStopRef = useRef();
+const ColorStop: React.FC<ColorStopProps> = ({
+  stop,
+  limits,
+  onPosChange,
+  onDeleteColor,
+  onDragStart = noop,
+  onDragEnd = noop,
+  direction,
+}) => {
+  const colorStopRef = useRef<HTMLDivElement>(null);
   const [allowRemoveOnDoubleClick, setAllowRemoveOnDoubleClick] = useState(false);
   const [drag] = useStopDragging({
     stop,
@@ -34,7 +40,9 @@ const ColorStop = ({ stop, limits, onPosChange, onDeleteColor, onDragStart = noo
       style={direction === DIRECTIONS.HORIZONTAL ? { left: offset } : { top: offset }}
       onMouseDown={drag}
       onDoubleClick={() => {
-        allowRemoveOnDoubleClick && onDeleteColor(stop.id);
+        if (allowRemoveOnDoubleClick) {
+          onDeleteColor(stop.id);
+        }
       }}
       onTouchStart={drag}
     >
@@ -43,6 +51,4 @@ const ColorStop = ({ stop, limits, onPosChange, onDeleteColor, onDragStart = noo
   );
 };
 
-ColorStop.propTypes = STOP_PROP_TYPES;
-
-export default ColorStop;
+export default ColorStop; 

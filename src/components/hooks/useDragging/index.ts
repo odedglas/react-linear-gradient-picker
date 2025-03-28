@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { noop } from '../../../lib';
 import { EVENTS, DragEventType } from './constants';
 
-type ReactDragEvent = React.MouseEvent | React.TouchEvent;
+export type ReactDragEvent = React.MouseEvent | React.TouchEvent;
 
 interface Coordinates {
   clientX: number;
