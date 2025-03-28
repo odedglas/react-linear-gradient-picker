@@ -1,7 +1,8 @@
-const path = require('path');
-const { rspack } = require('@rspack/core');
+import path from 'path';
+import { rspack } from '@rspack/core';
+import type { Configuration } from '@rspack/core';
 
-module.exports = {
+const config: Configuration = {
   mode: 'production',
   entry: './src/index.js',
   devtool: 'source-map',
@@ -61,13 +62,10 @@ module.exports = {
     minimize: true,
     minimizer: [
       new rspack.SwcJsMinimizerRspackPlugin({
-        terserOptions: {
-          output: {
-            comments: false,
-          },
-        },
         extractComments: false,
       }),
     ],
   },
 };
+
+export default config; 
