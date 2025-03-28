@@ -1,15 +1,22 @@
 import React, { useRef } from 'react';
-
 import { centerOffset, clampAngle, snapAngle, pointDegrees } from '../../lib';
 import useDragging from '../hooks/useDragging';
-import { ANGLE_PICKER_PROP_TYPES } from '../propTypes';
 import './index.scss';
 
-const AnglePicker = ({ angle, setAngle, size = 24, snap = 5 }) => {
-  const pickerRef = useRef();
+interface AnglePickerProps {
+  angle: number;
+  setAngle: (angle: number) => void;
+  size?: number;
+  snap?: number;
+}
+
+const AnglePicker: React.FC<AnglePickerProps> = ({ angle, setAngle, size = 24, snap = 5 }) => {
+  const pickerRef = useRef<HTMLDivElement>(null);
   const sizeStyle = { height: size, width: size };
 
-  const onAngleChange = ({ clientX, clientY }, useSnap = false) => {
+  const onAngleChange = ({ clientX, clientY }: { clientX: number; clientY: number }, useSnap = false) => {
+    if (!pickerRef.current) return;
+
     const center = centerOffset(pickerRef.current);
     const degrees = pointDegrees(clientX, clientY, center);
 
@@ -22,11 +29,10 @@ const AnglePicker = ({ angle, setAngle, size = 24, snap = 5 }) => {
   const [drag] = useDragging({
     onDragStart: e => onAngleChange(e, true),
     onDrag: onAngleChange,
-    onDragEnd: angle => {
-      if (!angle) return;
-      const snappedAngle = snapAngle(angle, snap);
-
-      setAngle(snappedAngle);
+    onDragEnd: coords => {
+      if (coords) {
+        onAngleChange(coords, true);
+      }
     },
   });
 
@@ -45,7 +51,5 @@ const AnglePicker = ({ angle, setAngle, size = 24, snap = 5 }) => {
     </>
   );
 };
-
-AnglePicker.propTypes = ANGLE_PICKER_PROP_TYPES;
 
 export default AnglePicker;

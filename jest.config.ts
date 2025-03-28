@@ -11,9 +11,7 @@ const config: Config = {
   transform: {
     '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'] }],
   },
-  transformIgnorePatterns: [
-    '/node_modules/(?!(@testing-library/jest-dom)/)',
-  ],
+  transformIgnorePatterns: ['/node_modules/(?!(@testing-library/jest-dom)/)'],
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!src/**/*.stories.{js,jsx,ts,tsx}', '!src/**/*.d.ts'],
@@ -27,4 +25,4 @@ const config: Config = {
   },
 };
 
-export default config; 
+export default config;
