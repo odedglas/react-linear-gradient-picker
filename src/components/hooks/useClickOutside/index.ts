@@ -1,7 +1,7 @@
 import { useEffect, RefObject } from 'react';
 
 interface UseClickOutsideConfig {
-  pickerRef: RefObject<HTMLElement>;
+  pickerRef: RefObject<HTMLElement | null>;
   callback: () => void;
   ignoredSelectors: string[];
   enabled: boolean;

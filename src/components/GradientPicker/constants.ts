@@ -17,7 +17,9 @@ export const DEFAULT_MIN_STOPS = 2;
 export const DIRECTIONS = {
   HORIZONTAL: 'horizontal',
   VERTICAL: 'vertical',
-};
+} as const;
+
+export type Direction = typeof DIRECTIONS[keyof typeof DIRECTIONS];
 
 export const DEFAULT_DIRECTION = DIRECTIONS.HORIZONTAL;
 
@@ -30,6 +32,8 @@ export const IGNORED_CLICK_OUTSIDE_SELECTORS = [`.${COLOR_PICKER_CLASSNAME}`, `.
 export const COLOR_PICKER_MODS = {
   STATIC: 'static',
   POPOVER: 'popover',
-};
+} as const;
 
-export const DEFAULT_COLOR_PICKER_MOD = COLOR_PICKER_MODS.STATIC;
+export type ColorPickerMode = typeof COLOR_PICKER_MODS[keyof typeof COLOR_PICKER_MODS];
+
+export const DEFAULT_COLOR_PICKER_MOD = COLOR_PICKER_MODS.STATIC; 
