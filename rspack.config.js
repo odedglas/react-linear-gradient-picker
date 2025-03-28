@@ -1,8 +1,9 @@
-import path from 'path';
-import { rspack } from '@rspack/core';
-import type { Configuration } from '@rspack/core';
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const path = require('path');
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const { rspack } = require('@rspack/core');
 
-const config: Configuration = {
+const config = {
   mode: 'production',
   entry: './src/index.js',
   devtool: 'source-map',
@@ -68,4 +69,4 @@ const config: Configuration = {
   },
 };
 
-export default config;
+module.exports = config;
