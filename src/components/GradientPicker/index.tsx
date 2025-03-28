@@ -86,11 +86,11 @@ const GradientPicker: React.FC<GradientPickerProps> = ({
     }
 
     const { color } = getPaletteColor(palette, activeColorId);
-    const entry: PaletteColor = { 
-      id: nextColorId(palette), 
-      offset: (offset / width).toString(), 
+    const entry: PaletteColor = {
+      id: nextColorId(palette),
+      offset: (offset / width).toString(),
       color,
-      opacity: 1 
+      opacity: 1,
     };
 
     const updatedPalette = [...palette, entry];
@@ -139,9 +139,7 @@ const GradientPicker: React.FC<GradientPickerProps> = ({
   };
 
   const handleStopPosChange = ({ id, offset }: StopPosChangeParams): void => {
-    const updatedPalette = palette.map(c => 
-      id === c.id ? { ...c, offset: ((offset + HALF_STOP_WIDTH) / width).toString() } : c
-    );
+    const updatedPalette = palette.map(c => (id === c.id ? { ...c, offset: ((offset + HALF_STOP_WIDTH) / width).toString() } : c));
     handlePaletteChange(updatedPalette);
   };
 
@@ -171,11 +169,7 @@ const GradientPicker: React.FC<GradientPickerProps> = ({
   const stopsHolderDisabled = palette.length >= maxStops;
 
   return (
-    <div 
-      ref={pickerRef} 
-      data-testid="gradient-picker" 
-      className={`${GRADIENT_PICKER_CLASSNAME} color-picker-mode-${colorPickerMode} ${direction}`}
-    >
+    <div ref={pickerRef} data-testid="gradient-picker" className={`${GRADIENT_PICKER_CLASSNAME} color-picker-mode-${colorPickerMode} ${direction}`}>
       <Palette width={paletteWidth} height={paletteHeight} palette={palette} direction={direction} />
       <ColorStopsHolder
         width={paletteWidth}
@@ -199,4 +193,4 @@ const GradientPicker: React.FC<GradientPickerProps> = ({
   );
 };
 
-export default GradientPicker; 
+export default GradientPicker;

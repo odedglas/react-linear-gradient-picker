@@ -19,7 +19,7 @@ export const DIRECTIONS = {
   VERTICAL: 'vertical',
 } as const;
 
-export type Direction = typeof DIRECTIONS[keyof typeof DIRECTIONS];
+export type Direction = (typeof DIRECTIONS)[keyof typeof DIRECTIONS];
 
 export const DEFAULT_DIRECTION = DIRECTIONS.HORIZONTAL;
 
@@ -34,6 +34,6 @@ export const COLOR_PICKER_MODS = {
   POPOVER: 'popover',
 } as const;
 
-export type ColorPickerMode = typeof COLOR_PICKER_MODS[keyof typeof COLOR_PICKER_MODS];
+export type ColorPickerMode = (typeof COLOR_PICKER_MODS)[keyof typeof COLOR_PICKER_MODS];
 
-export const DEFAULT_COLOR_PICKER_MOD = COLOR_PICKER_MODS.STATIC; 
+export const DEFAULT_COLOR_PICKER_MOD = COLOR_PICKER_MODS.STATIC;

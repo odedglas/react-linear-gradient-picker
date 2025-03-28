@@ -13,4 +13,4 @@ export interface GradientPickerPopoverProps {
   gradientType?: GradientType;
   setGradientType?: (type: GradientType) => void;
   [key: string]: any; // For other GradientPicker props
-} 
+}

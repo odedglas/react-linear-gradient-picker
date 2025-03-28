@@ -21,8 +21,8 @@ export interface GradientPickerProps {
   flatStyle?: boolean;
   onPaletteChange: (palette: PaletteColor[]) => void;
   onColorStopSelect?: (color: PaletteColor) => void;
-  direction?: typeof DIRECTIONS[keyof typeof DIRECTIONS];
-  colorPickerMode?: typeof COLOR_PICKER_MODS[keyof typeof COLOR_PICKER_MODS];
+  direction?: (typeof DIRECTIONS)[keyof typeof DIRECTIONS];
+  colorPickerMode?: (typeof COLOR_PICKER_MODS)[keyof typeof COLOR_PICKER_MODS];
 }
 
 export interface PaletteToStopsParams {
@@ -44,4 +44,4 @@ export interface ColorAddParams {
 export interface StopPosChangeParams {
   id: number;
   offset: number;
-} 
+}

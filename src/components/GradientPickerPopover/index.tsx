@@ -14,9 +14,9 @@ const defaultTrigger = (background: string, togglePicker: () => void): React.Rea
 );
 
 const GradientPickerPopover: React.FC<GradientPickerPopoverProps> = ({
-                                                                       palette,
-                                                                       open = false,
-                                                                       setOpen,
+  palette,
+  open = false,
+  setOpen,
   trigger = defaultTrigger,
   showAnglePicker = true,
   showGradientTypePicker = true,
@@ -52,25 +52,11 @@ const GradientPickerPopover: React.FC<GradientPickerPopoverProps> = ({
           <div className="popover">
             {showControlPanel && (
               <div className="controls-wrapper">
-                <GradientTypePicker 
-                  gradientType={gradientType} 
-                  onGradientTypeChange={handleGradientTypeChange} 
-                />
-                {showAnglePicker && supportsAnglePicker && (
-                  <AnglePicker 
-                    angle={angle} 
-                    setAngle={setAngle} 
-                    size={28} 
-                  />
-                )}
+                <GradientTypePicker gradientType={gradientType} onGradientTypeChange={handleGradientTypeChange} />
+                {showAnglePicker && supportsAnglePicker && <AnglePicker angle={angle} setAngle={setAngle} size={28} />}
               </div>
             )}
-            <GradientPicker 
-              {...gradientPickerProps} 
-              palette={palette} 
-              flatStyle 
-              onPaletteChange={onPaletteChange}
-            />
+            <GradientPicker {...gradientPickerProps} palette={palette} flatStyle onPaletteChange={onPaletteChange} />
           </div>
         </>
       )}
@@ -79,4 +65,4 @@ const GradientPickerPopover: React.FC<GradientPickerPopoverProps> = ({
 };
 
 export { GRADIENT_TYPES };
-export default GradientPickerPopover; 
+export default GradientPickerPopover;
