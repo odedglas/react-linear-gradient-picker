@@ -18,4 +18,4 @@ const pointDegrees = (pointX: number, pointY: number, center: Point): number => 
   return Math.round(radians * (180 / Math.PI)) + 90;
 };
 
-export default pointDegrees; 
+export default pointDegrees;

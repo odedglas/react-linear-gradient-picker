@@ -5,4 +5,4 @@ import { NoopFunction } from '../types';
  */
 const noop: NoopFunction = () => {};
 
-export default noop; 
+export default noop;

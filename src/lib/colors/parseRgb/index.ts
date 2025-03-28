@@ -30,4 +30,4 @@ const parseRgb = (rgbString: string): Color | undefined => {
     : undefined;
 };
 
-export default parseRgb; 
+export default parseRgb;

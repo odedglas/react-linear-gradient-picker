@@ -16,4 +16,4 @@ export const END_POINT_RATIO: number = 1;
 /**
  * The epsilon value for floating point comparisons
  */
-export const EPSILON: number = 0.000001; 
+export const EPSILON: number = 0.000001;

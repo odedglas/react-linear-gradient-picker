@@ -19,9 +19,7 @@ export const useClickOutside = ({ pickerRef, callback, ignoredSelectors, enabled
   useEffect(() => {
     function onClickOutside(e: MouseEvent) {
       const isInsidePicker = pickerRef.current?.contains(e.target as Node);
-      const isIgnoredTarget = ignoredSelectors.some(selector => 
-        (e.target as Element).closest(selector)
-      );
+      const isIgnoredTarget = ignoredSelectors.some(selector => (e.target as Element).closest(selector));
 
       if (!isInsidePicker && !isIgnoredTarget) {
         callback();
@@ -38,4 +36,4 @@ export const useClickOutside = ({ pickerRef, callback, ignoredSelectors, enabled
       }
     };
   }, [callback, ignoredSelectors, enabled, pickerRef]);
-}; 
+};

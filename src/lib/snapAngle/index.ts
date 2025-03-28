@@ -15,4 +15,4 @@ const snapAngle = (angle: number, snap: number = 0): number => {
   return angle + snappingAddition;
 };
 
-export default snapAngle; 
+export default snapAngle;

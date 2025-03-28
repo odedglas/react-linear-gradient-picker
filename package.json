@@ -12,6 +12,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,scss}\"",
+    "fix": "yarn format && yarn lint:fix",
     "build": "rspack build",
     "typecheck": "tsc --noEmit",
     "ci": "yarn lint && yarn typecheck && yarn test && yarn build",

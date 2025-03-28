@@ -9,4 +9,4 @@ export { default as getStopOffset } from './getStopOffset';
 export { default as noop } from './noop';
 export { default as pointDegrees } from './pointDegrees';
 export { default as snapAngle } from './snapAngle';
-export { default as sortPalette } from './sortPalette'; 
+export { default as sortPalette } from './sortPalette';

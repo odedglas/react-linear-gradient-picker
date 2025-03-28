@@ -14,4 +14,4 @@ const getStopOffset = (offset: string | number): number => {
   return Number(offsetStr) * 100;
 };
 
-export default getStopOffset; 
+export default getStopOffset;

@@ -36,4 +36,4 @@ const getStopColor = (color: string, opacity?: number): string => {
   return formatRgb(parsedColor);
 };
 
-export default getStopColor; 
+export default getStopColor;

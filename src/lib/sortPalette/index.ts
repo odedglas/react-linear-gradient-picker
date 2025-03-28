@@ -11,4 +11,4 @@ const sortPalette = (palette: ColorStop[]): ColorStop[] => {
   return [...palette].sort(sortByOffset);
 };
 
-export default sortPalette; 
+export default sortPalette;

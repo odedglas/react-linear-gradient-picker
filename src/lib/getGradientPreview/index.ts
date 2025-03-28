@@ -50,4 +50,4 @@ const getGradientPreview = (palette: ColorStop[], angle = 90, gradientType: Grad
   return { background, gradient };
 };
 
-export default getGradientPreview; 
+export default getGradientPreview;

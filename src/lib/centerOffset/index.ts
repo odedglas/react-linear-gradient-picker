@@ -16,4 +16,4 @@ const centerOffset = (el: HTMLElement | null): Point => {
   };
 };
 
-export default centerOffset; 
+export default centerOffset;

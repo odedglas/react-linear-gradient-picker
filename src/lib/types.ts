@@ -24,4 +24,4 @@ export interface Color {
   a: number;
 }
 
-export type NoopFunction = () => void; 
+export type NoopFunction = () => void;

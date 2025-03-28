@@ -43,4 +43,4 @@ const angleToGradientCords = (angle: number = 0): GradientCoordinates => {
   };
 };
 
-export default angleToGradientCords; 
+export default angleToGradientCords;

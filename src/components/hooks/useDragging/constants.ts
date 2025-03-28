@@ -10,4 +10,4 @@ export const EVENTS = {
   TOUCHEND: 'touchend',
 } as const;
 
-export type DragEventType = typeof EVENTS[keyof typeof EVENTS]; 
+export type DragEventType = (typeof EVENTS)[keyof typeof EVENTS];

@@ -169,11 +169,7 @@ const GradientPicker = ({
   const stopsHolderDisabled = palette.length >= maxStops;
 
   return (
-    <div 
-      ref={pickerRef} 
-      data-testid="gradient-picker"
-      className={`${GRADIENT_PICKER_CLASSNAME} color-picker-mode-${colorPickerMode} ${direction}`}
-    >
+    <div ref={pickerRef} data-testid="gradient-picker" className={`${GRADIENT_PICKER_CLASSNAME} color-picker-mode-${colorPickerMode} ${direction}`}>
       <Palette width={paletteWidth} height={paletteHeight} palette={palette} direction={direction} />
       <ColorStopsHolder
         width={paletteWidth}

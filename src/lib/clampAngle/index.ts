@@ -17,4 +17,4 @@ const clampAngle = (angle: number, min: number = 0, max: number = 360): number =
   return angle;
 };
 
-export default clampAngle; 
+export default clampAngle;

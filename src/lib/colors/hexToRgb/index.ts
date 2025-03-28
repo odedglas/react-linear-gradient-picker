@@ -24,4 +24,4 @@ const hexToRgb = (hex: string, opacity: number = 1): Color | undefined => {
     : undefined;
 };
 
-export default hexToRgb; 
+export default hexToRgb;
