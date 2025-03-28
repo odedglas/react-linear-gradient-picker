@@ -79,7 +79,7 @@ const useDragging = ({ onDragStart = noop, onDrag = noop, onDragEnd = noop }: Us
     if (!dragging || !handler) return;
 
     const change = handler.coordinates(e);
-    setContext(prevContext => ({ ...prevContext, change }));
+    context.change = change;
     onDrag(change);
   };
 
@@ -98,7 +98,7 @@ const useDragging = ({ onDragStart = noop, onDrag = noop, onDragEnd = noop }: Us
       document.removeEventListener(dragEvent.name, handleDrag, dragEvent.options);
       document.removeEventListener(dragEndEvent.name, deactivate, dragEndEvent.options);
     };
-  }, [dragging, context]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [dragging]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return [dragHandler, activate, deactivate] as const;
 };
