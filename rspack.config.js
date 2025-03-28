@@ -1,5 +1,4 @@
 const path = require('path');
-
 const { rspack } = require('@rspack/core');
 
 module.exports = {

@@ -1,7 +1,7 @@
-import { ColorStop } from '../types';
 import angleToGradientCords from '../angleToGradientCords';
 import getStopColor from '../getStopColor';
 import getStopOffset from '../getStopOffset';
+import { ColorStop, GradientCoordinates } from '../types';
 
 type GradientType = 'linear' | 'radial';
 
@@ -12,6 +12,11 @@ interface GradientConfig {
     offset: number;
   }>;
   type: GradientType;
+}
+
+interface GradientPreview {
+  background: string;
+  gradient: GradientCoordinates;
 }
 
 /**
@@ -32,7 +37,7 @@ const asBackground = ({ angle, stops, type }: GradientConfig): string => {
  * @param gradientType - The type of gradient (linear or radial)
  * @returns The formatted gradient string
  */
-const getGradientPreview = (palette: ColorStop[], angle: number = 90, gradientType: GradientType = 'linear'): string => {
+const getGradientPreview = (palette: ColorStop[], angle = 90, gradientType: GradientType = 'linear'): GradientPreview => {
   const gradient = angleToGradientCords(angle);
 
   const stops = palette.map(({ offset, color, opacity }) => ({
@@ -40,7 +45,9 @@ const getGradientPreview = (palette: ColorStop[], angle: number = 90, gradientTy
     color: getStopColor(color, opacity),
   }));
 
-  return asBackground({ angle, stops, type: gradientType });
+  const background = asBackground({ angle, stops, type: gradientType });
+
+  return { background, gradient };
 };
 
 export default getGradientPreview; 

@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
-
 import { noop } from '../../../lib';
-
 import { EVENTS } from './constants';
 
 const DRAG_HANDLERS = {

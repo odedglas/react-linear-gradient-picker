@@ -1,6 +1,5 @@
 /**
  * The drag supported events
- * Object<String>
  */
 export const EVENTS = {
   MOUSEDOWN: 'mousedown',
@@ -9,4 +8,6 @@ export const EVENTS = {
   TOUCHSTART: 'touchstart',
   TOUCHMOVE: 'touchmove',
   TOUCHEND: 'touchend',
-};
+} as const;
+
+export type DragEventType = typeof EVENTS[keyof typeof EVENTS]; 

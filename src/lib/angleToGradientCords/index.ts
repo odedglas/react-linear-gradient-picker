@@ -1,5 +1,6 @@
 import { Point, GradientCoordinates } from '../types';
-import { CIRCLE_DEGREES, START_POINT_RATIO, END_POINT_RATIO, EPSILON } from './constants';
+
+import { START_POINT_RATIO, END_POINT_RATIO, EPSILON } from './constants';
 
 /**
  * Formats a cord point, ensure it's value
