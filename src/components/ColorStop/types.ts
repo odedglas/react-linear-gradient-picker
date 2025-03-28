@@ -23,7 +23,7 @@ export interface ColorStopProps {
   onDeleteColor: (id: number) => void;
   onDragStart?: (id: number) => void;
   onDragEnd?: (id: number) => void;
-  direction: typeof DIRECTIONS[keyof typeof DIRECTIONS];
+  direction: (typeof DIRECTIONS)[keyof typeof DIRECTIONS];
 }
 
 export interface UseStopDraggingProps {
@@ -35,10 +35,10 @@ export interface UseStopDraggingProps {
   onDragStart: (id: number) => void;
   onDragEnd: (id: number) => void;
   onDeleteColor: (id: number) => void;
-  direction: typeof DIRECTIONS[keyof typeof DIRECTIONS];
+  direction: (typeof DIRECTIONS)[keyof typeof DIRECTIONS];
 }
 
 export interface DragCoordinates {
   clientX: number;
   clientY: number;
-} 
+}

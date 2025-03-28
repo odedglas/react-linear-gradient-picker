@@ -5,15 +5,7 @@ import useStopDragging from './hooks/useStopDragging';
 import { ColorStopProps } from './types';
 import './index.scss';
 
-const ColorStop: React.FC<ColorStopProps> = ({
-  stop,
-  limits,
-  onPosChange,
-  onDeleteColor,
-  onDragStart = noop,
-  onDragEnd = noop,
-  direction,
-}) => {
+const ColorStop: React.FC<ColorStopProps> = ({ stop, limits, onPosChange, onDeleteColor, onDragStart = noop, onDragEnd = noop, direction }) => {
   const colorStopRef = useRef<HTMLDivElement>(null);
   const [allowRemoveOnDoubleClick, setAllowRemoveOnDoubleClick] = useState(false);
   const [drag] = useStopDragging({
@@ -51,4 +43,4 @@ const ColorStop: React.FC<ColorStopProps> = ({
   );
 };
 
-export default ColorStop; 
+export default ColorStop;

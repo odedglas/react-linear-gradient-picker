@@ -11,4 +11,4 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onSelect }) => (
   </div>
 );
 
-export default ColorPicker; 
+export default ColorPicker;

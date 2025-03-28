@@ -3,7 +3,7 @@ import { DIRECTIONS } from '../GradientPicker/constants';
 
 export interface ColorStopsHolderProps {
   width: number;
-  direction: typeof DIRECTIONS[keyof typeof DIRECTIONS];
+  direction: (typeof DIRECTIONS)[keyof typeof DIRECTIONS];
   stops: Stop[];
   disabled?: boolean;
   limits: Limits;
@@ -19,4 +19,4 @@ export interface StopsHolderStyle {
   height: number;
   position: 'relative';
   cursor: 'default' | 'crosshair';
-} 
+}

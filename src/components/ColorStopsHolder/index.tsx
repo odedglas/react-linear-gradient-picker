@@ -4,7 +4,7 @@ import { DIRECTIONS } from '../GradientPicker/constants';
 import { COLOR_STOP_HOLDER_CLASSNAME } from './constants';
 import { ColorStopsHolderProps, StopsHolderStyle } from './types';
 
-const getStopsHolderStyle = (width: number, disabled: boolean, direction: typeof DIRECTIONS[keyof typeof DIRECTIONS]): StopsHolderStyle => ({
+const getStopsHolderStyle = (width: number, disabled: boolean, direction: (typeof DIRECTIONS)[keyof typeof DIRECTIONS]): StopsHolderStyle => ({
   width: direction === DIRECTIONS.HORIZONTAL ? width : 17,
   height: direction === DIRECTIONS.HORIZONTAL ? 17 : width,
   position: 'relative',
@@ -16,19 +16,13 @@ const ColorStopsHolder: React.FC<ColorStopsHolderProps> = ({ width, direction, s
     e.preventDefault();
 
     if (e.button) return;
-    const offset = direction === DIRECTIONS.HORIZONTAL 
-      ? e.clientX - e.currentTarget.getBoundingClientRect().left 
-      : e.clientY - e.currentTarget.getBoundingClientRect().top;
+    const offset = direction === DIRECTIONS.HORIZONTAL ? e.clientX - e.currentTarget.getBoundingClientRect().left : e.clientY - e.currentTarget.getBoundingClientRect().top;
 
     onAddColor({ offset });
   };
 
   return (
-    <div 
-      className={COLOR_STOP_HOLDER_CLASSNAME} 
-      style={getStopsHolderStyle(width, disabled, direction)} 
-      onMouseDown={handleColorAdd}
-    >
+    <div className={COLOR_STOP_HOLDER_CLASSNAME} style={getStopsHolderStyle(width, disabled, direction)} onMouseDown={handleColorAdd}>
       {stops.map(stop => (
         <ColorStop key={stop.id} stop={stop} direction={direction} {...rest} />
       ))}
@@ -36,4 +30,4 @@ const ColorStopsHolder: React.FC<ColorStopsHolderProps> = ({ width, direction, s
   );
 };
 
-export default ColorStopsHolder; 
+export default ColorStopsHolder;

@@ -17,4 +17,4 @@ export const COLORS: Color[] = [
   { value: '#000080', name: 'navy' },
   { value: '#FF00FF', name: 'fuchsia' },
   { value: '#800080', name: 'purple' },
-]; 
+];

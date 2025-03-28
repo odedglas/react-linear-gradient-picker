@@ -6,4 +6,4 @@ export interface Color {
 export interface ColorPickerProps {
   color: string;
   onSelect: (color: string) => void;
-} 
+}

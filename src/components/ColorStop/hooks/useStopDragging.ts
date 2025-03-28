@@ -12,7 +12,7 @@ import { UseStopDraggingProps, DragCoordinates } from '../types';
  */
 const limitPos = (offset: number, min: number, max: number): number => Math.max(Math.min(offset, max), min);
 
-const getColorStopRefCoordinate = (ref: React.RefObject<HTMLDivElement | null>, direction: typeof DIRECTIONS[keyof typeof DIRECTIONS]): number => {
+const getColorStopRefCoordinate = (ref: React.RefObject<HTMLDivElement | null>, direction: (typeof DIRECTIONS)[keyof typeof DIRECTIONS]): number => {
   if (!ref.current) return 0;
   const rect = ref.current.getBoundingClientRect();
 
@@ -20,7 +20,7 @@ const getColorStopRefCoordinate = (ref: React.RefObject<HTMLDivElement | null>, 
 };
 
 const getDeleteDistanceFromColorStopToCoordinate = (
-  direction: typeof DIRECTIONS[keyof typeof DIRECTIONS],
+  direction: (typeof DIRECTIONS)[keyof typeof DIRECTIONS],
   coordinates: DragCoordinates,
   colorStopRef: React.RefObject<HTMLDivElement | null>
 ): number => {
@@ -70,4 +70,4 @@ const useStopDragging = ({
   return [drag];
 };
 
-export default useStopDragging; 
+export default useStopDragging;

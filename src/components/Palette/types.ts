@@ -5,7 +5,7 @@ export interface PaletteProps {
   palette: ColorStop[];
   width: number;
   height: number;
-  direction: typeof DIRECTIONS[keyof typeof DIRECTIONS];
+  direction: (typeof DIRECTIONS)[keyof typeof DIRECTIONS];
 }
 
 export interface LinearGradientProps {
@@ -13,4 +13,4 @@ export interface LinearGradientProps {
   y1: number;
   x2: number;
   y2: number;
-} 
+}

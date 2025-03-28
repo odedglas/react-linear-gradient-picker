@@ -5,18 +5,13 @@ import { PaletteProps, LinearGradientProps } from './types';
 
 const generateGradientId = (): string => '' + Math.random().toString(36).substr(2, 9);
 
-const getLinearGradientProps = (direction: typeof DIRECTIONS[keyof typeof DIRECTIONS]): LinearGradientProps => (
-  direction === DIRECTIONS.HORIZONTAL 
-    ? { x1: 0, y1: 0.5, x2: 1, y2: 0.5 } 
-    : { x1: 0.5, y1: 0, x2: 0.5, y2: 1 }
-);
+const getLinearGradientProps = (direction: (typeof DIRECTIONS)[keyof typeof DIRECTIONS]): LinearGradientProps =>
+  direction === DIRECTIONS.HORIZONTAL ? { x1: 0, y1: 0.5, x2: 1, y2: 0.5 } : { x1: 0.5, y1: 0, x2: 0.5, y2: 1 };
 
 const Palette: React.FC<PaletteProps> = ({ palette, width, height, direction }) => {
   const sortedPalette = sortPalette(palette);
   const gradientId = useMemo(generateGradientId, [palette.length]);
-  const containerStyle = direction === DIRECTIONS.HORIZONTAL 
-    ? { width, height } 
-    : { width: height, height: width };
+  const containerStyle = direction === DIRECTIONS.HORIZONTAL ? { width, height } : { width: height, height: width };
 
   return (
     <div className="palette" style={containerStyle}>
@@ -34,4 +29,4 @@ const Palette: React.FC<PaletteProps> = ({ palette, width, height, direction }) 
   );
 };
 
-export default Palette; 
+export default Palette;
