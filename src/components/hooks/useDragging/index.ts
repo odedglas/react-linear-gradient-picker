@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react';
 import { noop } from '../../../lib';
 import { EVENTS, DragEventType } from './constants';
 
-type DragEvent = MouseEvent | TouchEvent;
+type ReactDragEvent = React.MouseEvent | React.TouchEvent;
 
 interface Coordinates {
   clientX: number;
   clientY: number;
 }
 
-interface DragHandler<Event = DragEvent> {
+interface DragHandler<Event = ReactDragEvent> {
   stop: (e: Event) => void;
   coordinates: (e: Event) => Coordinates;
   dragEvent: { name: DragEventType; options?: AddEventListenerOptions };
@@ -18,12 +18,12 @@ interface DragHandler<Event = DragEvent> {
 
 const DRAG_HANDLERS: Record<string, DragHandler> = {
   MOUSE: {
-    stop: (e: DragEvent) => {
+    stop: (e: ReactDragEvent) => {
       e.preventDefault();
       e.stopPropagation();
     },
-    coordinates: (e: DragEvent) => {
-      const { clientX, clientY } = e as MouseEvent;
+    coordinates: (e: ReactDragEvent) => {
+      const { clientX, clientY } = e as React.MouseEvent;
       return { clientX, clientY };
     },
     dragEvent: { name: EVENTS.MOUSEMOVE },
@@ -31,8 +31,8 @@ const DRAG_HANDLERS: Record<string, DragHandler> = {
   },
   TOUCH: {
     stop: noop,
-    coordinates: (e: DragEvent) => {
-      const [touch] = (e as TouchEvent).touches;
+    coordinates: (e: ReactDragEvent) => {
+      const [touch] = (e as unknown as TouchEvent).touches;
       return { clientX: touch.clientX, clientY: touch.clientY };
     },
     dragEvent: { name: EVENTS.TOUCHMOVE, options: { passive: true } },
@@ -40,7 +40,7 @@ const DRAG_HANDLERS: Record<string, DragHandler> = {
   },
 };
 
-const isTouch = (e: Event): e is TouchEvent => e.type === EVENTS.TOUCHSTART;
+const isTouch = (e: ReactDragEvent): e is React.TouchEvent => e.type === EVENTS.TOUCHSTART;
 
 interface UseDraggingProps {
   onDragStart?: (coords: Coordinates) => void;
@@ -52,7 +52,7 @@ const useDragging = ({ onDragStart = noop, onDrag = noop, onDragEnd = noop }: Us
   const [context, setContext] = useState<{ handler?: DragHandler; change?: Coordinates }>({});
   const [dragging, setDragging] = useState(false);
 
-  const dragHandler = (e: DragEvent) => {
+  const dragHandler = (e: ReactDragEvent) => {
     const handler = isTouch(e) ? DRAG_HANDLERS.TOUCH : DRAG_HANDLERS.MOUSE;
 
     handler.stop(e);
@@ -60,7 +60,7 @@ const useDragging = ({ onDragStart = noop, onDrag = noop, onDragEnd = noop }: Us
     if (!('button' in e) || e.button === 0) activate(e, handler);
   };
 
-  const activate = (e: DragEvent, handler: DragHandler) => {
+  const activate = (e: ReactDragEvent, handler: DragHandler) => {
     setDragging(true);
     setContext({ handler });
 
@@ -74,11 +74,11 @@ const useDragging = ({ onDragStart = noop, onDrag = noop, onDragEnd = noop }: Us
     setContext({});
   };
 
-  const handleDrag = (e: DragEvent) => {
+  const handleDrag = (e: MouseEvent | TouchEvent) => {
     const { handler } = context;
     if (!dragging || !handler) return;
 
-    const change = handler.coordinates(e);
+    const change = handler.coordinates(e as unknown as ReactDragEvent);
     context.change = change;
     onDrag(change);
   };

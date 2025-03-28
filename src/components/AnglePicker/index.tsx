@@ -26,7 +26,7 @@ const AnglePicker: React.FC<AnglePickerProps> = ({ angle, setAngle, size = 24, s
     setAngle(angle);
   };
 
-  const [drag] = useDragging({
+  const [dragHandler] = useDragging({
     onDragStart: e => onAngleChange(e, true),
     onDrag: onAngleChange,
     onDragEnd: coords => {
@@ -38,7 +38,7 @@ const AnglePicker: React.FC<AnglePickerProps> = ({ angle, setAngle, size = 24, s
 
   return (
     <>
-      <div className="ap" ref={pickerRef} onMouseDown={drag} onTouchStart={drag} style={sizeStyle}>
+      <div className="ap" ref={pickerRef} onMouseDown={dragHandler} onTouchStart={dragHandler} style={sizeStyle}>
         <span className="apc" style={{ transform: `rotate(${angle}deg)`, height: size }}>
           <i className="aph" />
         </span>
