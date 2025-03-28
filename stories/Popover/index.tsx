@@ -15,7 +15,7 @@ function addOpacityToHex(hex: string, a = 1) {
     if (c.length === 3) {
       c = [c[0], c[0], c[1], c[1], c[2], c[2]];
     }
-    c = '0x' + c.join('') as any;
+    c = ('0x' + c.join('')) as any;
     return 'rgba(' + [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(',') + ',' + a + ')';
   }
   if (/rgb\((\d{1,3}), (\d{1,3}), (\d{1,3})\)/.test(hex)) {
@@ -36,11 +36,11 @@ const WrappedSketchPicker = ({ onSelect, ...rest }: WrappedProps) => (
 );
 
 const initialPallet = [
-  { offset: 0.00, color: 'rgb(238, 241, 11)' },
-  { offset: 1.00, color: 'rgb(126, 32, 207)' },
+  { offset: 0.0, color: 'rgb(238, 241, 11)' },
+  { offset: 1.0, color: 'rgb(126, 32, 207)' },
 ];
 
-const PopoverStory = ({ showAngle, showType }: { showAngle?: boolean, showType?: boolean }) => {
+const PopoverStory = ({ showAngle, showType }: { showAngle?: boolean; showType?: boolean }) => {
   const [open, setOpen] = useState(false);
   const [angle, setAngle] = useState(90);
   const [gradientType, setGradientType] = useState<GradientType>(GRADIENT_TYPES.LINEAR);

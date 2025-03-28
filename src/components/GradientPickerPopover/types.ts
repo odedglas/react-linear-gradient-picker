@@ -3,6 +3,7 @@ import { GradientType } from '../GradientTypePicker/types';
 
 export interface GradientPickerPopoverProps {
   palette: Omit<PaletteColor, 'id'>[];
+  onPaletteChange: (palette: Omit<PaletteColor, 'id'>[]) => void;
   open?: boolean;
   setOpen: (open: boolean) => void;
   trigger?: (background: string, togglePicker: () => void) => React.ReactElement;

@@ -25,7 +25,7 @@ interface GradientPreview {
  * @param config - The gradient configuration
  * @returns The formatted gradient string
  */
-const asBackground = ({ angle, stops, type }: GradientConfig): string => {
+export const asBackground = ({ angle, stops, type }: GradientConfig): string => {
   const anglePrefix = type === 'linear' ? `${angle}deg, ` : '';
 
   return stops.length === 1 ? stops[0].color : `${type}-gradient(${anglePrefix}${stops.map(stop => `${stop.color} ${stop.offset}%`).join(', ')})`;

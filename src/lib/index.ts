@@ -3,7 +3,7 @@ export * from './types';
 export { default as angleToGradientCords } from './angleToGradientCords';
 export { default as centerOffset } from './centerOffset';
 export { default as clampAngle } from './clampAngle';
-export { default as getGradientPreview } from './getGradientPreview';
+export { default as getGradientPreview, asBackground } from './getGradientPreview';
 export { default as getStopColor } from './getStopColor';
 export { default as getStopOffset } from './getStopOffset';
 export { default as noop } from './noop';

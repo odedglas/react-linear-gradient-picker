@@ -88,7 +88,7 @@ const GradientPicker: React.FC<GradientPickerProps> = ({
     const { color } = getPaletteColor(palette, activeColorId);
     const entry: PaletteColor = {
       id: nextColorId(palette),
-      offset: (offset / width),
+      offset: offset / width,
       color,
       opacity: 1,
     };
@@ -139,7 +139,7 @@ const GradientPicker: React.FC<GradientPickerProps> = ({
   };
 
   const handleStopPosChange = ({ id, offset }: StopPosChangeParams): void => {
-    const updatedPalette = palette.map(c => (id === c.id ? { ...c, offset: ((offset + HALF_STOP_WIDTH) / width) } : c));
+    const updatedPalette = palette.map(c => (id === c.id ? { ...c, offset: (offset + HALF_STOP_WIDTH) / width } : c));
     handlePaletteChange(updatedPalette);
   };
 
