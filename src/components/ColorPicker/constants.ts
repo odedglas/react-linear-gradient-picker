@@ -1,4 +1,6 @@
-export const COLORS = [
+import { Color } from './types';
+
+export const COLORS: Color[] = [
   { value: '#000000', name: 'black' },
   { value: '#808080', name: 'gray' },
   { value: '#C0C0C0', name: 'silver' },
@@ -15,4 +17,4 @@ export const COLORS = [
   { value: '#000080', name: 'navy' },
   { value: '#FF00FF', name: 'fuchsia' },
   { value: '#800080', name: 'purple' },
-];
+]; 

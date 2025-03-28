@@ -1,10 +1,9 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-
 import { COLORS } from './constants';
+import { ColorPickerProps } from './types';
 import './index.scss';
 
-const ColorPicker = ({ onSelect }) => (
+const ColorPicker: React.FC<ColorPickerProps> = ({ onSelect }) => (
   <div className="cp">
     {COLORS.map(({ value, name }) => (
       <div onClick={() => onSelect(value)} key={name} title={name} style={{ backgroundColor: value }} />
@@ -12,9 +11,4 @@ const ColorPicker = ({ onSelect }) => (
   </div>
 );
 
-ColorPicker.propTypes = {
-  color: PropTypes.string.isRequired,
-  onSelect: PropTypes.func.isRequired,
-};
-
-export default ColorPicker;
+export default ColorPicker; 
