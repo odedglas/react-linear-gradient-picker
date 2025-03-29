@@ -1,40 +1,40 @@
 .gp {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    &.vertical {
-        flex-direction: row;
+  &.vertical {
+    flex-direction: row;
+  }
+
+  .gp-flat {
+    margin: 0 auto;
+    padding: 10px 0 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  &.color-picker-mode-popover {
+    .color-picker-wrapper {
+      position: relative;
+      width: 100%;
+      flex: 0;
+
+      .color-picker-wrapper-inner {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+      }
     }
 
-    .gp-flat {
-        margin: 0 auto;
-        padding: 10px 0 0!important;
-        box-shadow: none!important;
-        transform: none!important;
+    &.vertical .color-picker-wrapper .color-picker-wrapper-inner {
+      flex-direction: column;
+      height: 100%;
     }
 
-    &.color-picker-mode-popover {
-        .color-picker-wrapper {
-            position: relative;
-            width: 100%;
-            flex: 0;
-
-            .color-picker-wrapper-inner {
-                position: absolute;
-                display: flex;
-                justify-content: center;
-            }
-        }
-
-        &.vertical .color-picker-wrapper .color-picker-wrapper-inner {
-            flex-direction: column;
-            height: 100%;
-        }
-
-        &.horizontal .color-picker-wrapper .color-picker-wrapper-inner {
-            flex-direction: row;
-            width: 100%;
-        }
+    &.horizontal .color-picker-wrapper .color-picker-wrapper-inner {
+      flex-direction: row;
+      width: 100%;
     }
+  }
 }
