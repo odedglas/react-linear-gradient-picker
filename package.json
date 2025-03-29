@@ -1,6 +1,6 @@
 {
   "name": "react-linear-gradient-picker",
-  "version": "3.0.1",
+  "version": "3.0.0",
   "description": "React linear gradient picker",
   "main": "dist/index.js",
   "types": "dist/src/index.d.ts",
