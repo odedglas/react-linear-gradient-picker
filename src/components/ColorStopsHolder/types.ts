@@ -1,10 +1,10 @@
-import { Stop, Limits } from '../ColorStop/types';
+import { ColorStop, Limits } from '../../types';
 import { DIRECTIONS } from '../GradientPicker/constants';
 
 export interface ColorStopsHolderProps {
   width: number;
   direction: (typeof DIRECTIONS)[keyof typeof DIRECTIONS];
-  stops: Stop[];
+  stops: ColorStop[];
   disabled?: boolean;
   limits: Limits;
   onPosChange: (data: { id: number; offset: number }) => void;

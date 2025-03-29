@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { getGradientPreview } from '../../lib';
+import { GRADIENT_TYPES, GradientType } from '../../types';
 import AnglePicker from '../AnglePicker';
 import GradientPicker from '../GradientPicker';
 import GradientTypePicker from '../GradientTypePicker';
-import { GRADIENT_TYPES, GradientType } from '../GradientTypePicker/types';
 import { GradientPickerPopoverProps } from './types';
 import './index.scss';
 

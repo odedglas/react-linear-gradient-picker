@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SketchPicker } from 'react-color';
 import GradientPickerPopover, { GRADIENT_TYPES } from '../../src/components/GradientPickerPopover';
-import { GradientType } from '../../src/components/GradientTypePicker/types';
+import { GradientType } from '../../src/types';
 import { WrappedProps } from '../GradientPicker';
 import './index.css';
 

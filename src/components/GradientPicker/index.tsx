@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useRef, useCallback } from 'react';
 import { sortPalette, noop } from '../../lib';
+import { ColorStop } from '../../types';
 import ColorPicker from '../ColorPicker';
-import { Stop } from '../ColorStop/types';
 import ColorStopsHolder from '../ColorStopsHolder';
 import { useClickOutside } from '../hooks/useClickOutside';
 import Palette from '../Palette';
@@ -19,18 +19,21 @@ import {
   IGNORED_CLICK_OUTSIDE_SELECTORS,
   COLOR_PICKER_MODS,
 } from './constants';
-import { GradientPickerProps, PaletteColor, PaletteToStopsParams, Limits, ColorAddParams, StopPosChangeParams } from './types';
+import { GradientPickerProps, PaletteColor, PaletteToStopsParams, ColorAddParams, StopPosChangeParams } from './types';
 import './index.scss';
 
-const nextColorId = (palette: PaletteColor[]): number => Math.max(...palette.map(({ id }) => id)) + 1;
+const nextColorId = (palette: PaletteColor[]): number => {
+  const ids = palette.map(({ id }) => id).filter((id): id is number => id !== undefined);
+  return ids.length > 0 ? Math.max(...ids) + 1 : 0;
+};
 
-const mapIdToPalette = (palette: PaletteColor[] | GradientPickerProps['palette']): PaletteColor[] =>
+const mapIdToPalette = (palette: Omit<PaletteColor, 'id'>[]): PaletteColor[] =>
   palette.map((color, index) => ({
     ...color,
-    id: ('id' in color && color.id) || index + 1,
+    id: index,
   }));
 
-const mapPaletteToStops = ({ palette, activeId, width }: PaletteToStopsParams): Stop[] =>
+const mapPaletteToStops = ({ palette, activeId, width }: PaletteToStopsParams): ColorStop[] =>
   palette.map(color => ({
     ...color,
     id: color.id,
@@ -38,9 +41,9 @@ const mapPaletteToStops = ({ palette, activeId, width }: PaletteToStopsParams): 
     isActive: color.id === activeId,
   }));
 
-const getPaletteColor = (palette: PaletteColor[], id: number): PaletteColor => {
-  const color = palette.find(color => color.id === id) || palette[0];
-  return { ...color, offset: color.offset };
+const getPaletteColor = (palette: PaletteColor[], id: number | undefined): PaletteColor => {
+  const color = id !== undefined ? palette.find(color => color.id === id) : undefined;
+  return color || palette[0];
 };
 
 const GradientPicker: React.FC<GradientPickerProps> = ({
@@ -64,7 +67,7 @@ const GradientPicker: React.FC<GradientPickerProps> = ({
   const pickerRef = useRef<HTMLDivElement>(null);
   const isPopoverColorPicker = colorPickerMode === COLOR_PICKER_MODS.POPOVER;
 
-  const limits = useMemo((): Limits => {
+  const limits = useMemo(() => {
     const min = -HALF_STOP_WIDTH;
     const max = width - HALF_STOP_WIDTH;
     return { min, max, drop: stopRemovalDrop };
@@ -177,7 +180,7 @@ const GradientPicker: React.FC<GradientPickerProps> = ({
         stops={mapPaletteToStops({
           palette,
           width: paletteWidth,
-          activeId: activeColorId,
+          activeId: activeColorId || 0,
         })}
         limits={limits}
         onPosChange={handleStopPosChange}

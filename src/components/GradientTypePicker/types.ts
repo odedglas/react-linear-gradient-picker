@@ -1,9 +1,4 @@
-export const GRADIENT_TYPES = {
-  LINEAR: 'linear',
-  RADIAL: 'radial',
-} as const;
-
-export type GradientType = (typeof GRADIENT_TYPES)[keyof typeof GRADIENT_TYPES];
+import { GradientType } from '../../types';
 
 export interface GradientTypePickerProps {
   gradientType: GradientType;

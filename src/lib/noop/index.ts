@@ -1,4 +1,4 @@
-import { NoopFunction } from '../types';
+import { NoopFunction } from '../../types';
 
 /**
  * Executes nothing.

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
 import { GradientPicker } from '../../src';
-import { ColorStop, getGradientPreview } from '../../src/lib';
+import { getGradientPreview } from '../../src/lib';
+import type { ColorStop } from '../../src/types';
 
 interface UseCaseProps {
   palette: ColorStop[];

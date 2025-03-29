@@ -23,7 +23,7 @@ const ColorStop: React.FC<ColorStopProps> = ({ stop, limits, onPosChange, onDele
     setTimeout(() => setAllowRemoveOnDoubleClick(true), 500);
   }, []);
 
-  const { offset, color, isActive, opacity } = stop;
+  const { offset, color, isActive, opacity, id } = stop;
 
   return (
     <div
@@ -32,8 +32,8 @@ const ColorStop: React.FC<ColorStopProps> = ({ stop, limits, onPosChange, onDele
       style={direction === DIRECTIONS.HORIZONTAL ? { left: offset } : { top: offset }}
       onMouseDown={drag}
       onDoubleClick={() => {
-        if (allowRemoveOnDoubleClick) {
-          onDeleteColor(stop.id);
+        if (allowRemoveOnDoubleClick && id !== undefined) {
+          onDeleteColor(id);
         }
       }}
       onTouchStart={drag}

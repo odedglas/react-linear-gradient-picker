@@ -1,4 +1,4 @@
-import { ColorStop } from '../../lib/types';
+import { ColorStop } from '../../types';
 import { DIRECTIONS } from '../GradientPicker/constants';
 
 export interface PaletteProps {

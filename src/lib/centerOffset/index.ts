@@ -1,4 +1,4 @@
-import { Point } from '../types';
+import { Point } from '../../types';
 
 /**
  * Returns a DOM element center offset

@@ -1,4 +1,4 @@
-import { ColorStop } from '../types';
+import { ColorStop } from '../../types';
 
 const sortByOffset = (a: ColorStop, b: ColorStop): number => a.offset - b.offset;
 

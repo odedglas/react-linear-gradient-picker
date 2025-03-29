@@ -1,24 +1,7 @@
+import { ColorStop, GradientConfig, GradientPreview, GradientType } from '../../types';
 import angleToGradientCords from '../angleToGradientCords';
 import getStopColor from '../getStopColor';
 import getStopOffset from '../getStopOffset';
-import { ColorStop, GradientCoordinates } from '../types';
-
-type GradientType = 'linear' | 'radial';
-
-interface GradientConfig {
-  angle: number;
-  stops: Array<{
-    color: string;
-    offset: number;
-  }>;
-  type: GradientType;
-}
-
-interface GradientPreview {
-  background: string;
-  angle: number;
-  gradient: GradientCoordinates;
-}
 
 /**
  * Formats into linear gradient background property

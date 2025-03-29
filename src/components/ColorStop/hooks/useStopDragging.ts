@@ -45,6 +45,8 @@ const useStopDragging = ({
 
   const handleDrag = (coordinates: DragCoordinates): void => {
     const { id, offset } = stop;
+    if (id === undefined) return;
+
     const { min, max } = limits;
     const dragOffset = offset - posStart;
 
@@ -61,10 +63,16 @@ const useStopDragging = ({
   const [drag] = useDragging({
     onDragStart: ({ clientX, clientY }: DragCoordinates) => {
       setPosStart(direction === DIRECTIONS.HORIZONTAL ? clientX : clientY);
-      onDragStart(stop.id);
+      if (stop.id !== undefined) {
+        onDragStart(stop.id);
+      }
     },
     onDrag: handleDrag,
-    onDragEnd: () => onDragEnd(stop.id),
+    onDragEnd: () => {
+      if (stop.id !== undefined) {
+        onDragEnd(stop.id);
+      }
+    },
   });
 
   return [drag];

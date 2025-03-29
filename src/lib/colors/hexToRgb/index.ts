@@ -1,4 +1,4 @@
-import { Color } from '../../types';
+import { Color } from '../../../types';
 
 export const hexRegExp = new RegExp(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);
 export const sortHexRegExp = new RegExp(/^#?([a-f\d])([a-f\d])([a-f\d])$/i);

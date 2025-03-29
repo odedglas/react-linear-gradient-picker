@@ -1,7 +1,4 @@
-interface Point {
-  x: number;
-  y: number;
-}
+import { Point } from '../../types';
 
 /**
  * Returns a given point's matched angle in degrees from the center

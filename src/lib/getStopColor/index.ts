@@ -1,7 +1,7 @@
+import { Color } from '../../types';
 import formatRgb from '../colors/formatRgb';
 import hexToRgb, { hexRegExp, sortHexRegExp } from '../colors/hexToRgb';
 import parseRgb, { rgbRegExp } from '../colors/parseRgb';
-import { Color } from '../types';
 
 interface ColorClassifier {
   regexps: RegExp[];

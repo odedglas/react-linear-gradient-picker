@@ -1,4 +1,4 @@
-import { Color } from '../../types';
+import { Color } from '../../../types';
 
 /**
  * Formats an rgba into a css rgb/a property

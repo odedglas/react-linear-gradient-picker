@@ -1,5 +1,3 @@
-export * from './types';
-
 export { default as angleToGradientCords } from './angleToGradientCords';
 export { default as centerOffset } from './centerOffset';
 export { default as clampAngle } from './clampAngle';

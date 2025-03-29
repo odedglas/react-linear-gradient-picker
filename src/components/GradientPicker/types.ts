@@ -1,10 +1,7 @@
+import { ColorStop } from '../../types';
 import { DIRECTIONS, COLOR_PICKER_MODS } from './constants';
 
-export interface PaletteColor {
-  id: number;
-  offset: number;
-  color: string;
-  opacity?: number;
+export interface PaletteColor extends ColorStop {
   active?: boolean;
   isActive?: boolean;
 }
@@ -28,12 +25,6 @@ export interface PaletteToStopsParams {
   palette: PaletteColor[];
   activeId: number;
   width: number;
-}
-
-export interface Limits {
-  min: number;
-  max: number;
-  drop: number;
 }
 
 export interface ColorAddParams {
