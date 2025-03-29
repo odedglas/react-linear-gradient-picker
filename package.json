@@ -3,7 +3,7 @@
   "version": "3.0.1",
   "description": "React linear gradient picker",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "scripts": {
     "storybook": "storybook dev -p 7006",
     "build-storybook": "storybook build",
