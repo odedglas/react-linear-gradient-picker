@@ -1,4 +1,4 @@
-// @ts-expect-error rc-color-picker is not typed
+// @ts-expect-error rc-color-picker has no types
 import { Panel as ColorPicker } from 'rc-color-picker';
 import { SketchPicker } from 'react-color';
 
