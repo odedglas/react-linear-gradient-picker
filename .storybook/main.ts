@@ -7,7 +7,7 @@ const config: StorybookConfig = {
   },
 
   stories: [`${process.cwd()}/stories/**/*.stories.@(js|tsx)`],
-  addons: ['@storybook/addon-essentials', '@storybook/addon-links'],
+  addons: ['@storybook/addon-links'],
 };
 
 export default config;

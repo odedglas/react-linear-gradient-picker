@@ -1127,55 +1127,12 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/merge-streams/-/merge-streams-2.3.0.tgz#719df7fb41766bc143369eaa0dd56d8dc87c9958"
   integrity sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg==
 
-"@storybook/addon-backgrounds@9.0.0-alpha.12":
-  version "9.0.0-alpha.12"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-backgrounds/-/addon-backgrounds-9.0.0-alpha.12.tgz#ad75263d15dbe19a69be35e38afa331bce1b6fd0"
-  integrity sha512-oiQL8GIs2jNhN1cfbWa6iJIdey/WC+TFlmIeoWzYsJ79EQCxpL5JgmzCMGIkZ+p7L4MUR/5S5b5fh6ApyWcUKw==
-  dependencies:
-    "@storybook/global" "^5.0.0"
-    memoizerific "^1.11.3"
-    ts-dedent "^2.0.0"
-
-"@storybook/addon-essentials@9.0.0-alpha.12":
-  version "9.0.0-alpha.12"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-essentials/-/addon-essentials-9.0.0-alpha.12.tgz#eccae42dbcca1e1f6e8534548b969da7a4b67d15"
-  integrity sha512-wmUT9Q4rl6SvVgrIYDj97uHHkMSGba1A+/rMHypIw7OtrdUp+w1OKZRDNVrU0AfqfbaptT5dRrBsDr/eFZ9v8Q==
-  dependencies:
-    "@storybook/addon-backgrounds" "9.0.0-alpha.12"
-    "@storybook/addon-highlight" "9.0.0-alpha.12"
-    "@storybook/addon-measure" "9.0.0-alpha.12"
-    "@storybook/addon-outline" "9.0.0-alpha.12"
-    ts-dedent "^2.0.0"
-
-"@storybook/addon-highlight@9.0.0-alpha.12":
-  version "9.0.0-alpha.12"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-highlight/-/addon-highlight-9.0.0-alpha.12.tgz#e9b857e90f38f66c30ec595db6c68d9e106b7dd7"
-  integrity sha512-b8E1AjBaWFvBoWUfXXlAYfAIanuaHLZwJhmOcqJGtbx9RIC5uHfyGC8KHJgeyKMzvHhZD86vWBo5KUAFLFVUrg==
-  dependencies:
-    "@storybook/global" "^5.0.0"
-
 "@storybook/addon-links@^9.1.5":
   version "9.1.5"
   resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-9.1.5.tgz#4806db005bb1ebe99b7fa412d072ea5da05cb49f"
   integrity sha512-jJmUgORT9/CF7t8EgN6P8PhTpmKB9PzIKGpSAFm+pzLgvVvm956656BMRwK4MpfNz+AeduhPPdSGmZBOwiyMDA==
   dependencies:
     "@storybook/global" "^5.0.0"
-
-"@storybook/addon-measure@9.0.0-alpha.12":
-  version "9.0.0-alpha.12"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-measure/-/addon-measure-9.0.0-alpha.12.tgz#55eafb8a31e2939bf9c2c236e4b7d35a7b89937a"
-  integrity sha512-ZtAKi/mlvVYaBMlPokvrHF94YFsyYAlz3IpKu+uz5QymN3VweSIgGsDJmAqV49lVzyVk40KWCVypi4O3L7nvdQ==
-  dependencies:
-    "@storybook/global" "^5.0.0"
-    tiny-invariant "^1.3.1"
-
-"@storybook/addon-outline@9.0.0-alpha.12":
-  version "9.0.0-alpha.12"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-outline/-/addon-outline-9.0.0-alpha.12.tgz#6ff279cdad19dac291506ea3e689c29d352d511c"
-  integrity sha512-I7opVIK8bNUYSC+P+b8AwP6sE2pFyXH5F0gz8WA0pdkRcxerQmYnhlsXrI5T0QMu79tZnjVNrQTUrqpy/Z5oqQ==
-  dependencies:
-    "@storybook/global" "^5.0.0"
-    ts-dedent "^2.0.0"
 
 "@storybook/builder-vite@9.1.5":
   version "9.1.5"
@@ -3823,11 +3780,6 @@ make-dir@^2.0.0, make-dir@^2.1.0:
     pify "^4.0.1"
     semver "^5.6.0"
 
-map-or-similar@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.npmjs.org/map-or-similar/-/map-or-similar-1.5.0.tgz"
-  integrity sha512-0aF7ZmVon1igznGI4VS30yugpduQW3y3GkcgGJOp7d8x8QrizhigUxjI/m2UojsXXto+jLAH3KSz+xOJTiORjg==
-
 material-colors@^1.2.1:
   version "1.2.6"
   resolved "https://registry.npmjs.org/material-colors/-/material-colors-1.2.6.tgz"
@@ -3837,13 +3789,6 @@ math-intrinsics@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/math-intrinsics/-/math-intrinsics-1.1.0.tgz"
   integrity sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==
-
-memoizerific@^1.11.3:
-  version "1.11.3"
-  resolved "https://registry.npmjs.org/memoizerific/-/memoizerific-1.11.3.tgz"
-  integrity sha512-/EuHYwAPdLtXwAwSZkh/Gutery6pD2KYd44oQLhAvQp/50mpyduZh8Q7PYHXTCJ+wuXxt7oij2LXyIJOOYFPog==
-  dependencies:
-    map-or-similar "^1.5.0"
 
 merge2@^1.3.0:
   version "1.4.1"
