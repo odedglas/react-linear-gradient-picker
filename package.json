@@ -31,7 +31,7 @@
     "typecheck": "tsc --noEmit",
     "ci": "yarn lint && yarn typecheck && yarn test && yarn build",
     "deploy-storybook": "storybook-to-ghpages",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build && npm run deploy-storybook"
   },
   "repository": {
     "type": "git",
