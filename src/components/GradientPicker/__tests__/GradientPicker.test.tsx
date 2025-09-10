@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react';
-import React from 'react';
 
 import GradientPicker from '../index';
 
@@ -12,8 +11,8 @@ describe('GradientPicker', () => {
         { id: 1, color: '#ff0000', offset: 0, opacity: 1 },
         { id: 2, color: '#0000ff', offset: 1, opacity: 1 },
       ],
-      onPaletteChange: jest.fn(),
-      onColorStopSelect: jest.fn(),
+      onPaletteChange: vi.fn(),
+      onColorStopSelect: vi.fn(),
     };
 
     render(<GradientPicker {...defaultProps} />);

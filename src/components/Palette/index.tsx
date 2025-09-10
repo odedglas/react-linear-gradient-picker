@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { sortPalette } from '../../lib';
 import { DIRECTIONS } from '../GradientPicker/constants';
-import { PaletteProps, LinearGradientProps } from './types';
+import type { PaletteProps, LinearGradientProps } from './types';
 
 const generateGradientId = (): string => '' + Math.random().toString(36).substr(2, 9);
 

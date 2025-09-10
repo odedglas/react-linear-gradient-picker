@@ -1,5 +1,5 @@
-import { RefObject } from 'react';
-import { ColorStop, Limits, DragCoordinates } from '../../types';
+import type { RefObject } from 'react';
+import type { ColorStop, Limits, DragCoordinates } from '../../types';
 import { DIRECTIONS } from '../GradientPicker/constants';
 
 export type { DragCoordinates };

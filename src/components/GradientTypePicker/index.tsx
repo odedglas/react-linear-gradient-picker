@@ -1,6 +1,6 @@
 import React from 'react';
 import { GRADIENT_TYPES } from '../../types';
-import { GradientTypePickerProps } from './types';
+import type { GradientTypePickerProps } from './types';
 import './index.scss';
 
 const GradientTypePicker: React.FC<GradientTypePickerProps> = ({ gradientType, onGradientTypeChange }) => {

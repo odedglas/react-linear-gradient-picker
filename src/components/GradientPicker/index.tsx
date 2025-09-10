@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useRef, useCallback } from 'react';
 import { sortPalette, noop } from '../../lib';
-import { ColorStop } from '../../types';
+import type { ColorStop } from '../../types';
 import ColorPicker from '../ColorPicker';
 import ColorStopsHolder from '../ColorStopsHolder';
 import { useClickOutside } from '../hooks/useClickOutside';
@@ -19,7 +19,7 @@ import {
   IGNORED_CLICK_OUTSIDE_SELECTORS,
   COLOR_PICKER_MODS,
 } from './constants';
-import { GradientPickerProps, PaletteColor, PaletteToStopsParams, ColorAddParams, StopPosChangeParams } from './types';
+import type { GradientPickerProps, PaletteColor, PaletteToStopsParams, ColorAddParams, StopPosChangeParams } from './types';
 import './index.scss';
 
 const nextColorId = (palette: PaletteColor[]): number => {

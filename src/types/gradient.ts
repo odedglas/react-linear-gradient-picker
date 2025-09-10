@@ -1,4 +1,4 @@
-import { GradientCoordinates } from './geometry';
+import type { GradientCoordinates } from './geometry';
 
 export const GRADIENT_TYPES = {
   LINEAR: 'linear',

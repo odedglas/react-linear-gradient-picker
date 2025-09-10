@@ -1,4 +1,4 @@
-import { GradientType } from '../../types';
+import type { GradientType } from '../../types';
 
 export interface GradientTypePickerProps {
   gradientType: GradientType;

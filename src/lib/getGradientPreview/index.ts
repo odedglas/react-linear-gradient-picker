@@ -1,4 +1,4 @@
-import { ColorStop, GradientConfig, GradientPreview, GradientType } from '../../types';
+import type { ColorStop, GradientConfig, GradientPreview, GradientType } from '../../types';
 import angleToGradientCords from '../angleToGradientCords';
 import getStopColor from '../getStopColor';
 import getStopOffset from '../getStopOffset';

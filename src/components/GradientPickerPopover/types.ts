@@ -1,5 +1,5 @@
-import { GradientType } from '../../types';
-import { PaletteColor } from '../GradientPicker/types';
+import type { GradientType } from '../../types';
+import type { PaletteColor } from '../GradientPicker/types';
 
 export interface GradientPickerPopoverProps {
   palette: Omit<PaletteColor, 'id'>[];

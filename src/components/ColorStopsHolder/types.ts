@@ -1,4 +1,4 @@
-import { ColorStop, Limits } from '../../types';
+import type { ColorStop, Limits } from '../../types';
 import { DIRECTIONS } from '../GradientPicker/constants';
 
 export interface ColorStopsHolderProps {

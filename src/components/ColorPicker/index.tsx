@@ -1,6 +1,6 @@
 import React from 'react';
 import { COLORS } from './constants';
-import { ColorPickerProps } from './types';
+import type { ColorPickerProps } from './types';
 import './index.scss';
 
 const ColorPicker: React.FC<ColorPickerProps> = ({ onSelect }) => (

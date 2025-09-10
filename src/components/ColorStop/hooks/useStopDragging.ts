@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { DIRECTIONS } from '../../GradientPicker/constants';
-import useDragging, { ReactDragEvent } from '../../hooks/useDragging';
-import { UseStopDraggingProps, DragCoordinates } from '../types';
+import useDragging, { type ReactDragEvent } from '../../hooks/useDragging';
+import type { UseStopDraggingProps, DragCoordinates } from '../types';
 
 /**
  * Limits a client drag movement within given min / max

@@ -2,7 +2,7 @@ import React from 'react';
 import ColorStop from '../ColorStop';
 import { DIRECTIONS } from '../GradientPicker/constants';
 import { COLOR_STOP_HOLDER_CLASSNAME } from './constants';
-import { ColorStopsHolderProps, StopsHolderStyle } from './types';
+import type { ColorStopsHolderProps, StopsHolderStyle } from './types';
 
 const getStopsHolderStyle = (width: number, disabled: boolean, direction: (typeof DIRECTIONS)[keyof typeof DIRECTIONS]): StopsHolderStyle => ({
   width: direction === DIRECTIONS.HORIZONTAL ? width : 17,

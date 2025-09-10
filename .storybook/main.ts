@@ -1,21 +1,13 @@
-import type { StorybookConfig } from '@storybook/react-webpack5';
+import type { StorybookConfig } from '@storybook/react-vite'
 
 const config: StorybookConfig = {
   framework: {
-    name: '@storybook/react-webpack5',
-    options: {
-      builder: {
-        useSWC: true,
-      },
-    },
+    name: '@storybook/react-vite',
+    options: {},
   },
 
   stories: [`${process.cwd()}/stories/**/*.stories.@(js|tsx)`],
-  addons: ['@storybook/addon-essentials', '@storybook/addon-links', '@storybook/preset-scss', '@storybook/addon-webpack5-compiler-swc'],
-
-  docs: {
-    autodocs: false,
-  },
+  addons: ['@storybook/addon-essentials', '@storybook/addon-links'],
 };
 
 export default config;
