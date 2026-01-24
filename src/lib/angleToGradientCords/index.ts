@@ -1,4 +1,4 @@
-import { Point, GradientCoordinates } from '../../types';
+import type { Point, GradientCoordinates } from '../../types';
 
 import { START_POINT_RATIO, END_POINT_RATIO, EPSILON } from './constants';
 

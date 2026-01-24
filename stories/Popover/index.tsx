@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { SketchPicker } from 'react-color';
 import GradientPickerPopover, { GRADIENT_TYPES } from '../../src/components/GradientPickerPopover';
-import { GradientType } from '../../src/types';
-import { WrappedProps } from '../GradientPicker';
+import type { GradientType } from '../../src/types';
+import type { WrappedProps } from '../GradientPicker';
 import './index.css';
 
 /**

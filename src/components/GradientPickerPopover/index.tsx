@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { getGradientPreview } from '../../lib';
-import { GRADIENT_TYPES, GradientType } from '../../types';
+import { GRADIENT_TYPES, type GradientType } from '../../types';
 import AnglePicker from '../AnglePicker';
 import GradientPicker from '../GradientPicker';
 import GradientTypePicker from '../GradientTypePicker';
-import { GradientPickerPopoverProps } from './types';
+import type { GradientPickerPopoverProps } from './types';
 import './index.scss';
 
 const defaultTrigger = (background: string, togglePicker: () => void): React.ReactElement => (

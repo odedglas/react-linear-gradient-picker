@@ -1,10 +1,9 @@
-import React from 'react';
+// @ts-expect-error rc-color-picker has no types
+import { Panel as ColorPicker } from 'rc-color-picker';
 import { SketchPicker } from 'react-color';
 
 import UseCase from './UseCase';
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const { Panel: ColorPicker } = require('rc-color-picker');
 
 import 'rc-color-picker/assets/index.css';
 

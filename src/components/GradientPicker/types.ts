@@ -1,4 +1,4 @@
-import { ColorStop } from '../../types';
+import type { ColorStop } from '../../types';
 import { DIRECTIONS, COLOR_PICKER_MODS } from './constants';
 
 export interface PaletteColor extends ColorStop {

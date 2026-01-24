@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { noop } from '../../../lib';
-import { EVENTS, DragEventType } from './constants';
+import { EVENTS, type DragEventType } from './constants';
 
 export type ReactDragEvent = React.MouseEvent | React.TouchEvent;
 

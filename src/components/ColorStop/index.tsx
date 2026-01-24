@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { noop } from '../../lib';
 import { DIRECTIONS } from '../GradientPicker/constants';
 import useStopDragging from './hooks/useStopDragging';
-import { ColorStopProps } from './types';
+import type { ColorStopProps } from './types';
 import './index.scss';
 
 const ColorStop: React.FC<ColorStopProps> = ({ stop, limits, onPosChange, onDeleteColor, onDragStart = noop, onDragEnd = noop, direction }) => {
